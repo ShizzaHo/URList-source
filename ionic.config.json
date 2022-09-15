@@ -1,0 +1,7 @@
+{
+  "name": "URList",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

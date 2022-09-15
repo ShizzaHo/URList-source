@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">URList</string>
+    <string name="title_activity_main">URList</string>
+    <string name="package_name">ru.shizzaho.urlist</string>
+    <string name="custom_url_scheme">ru.shizzaho.urlist</string>
+</resources>
