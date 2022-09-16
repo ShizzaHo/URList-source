@@ -52,16 +52,19 @@ const OpenCategory = () => {
                   button
                   key={index}
                   onTouchStart={() => {
-                    touchStart();
+                    touchStart(item);
                   }}
                   onTouchEnd={() => {
                     touchEnd(item);
                   }}
                   onMouseDown={() => {
-                    touchStart();
+                    touchStart(item);
                   }}
                   onMouseUp={() => {
                     touchEnd(item);
+                  }}
+                  onClick={()=>{
+                    window.open(item.url);
                   }}
                 >
                   <IonLabel>
@@ -86,17 +89,17 @@ const OpenCategory = () => {
     </IonPage>
   );
 
-  function touchStart() {
-    setLongPress(new Date().getTime() / 1000);
+  function touchStart(item) {
+    if (!longPress) {
+      const timer = setTimeout(()=>{history.push('/editLink/' + item.id);}, 800);
+      setLongPress(timer);
+    }
   }
 
   function touchEnd(item) {
-    const date = new Date().getTime() / 1000;
-    if (date - longPress >= 0.3) {
-      console.log(item);
-      history.push('/editLink/' + item.id);
-    } else {
-      window.open(item.url);
+    if (longPress) {
+      clearTimeout(longPress);
+      setLongPress(null);
     }
   }
 };
