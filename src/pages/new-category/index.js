@@ -25,6 +25,7 @@ import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
 
 import { generateCategoryID } from './../../utils/generator/index';
+import language from '../../language';
 
 const NewCategory = () => {
   const history = useHistory();
@@ -41,17 +42,17 @@ const NewCategory = () => {
           <IonButtons slot='start'>
             <IonBackButton defaultHref='/' />
           </IonButtons>
-          <IonTitle>Новая категория</IonTitle>
+          <IonTitle>{language.newCategory}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <div className='p-10'>
           <IonItem color="no">
-            <IonLabel position='floating'>Название категории</IonLabel>
+            <IonLabel position='floating'>{language.newCategory_name}</IonLabel>
             <IonInput value={state.name} onIonChange={(e)=>{setState({...state, name: e.detail.value})}}></IonInput>
           </IonItem>
           <IonItem color="no">
-            <IonLabel position='floating'>Описание категории</IonLabel>
+            <IonLabel position='floating'>{language.newCategory_desc}</IonLabel>
             <IonTextarea value={state.desc} rows={6} onIonChange={(e)=>{setState({...state, desc: e.detail.value})}}></IonTextarea>
           </IonItem>
         </div>

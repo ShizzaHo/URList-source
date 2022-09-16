@@ -25,6 +25,7 @@ import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
 
 import { generateCategoryID } from './../../utils/generator/index';
+import language from '../../language';
 
 const NewLink = () => {
   const history = useHistory();
@@ -44,13 +45,13 @@ const NewLink = () => {
           <IonButtons slot='start'>
             <IonBackButton defaultHref='/' />
           </IonButtons>
-          <IonTitle>Новая ссылка</IonTitle>
+          <IonTitle>{language.newLink}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <div className='p-10'>
           <IonItem color='no'>
-            <IonLabel position='floating'>Название ссылки</IonLabel>
+            <IonLabel position='floating'>{language.newLink_name}</IonLabel>
             <IonInput
               value={state.name}
               onIonChange={(e) => {
@@ -59,7 +60,7 @@ const NewLink = () => {
             ></IonInput>
           </IonItem>
           <IonItem color='no'>
-            <IonLabel position='floating'>URL-адрес</IonLabel>
+            <IonLabel position='floating'>{language.newLink_url}</IonLabel>
             <IonInput
               value={state.url}
               onIonChange={(e) => {
@@ -70,11 +71,11 @@ const NewLink = () => {
           {error ? (
             <>
               <p style={{ color: 'red' }}>
-                Ссылка обязательно должна содержать следующие подстроки:
+                {language.newLink_errorTitle}
               </p>
               <ul style={{ color: 'red' }}>
-                <li>Подстроку "https://" или "http://"</li>
-                <li>Точку</li>
+                <li>{language.newLink_errorItem1}</li>
+                <li>{language.newLink_errorItem2}</li>
               </ul>
             </>
           ) : (

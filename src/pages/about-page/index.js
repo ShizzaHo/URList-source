@@ -18,13 +18,15 @@ import {
   IonInput,
   IonTextarea,
   IonThumbnail,
-  IonImg
+  IonImg,
+  isPlatform 
 } from '@ionic/react';
 import { saveSharp } from 'ionicons/icons';
 import './styles.css';
 import logo from '../../theme/logo.png'
 
 import { observer } from 'mobx-react';
+import language from '../../language';
 
 const NewCategory = () => {
   const history = useHistory();
@@ -41,7 +43,7 @@ const NewCategory = () => {
           <IonButtons slot='start'>
             <IonBackButton defaultHref='/' />
           </IonButtons>
-          <IonTitle>Пользовательское соглашение</IonTitle>
+          <IonTitle>{language.about}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -49,14 +51,14 @@ const NewCategory = () => {
           <div className='about-header'>
             <img src={logo}></img>
             <h1>URList</h1>
-            <h2>Твой помощник в сохранении ссылок</h2>
+            <h2>{language.about_subtitle}</h2>
           </div>
           <div className='about-footer'>
-            <a onClick={()=>{window.open("https://www.donationalerts.com/r/hu_tao_goddess")}}>Поддержать проект</a>
-            <a onClick={()=>{window.open("https://urlist.vercel.app")}}>Официальный сайт проекта</a>
+            {!isPlatform('android') ? <a onClick={()=>{window.open("https://www.donationalerts.com/r/hu_tao_goddess")}}>{language.about_donat}</a> : <></>}
+            <a onClick={()=>{window.open("https://urlist.vercel.app")}}>{language.about_site}</a>
             {/* <a>Тема приложения на 4PDA</a> */}
-            <p>Разработчик: <a onClick={()=>{window.open("https://shizzaho-portfolio.vercel.app")}}>ShizzaHo</a></p>
-            <p>Версия приложения: 1.0.0</p>
+            <p>{language.about_developer} <a onClick={()=>{window.open("https://shizzaho-portfolio.vercel.app")}}>ShizzaHo</a></p>
+            <p>{language.about_version} 1.1</p>
           </div>
         </div>
       </IonContent>

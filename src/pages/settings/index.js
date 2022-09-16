@@ -1,25 +1,26 @@
 import { useState } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { App } from '@capacitor/app';
 import {
   IonContent,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
-  IonButton,
   IonButtons,
-  IonIcon,
-  IonFab,
-  IonFabButton,
   IonItem,
   IonLabel,
   IonBackButton,
+  isPlatform,
+  useIonActionSheet
 } from '@ionic/react';
 import { settingsSharp, add } from 'ionicons/icons';
 import './styles.css';
+import language from '../../language';
 
 const Settings = () => {
+  const [present, dismiss] = useIonActionSheet();
   const history = useHistory();
 
   return (
@@ -29,7 +30,7 @@ const Settings = () => {
           <IonButtons slot='start'>
             <IonBackButton defaultHref='/' />
           </IonButtons>
-          <IonTitle>Настройки</IonTitle>
+          <IonTitle>{language.settings}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -41,7 +42,42 @@ const Settings = () => {
             }}
           >
             <IonLabel>
-              <h2>Импорт и экспорт данных</h2>
+              <h2>{language.settings_importExport}</h2>
+            </IonLabel>
+          </IonItem>
+          <IonItem
+            button
+            onClick={() => {
+              present({
+                buttons: [
+                  {
+                    text: language.langName_ru,
+                    handler: () => {
+                      localStorage.setItem("URLIST_LANG", "russian")
+                      reload()
+                    },
+                  },
+                  {
+                    text: language.langName_en,
+                    handler: () => {
+                      localStorage.setItem("URLIST_LANG", "english")
+                      reload()
+                    },
+                  },
+                  {
+                    text: language.langName_cz,
+                    handler: () => {
+                      localStorage.setItem("URLIST_LANG", "chinese")
+                      reload()
+                    },
+                  },
+                ],
+                header: language.settings_selectLanguage_title,
+              });
+            }}
+          >
+            <IonLabel>
+              <h2>{language.settings_selectLanguage}</h2>
             </IonLabel>
           </IonItem>
           <IonItem
@@ -51,7 +87,7 @@ const Settings = () => {
             }}
           >
             <IonLabel>
-              <h2>Пользовательское соглашение</h2>
+              <h2>{language.settings_userAgreement}</h2>
             </IonLabel>
           </IonItem>
           <IonItem
@@ -61,13 +97,21 @@ const Settings = () => {
             }}
           >
             <IonLabel>
-              <h2>О приложении</h2>
+              <h2>{language.settings_about}</h2>
             </IonLabel>
           </IonItem>
         </div>
       </IonContent>
     </IonPage>
   );
+
+  function reload(){
+    if (isPlatform('android')) {
+      App.exitApp();
+    } else {
+      window.location = "/";
+    }
+  }
 };
 
 export default Settings;

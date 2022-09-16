@@ -24,6 +24,7 @@ import './styles.css';
 
 import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
+import language from '../../language';
 
 const EditCategory = () => {
   const [presentAlert] = useIonAlert();
@@ -43,7 +44,7 @@ const EditCategory = () => {
           <IonButtons slot='start'>
             <IonBackButton defaultHref='/' />
           </IonButtons>
-          <IonTitle>Редактирование категории</IonTitle>
+          <IonTitle>{language.editCategory}</IonTitle>
           <IonButtons slot='secondary'>
             <IonButton
               onClick={() => {
@@ -58,7 +59,7 @@ const EditCategory = () => {
       <IonContent fullscreen>
         <div className='p-10'>
           <IonItem color='no'>
-            <IonLabel position='floating'>Название категории</IonLabel>
+            <IonLabel position='floating'>{language.editCategory_name}</IonLabel>
             <IonInput
               value={state.name}
               onIonChange={(e) => {
@@ -67,7 +68,7 @@ const EditCategory = () => {
             ></IonInput>
           </IonItem>
           <IonItem color='no'>
-            <IonLabel position='floating'>Описание категории</IonLabel>
+            <IonLabel position='floating'>{language.editCategory_desc}</IonLabel>
             <IonTextarea
               value={state.desc}
               rows={6}

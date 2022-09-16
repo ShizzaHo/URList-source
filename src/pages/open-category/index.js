@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Redirect, Route } from 'react-router-dom';
 import {
   IonContent,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
-  IonButton,
   IonButtons,
   IonIcon,
   IonFab,
@@ -15,17 +13,21 @@ import {
   IonItem,
   IonLabel,
   IonBackButton,
-  IonInput,
-  IonTextarea,
 } from '@ionic/react';
 import { add } from 'ionicons/icons';
 import './styles.css';
+
+import { SortList } from '../../utils/sort';
+import SortButton from '../../components/sort-button';
 
 import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
 
 const OpenCategory = () => {
   const [longPress, setLongPress] = useState(null);
+  const [sortMethod, setSortMethod] = useState(
+    localStorage.getItem('URLIST_SORTMETHOD')
+  );
 
   const history = useHistory();
   const params = useParams();
@@ -38,11 +40,14 @@ const OpenCategory = () => {
             <IonBackButton defaultHref='/' />
           </IonButtons>
           <IonTitle>{DataStore.getCategory(params.id).title}</IonTitle>
+          <IonButtons slot='end'>
+            <SortButton setSortMethod={setSortMethod} />
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <div>
-          {DataStore.getLinks()
+          {SortList(DataStore.getLinks(), sortMethod)
             .filter((value) => {
               return value.parentID == params.id;
             })
@@ -63,7 +68,7 @@ const OpenCategory = () => {
                   onMouseUp={() => {
                     touchEnd(item);
                   }}
-                  onClick={()=>{
+                  onClick={() => {
                     window.open(item.url);
                   }}
                 >
@@ -91,7 +96,9 @@ const OpenCategory = () => {
 
   function touchStart(item) {
     if (!longPress) {
-      const timer = setTimeout(()=>{history.push('/editLink/' + item.id);}, 800);
+      const timer = setTimeout(() => {
+        history.push('/editLink/' + item.id);
+      }, 800);
       setLongPress(timer);
     }
   }

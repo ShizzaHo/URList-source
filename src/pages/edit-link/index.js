@@ -23,6 +23,7 @@ import './styles.css';
 
 import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
+import language from '../../language';
 
 const EditLink = () => {
   const [presentAlert] = useIonAlert();
@@ -45,7 +46,7 @@ const EditLink = () => {
           <IonButtons slot='start'>
             <IonBackButton defaultHref='/' />
           </IonButtons>
-          <IonTitle>Редактирование ссылки</IonTitle>
+          <IonTitle>{language.editLink}</IonTitle>
           <IonButtons slot='secondary'>
             <IonButton
               onClick={() => {
@@ -60,7 +61,7 @@ const EditLink = () => {
       <IonContent fullscreen>
         <div className='p-10'>
           <IonItem color='no'>
-            <IonLabel position='floating'>Название ссылки</IonLabel>
+            <IonLabel position='floating'>{language.editLink_name}</IonLabel>
             <IonInput
               value={state.name}
               onIonChange={(e) => {
@@ -69,7 +70,7 @@ const EditLink = () => {
             ></IonInput>
           </IonItem>
           <IonItem color='no'>
-            <IonLabel position='floating'>URL-адрес</IonLabel>
+            <IonLabel position='floating'>{language.editLink_url}</IonLabel>
             <IonInput
               value={state.url}
               onIonChange={(e) => {
@@ -80,11 +81,11 @@ const EditLink = () => {
           {error ? (
             <>
               <p style={{ color: 'red' }}>
-                Ссылка обязательно должна содержать следующие подстроки:
+              {language.editLink_errorTitle}
               </p>
               <ul style={{ color: 'red' }}>
-                <li>Подстроку "https://" или "http://"</li>
-                <li>Точку</li>
+                <li>{language.editLink_errorItem1}</li>
+                <li>{language.editLink_errorItem2}</li>
               </ul>
             </>
           ) : (

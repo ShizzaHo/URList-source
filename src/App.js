@@ -36,6 +36,19 @@ import './theme/variables.css';
 import DataStore from './store/data';
 DataStore.loadDataFromLocalStorage();
 
+if (localStorage.getItem("URLIST_LANG") == undefined) {
+  const userLang = navigator.language || navigator.userLanguage; 
+  if (userLang == "ru-RU") {
+    localStorage.setItem("URLIST_LANG", "russian");
+  } else if (userLang == "en-EN")  {
+    localStorage.setItem("URLIST_LANG", "english");
+  } else if (userLang == "zh_CN")  {
+    localStorage.setItem("URLIST_LANG", "chinese");
+  } else {
+    localStorage.setItem("URLIST_LANG", "english");
+  }
+}
+
 setupIonicReact();
 
 const App = () => {

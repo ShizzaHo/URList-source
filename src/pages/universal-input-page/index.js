@@ -25,6 +25,7 @@ import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
 
 import { generateCategoryID } from './../../utils/generator/index';
+import language from '../../language';
 
 const NewLink = () => {
   const history = useHistory();
@@ -46,7 +47,7 @@ const NewLink = () => {
       <IonContent fullscreen>
         <div className='p-10'>
           <IonItem color='no'>
-            <IonLabel position='floating'>Введите/скопируйте необходимые данные</IonLabel>
+            <IonLabel position='floating'>{language.universalPage_inputPlaceholder}</IonLabel>
             <IonTextarea
               value={state.data}
               onIonChange={(e) => {
@@ -55,10 +56,10 @@ const NewLink = () => {
             ></IonTextarea>
           </IonItem>
           <br/>
-          <IonLabel position='floating'>После взаимодейтсвия с этим окном, обязательно перезапустите приложение для применения изменений</IonLabel>
+          <IonLabel position='floating'>{language.universalPage_info1}</IonLabel>
           <br/>
           <br/>
-          <IonLabel position='floating'>Чтобы применить изменения нажмите на круглую кнопку снизу</IonLabel>
+          <IonLabel position='floating'>{language.universalPage_info2}</IonLabel>
         </div>
         <IonFab vertical='bottom' horizontal='center' slot='fixed'>
           <IonFabButton className='fab' onClick={functionSpec}>
@@ -72,6 +73,9 @@ const NewLink = () => {
   function functionSpec(){
     if (params.mode === "importData") {
       DataStore.importFromJson(state.data)
+    } else if (params.mode === "exportData") {
+      history.index = -1;
+      history.goBack();
     } else {
       history.goBack();
     }
