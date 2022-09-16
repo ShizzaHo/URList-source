@@ -57,7 +57,7 @@ const Category = () => {
         <div>
           {DataStore.getCategories().map((item, index) => {
             return (
-              <IonItem button key={index} onTouchStart={()=>{touchStart()}} onTouchEnd={()=>{touchEnd(item.id)}} onMouseDown={()=>{touchStart()}} onMouseUp={()=>{touchEnd(item.id)}}>
+              <IonItem button key={index} onTouchStart={()=>{touchStart(item)}} onTouchEnd={()=>{touchEnd(item.id)}} onMouseDown={()=>{touchStart(item)}} onMouseUp={()=>{touchEnd(item.id)}} onClick={()=>{history.push('/openCategory/'+item.id);}}>
                 <IonLabel>
                   <h2>{item.title}</h2>
                   <p>{item.desc}</p>
@@ -80,16 +80,17 @@ const Category = () => {
     </IonPage>
   );
 
-  function touchStart() {
-    setLongPress(new Date().getTime() / 1000)
+  function touchStart(item) {
+    if (!longPress) {
+      const timer = setTimeout(()=>{history.push('/editCategory/'+item.id);}, 800);
+      setLongPress(timer);
+    }
   }
 
   function touchEnd(id) {
-    const date = new Date().getTime() / 1000
-    if ((date - longPress) >= 0.3) {
-      history.push('/editCategory/'+id);
-    } else {
-      history.push('/openCategory/'+id);
+    if (longPress) {
+      clearTimeout(longPress);
+      setLongPress(null);
     }
   }
 };
