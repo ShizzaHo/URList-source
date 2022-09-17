@@ -52,7 +52,7 @@ const words = {
   editLink_errorItem2: 'Dot',
 
   sort: 'Sorting method',
-  sort_lastShange: 'By default (from the last change)',
+  sort_lastСhange: 'By default (from the last change)',
   sort_alphabetically1: 'Alphabetically (A-Z)',
   sort_alphabetically2: 'Alphabetically (Z-A)',
 };
