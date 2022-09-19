@@ -1,0 +1,11 @@
+.iconcolorpicker-input{
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.iconcolorpicker-picker{
+    width: 47px;
+    height: 47px;
+    border-radius: 100%;
+}

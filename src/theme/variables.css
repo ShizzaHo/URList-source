@@ -40,6 +40,14 @@ http://ionicframework.com/docs/theming/ */
 	--ion-color-step-850: #dddddd;
 	--ion-color-step-900: #e8e8e8;
 	--ion-color-step-950: #f4f4f4;
+
+  /** favorite-colors **/
+  --ion-color-favorite: #FF9800;
+  --ion-color-favorite-rgb: 255, 152, 0;
+  --ion-color-favorite-contrast: #ffffff;
+  --ion-color-favorite-contrast-rgb: 255, 255, 255;
+  --ion-color-favorite-shade: #000000;
+  --ion-color-favorite-tint: #1a1a1a;
 }
 
 .ion-color-urlDark {
@@ -55,6 +63,15 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-base: var(--ion-color-urlDarkToolbar);
   --ion-text-color: #FFFFFF;
 	--ion-text-color-rgb: 255,255,255;
+}
+
+.ion-color-favorite {
+  --ion-color-base: var(--ion-color-favorite);
+  --ion-color-base-rgb: var(--ion-color-favorite-rgb);
+  --ion-color-contrast: var(--ion-color-favorite-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-favorite-contrast-rgb);
+  --ion-color-shade: var(--ion-color-favorite-shade);
+  --ion-color-tint: var(--ion-color-favorite-tint);
 }
 
 /* ======================== */

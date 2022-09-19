@@ -1,7 +1,9 @@
 import { makeAutoObservable, toJS } from "mobx"
+import config from "../../config";
 
 class DataState {
     data = {
+        meta: {name: "URLIST", version: config.thisVersion},
         categories: [
 
         ],
@@ -119,7 +121,40 @@ class DataState {
     importFromJson(data) {
         const newData = data;
         localStorage.setItem("URLIST_DATA", newData)
-        console.log(1);
+    }
+
+    categoryFavoriteToggle(id){
+        const category = this.getCategory(id);
+        if (category.isFavorite) {
+            category.isFavorite = false;
+        } else {
+            category.isFavorite = true;
+        }
+        this.editCategory(id, category);
+        this.saveDataToLocalStorage()
+    }
+
+    linkFavoriteToggle(id){
+        const link = this.getLink(id);
+        if (link.isFavorite) {
+            link.isFavorite = false;
+        } else {
+            link.isFavorite = true;
+        }
+        this.editLink(id, link);
+        this.saveDataToLocalStorage()
+    }
+
+    getMeta(){
+        return toJS(this.data.meta);
+    }
+
+    setMeta(newObj){
+        this.setData({
+            ...this.getData(),
+            meta: newObj
+        })
+        this.saveDataToLocalStorage()
     }
 }
 

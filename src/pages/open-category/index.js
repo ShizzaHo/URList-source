@@ -14,6 +14,7 @@ import {
   IonLabel,
   IonBackButton,
 } from '@ionic/react';
+import SettingsState from '../../store/settings';
 import { add } from 'ionicons/icons';
 import './styles.css';
 
@@ -22,6 +23,7 @@ import SortButton from '../../components/sort-button';
 
 import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
+import LinkItem from './../../components/url-item/index';
 
 const OpenCategory = () => {
   const [longPress, setLongPress] = useState(null);
@@ -47,37 +49,65 @@ const OpenCategory = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div>
+        {SortList(DataStore.getLinks(), sortMethod)
+            .filter((value) => {
+              return value.parentID == params.id;
+            })
+            .map((item, index) => {
+              if (item.isFavorite) {
+                return (
+                  <LinkItem
+                    key={item.id}
+                    title={item.title}
+                    desc={item.url}
+                    onOpen={() => {
+                      history.push('/openCategory/' + item.id);
+                    }}
+                    onEdit={() => {
+                      history.push('/editLink/' + item.id);
+                    }}
+                    onFavorite={() => {
+                      DataStore.linkFavoriteToggle(item.id);
+                    }}
+                    isFavorite={item.isFavorite}
+                    showIcon={SettingsState.getSettings().showIcons}
+                    iconColor={item.iconColor}
+                    iconType={item.iconType}
+                  />
+                );
+              } else {
+                return <></>;
+              }
+            })}
           {SortList(DataStore.getLinks(), sortMethod)
             .filter((value) => {
               return value.parentID == params.id;
             })
             .map((item, index) => {
-              return (
-                <IonItem
-                  button
-                  key={index}
-                  onTouchStart={() => {
-                    touchStart(item);
-                  }}
-                  onTouchEnd={() => {
-                    touchEnd(item);
-                  }}
-                  onMouseDown={() => {
-                    touchStart(item);
-                  }}
-                  onMouseUp={() => {
-                    touchEnd(item);
-                  }}
-                  onClick={() => {
-                    window.open(item.url);
-                  }}
-                >
-                  <IonLabel>
-                    <h2>{item.title}</h2>
-                    <p>{item.url}</p>
-                  </IonLabel>
-                </IonItem>
-              );
+              if (!item.isFavorite) {
+                return (
+                  <LinkItem
+                    key={item.id}
+                    title={item.title}
+                    desc={item.url}
+                    onOpen={() => {
+                      window.open(item.url);
+                    }}
+                    onEdit={() => {
+                      history.push('/editLink/' + item.id);
+                    }}
+                    onFavorite={() => {
+                      DataStore.linkFavoriteToggle(item.id);
+                    }}
+                    isFavorite={item.isFavorite}
+                    showIcon={SettingsState.getSettings().showIcons}
+                    iconColor={item.iconColor}
+                    iconType={item.iconType}
+                  />
+                );
+              } else {
+                return <></>;
+              }
             })}
         </div>
         <IonFab vertical='bottom' horizontal='center' slot='fixed'>
@@ -93,22 +123,6 @@ const OpenCategory = () => {
       </IonContent>
     </IonPage>
   );
-
-  function touchStart(item) {
-    if (!longPress) {
-      const timer = setTimeout(() => {
-        history.push('/editLink/' + item.id);
-      }, 800);
-      setLongPress(timer);
-    }
-  }
-
-  function touchEnd(item) {
-    if (longPress) {
-      clearTimeout(longPress);
-      setLongPress(null);
-    }
-  }
 };
 
 export default observer(OpenCategory);

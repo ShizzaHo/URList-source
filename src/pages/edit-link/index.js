@@ -17,9 +17,11 @@ import {
   IonBackButton,
   IonInput,
   useIonAlert,
+  IonListHeader,
 } from '@ionic/react';
 import { saveSharp, trashSharp } from 'ionicons/icons';
 import './styles.css';
+import CustomizeCategory from '../../components/customizer-link';
 
 import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
@@ -28,13 +30,16 @@ import language from '../../language';
 const EditLink = () => {
   const [presentAlert] = useIonAlert();
 
-
   const history = useHistory();
   const params = useParams();
 
   const [state, setState] = useState({
-    name: DataStore.getLink(params.id) ? DataStore.getLink(params.id).title : "",
-    url: DataStore.getLink(params.id) ? DataStore.getLink(params.id).url : "",
+    name: DataStore.getLink(params.id)
+      ? DataStore.getLink(params.id).title
+      : '',
+    url: DataStore.getLink(params.id) ? DataStore.getLink(params.id).url : '',
+    iconColor: DataStore.getLink(params.id) ? DataStore.getLink(params.id).iconColor : '',
+    iconType: DataStore.getLink(params.id) ? DataStore.getLink(params.id).iconType : '',
   });
 
   const [error, setError] = useState(false);
@@ -60,37 +65,56 @@ const EditLink = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div className='p-10'>
-          <IonItem color='no'>
-            <IonLabel position='floating'>{language.editLink_name}</IonLabel>
-            <IonInput
-              value={state.name}
-              onIonChange={(e) => {
-                setState({ ...state, name: e.detail.value });
-              }}
-            ></IonInput>
-          </IonItem>
-          <IonItem color='no'>
-            <IonLabel position='floating'>{language.editLink_url}</IonLabel>
-            <IonInput
-              value={state.url}
-              onIonChange={(e) => {
-                setState({ ...state, url: e.detail.value });
-              }}
-            ></IonInput>
-          </IonItem>
-          {error ? (
-            <>
-              <p style={{ color: 'red' }}>
-              {language.editLink_errorTitle}
-              </p>
-              <ul style={{ color: 'red' }}>
-                <li>{language.editLink_errorItem1}</li>
-                <li>{language.editLink_errorItem2}</li>
-              </ul>
-            </>
-          ) : (
-            <></>
-          )}
+          <div>
+            <IonListHeader>
+              <IonLabel style={{ color: 'gray' }}>
+                {language.universal_basicInformation}
+              </IonLabel>
+            </IonListHeader>
+            <IonItem color='no'>
+              <IonLabel position='floating'>{language.editLink_name}</IonLabel>
+              <IonInput
+                value={state.name}
+                onIonChange={(e) => {
+                  setState({ ...state, name: e.detail.value });
+                }}
+              ></IonInput>
+            </IonItem>
+            <IonItem color='no'>
+              <IonLabel position='floating'>{language.editLink_url}</IonLabel>
+              <IonInput
+                value={state.url}
+                onIonChange={(e) => {
+                  setState({ ...state, url: e.detail.value });
+                }}
+              ></IonInput>
+            </IonItem>
+            {error ? (
+              <>
+                <p style={{ color: 'red' }}>{language.editLink_errorTitle}</p>
+                <ul style={{ color: 'red' }}>
+                  <li>{language.editLink_errorItem1}</li>
+                  <li>{language.editLink_errorItem2}</li>
+                </ul>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
+          <br></br>
+          <div>
+            <IonListHeader>
+              <IonLabel style={{ color: 'gray' }}>
+                {language.universal_customization}
+              </IonLabel>
+            </IonListHeader>
+            <CustomizeCategory
+              initColor={state.iconColor}
+              initType={state.iconType}
+              onChangeColor={changeColor}
+              onChangeType={changeType}
+            />
+          </div>
         </div>
         <IonFab vertical='bottom' horizontal='center' slot='fixed'>
           <IonFabButton className='fab' onClick={checkData}>
@@ -100,6 +124,20 @@ const EditLink = () => {
       </IonContent>
     </IonPage>
   );
+
+  function changeColor(e) {
+    setState({
+      ...state,
+      iconColor: e,
+    });
+  }
+
+  function changeType(e) {
+    setState({
+      ...state,
+      iconType: e,
+    });
+  }
 
   function checkData() {
     if (
@@ -112,7 +150,9 @@ const EditLink = () => {
           title: state.name,
           url: state.url,
           parentID: DataStore.getLink(params.id).parentID,
-          id: params.id
+          id: params.id,
+          iconColor: state.iconColor,
+          iconType: state.iconType,
         });
         history.goBack();
       }
@@ -123,15 +163,15 @@ const EditLink = () => {
 
   function deleteCategoryDialog() {
     presentAlert({
-      header: 'Вы уверены?',
-      message: 'Отменить удаление будет невозможно!',
+      header: language.editCategory_delete_title,
+      message: language.editCategory_delete_desc,
       buttons: [
         {
-          text: 'Отмена',
+          text: language.editCategory_delete_OK,
           role: 'cancel',
         },
         {
-          text: 'Удалить',
+          text: language.editCategory_delete_DELETE,
           role: 'confirm',
           handler: () => {
             DataStore.deleteLink(params.id);

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { App } from '@capacitor/app';
+import SettingsState from '../../store/settings';
+import { observer } from 'mobx-react';
 import {
   IonContent,
   IonHeader,
@@ -13,7 +15,8 @@ import {
   IonLabel,
   IonBackButton,
   isPlatform,
-  useIonActionSheet
+  useIonActionSheet,
+  IonCheckbox,
 } from '@ionic/react';
 import { settingsSharp, add } from 'ionicons/icons';
 import './styles.css';
@@ -53,22 +56,29 @@ const Settings = () => {
                   {
                     text: language.langName_ru,
                     handler: () => {
-                      localStorage.setItem("URLIST_LANG", "russian")
-                      reload()
+                      localStorage.setItem('URLIST_LANG', 'russian');
+                      reload();
                     },
                   },
                   {
                     text: language.langName_en,
                     handler: () => {
-                      localStorage.setItem("URLIST_LANG", "english")
-                      reload()
+                      localStorage.setItem('URLIST_LANG', 'english');
+                      reload();
                     },
                   },
                   {
                     text: language.langName_cz,
                     handler: () => {
-                      localStorage.setItem("URLIST_LANG", "chinese")
-                      reload()
+                      localStorage.setItem('URLIST_LANG', 'chinese');
+                      reload();
+                    },
+                  },
+                  {
+                    text: language.langName_uk,
+                    handler: () => {
+                      localStorage.setItem('URLIST_LANG', 'ukrain');
+                      reload();
                     },
                   },
                 ],
@@ -79,6 +89,20 @@ const Settings = () => {
             <IonLabel>
               <h2>{language.settings_selectLanguage}</h2>
             </IonLabel>
+          </IonItem>
+          <IonItem
+            button
+            onClick={() => {
+              SettingsState.toggleSetting('showIcons');
+            }}
+          >
+            <IonLabel>
+              <h2>{language.settings_showIcons}</h2>
+            </IonLabel>
+            <IonCheckbox
+              slot='end'
+              checked={SettingsState.getSettings().showIcons}
+            ></IonCheckbox>
           </IonItem>
           <IonItem
             button
@@ -105,13 +129,14 @@ const Settings = () => {
     </IonPage>
   );
 
-  function reload(){
+  function reload() {
     if (isPlatform('android')) {
-      App.exitApp();
+      // App.exitApp();
+      window.location = '/';
     } else {
-      window.location = "/";
+      window.location = '/';
     }
   }
 };
 
-export default Settings;
+export default observer(Settings);

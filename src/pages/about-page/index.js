@@ -24,6 +24,7 @@ import {
 import { saveSharp } from 'ionicons/icons';
 import './styles.css';
 import logo from '../../theme/logo.png'
+import config from '../../config';
 
 import { observer } from 'mobx-react';
 import language from '../../language';
@@ -56,9 +57,9 @@ const NewCategory = () => {
           <div className='about-footer'>
             {!isPlatform('android') ? <a onClick={()=>{window.open("https://www.donationalerts.com/r/hu_tao_goddess")}}>{language.about_donat}</a> : <></>}
             <a onClick={()=>{window.open("https://urlist.vercel.app")}}>{language.about_site}</a>
-            {/* <a>Тема приложения на 4PDA</a> */}
+            <a onClick={()=>{window.open("https://4pda.to/forum/index.php?showtopic=1054931")}}>Тема приложения на 4PDA</a>
             <p>{language.about_developer} <a onClick={()=>{window.open("https://shizzaho-portfolio.vercel.app")}}>ShizzaHo</a></p>
-            <p>{language.about_version} 1.1</p>
+            <p>{language.about_version} {config.thisVersion}</p>
           </div>
         </div>
       </IonContent>

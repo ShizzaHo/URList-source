@@ -16,10 +16,11 @@ import {
   IonLabel,
   IonBackButton,
   IonInput,
-  IonTextarea,
+  IonListHeader,
 } from '@ionic/react';
 import { saveSharp } from 'ionicons/icons';
 import './styles.css';
+import CustomizeCategory from '../../components/customizer-link';
 
 import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
@@ -50,37 +51,56 @@ const NewLink = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div className='p-10'>
-          <IonItem color='no'>
-            <IonLabel position='floating'>{language.newLink_name}</IonLabel>
-            <IonInput
-              value={state.name}
-              onIonChange={(e) => {
-                setState({ ...state, name: e.detail.value });
-              }}
-            ></IonInput>
-          </IonItem>
-          <IonItem color='no'>
-            <IonLabel position='floating'>{language.newLink_url}</IonLabel>
-            <IonInput
-              value={state.url}
-              onIonChange={(e) => {
-                setState({ ...state, url: e.detail.value });
-              }}
-            ></IonInput>
-          </IonItem>
-          {error ? (
-            <>
-              <p style={{ color: 'red' }}>
-                {language.newLink_errorTitle}
-              </p>
-              <ul style={{ color: 'red' }}>
-                <li>{language.newLink_errorItem1}</li>
-                <li>{language.newLink_errorItem2}</li>
-              </ul>
-            </>
-          ) : (
-            <></>
-          )}
+          <div>
+            <IonListHeader>
+              <IonLabel style={{ color: 'gray' }}>
+                {language.universal_basicInformation}
+              </IonLabel>
+            </IonListHeader>
+            <IonItem color='no'>
+              <IonLabel position='floating'>{language.newLink_name}</IonLabel>
+              <IonInput
+                value={state.name}
+                onIonChange={(e) => {
+                  setState({ ...state, name: e.detail.value });
+                }}
+              ></IonInput>
+            </IonItem>
+            <IonItem color='no'>
+              <IonLabel position='floating'>{language.newLink_url}</IonLabel>
+              <IonInput
+                value={state.url}
+                onIonChange={(e) => {
+                  setState({ ...state, url: e.detail.value });
+                }}
+              ></IonInput>
+            </IonItem>
+            {error ? (
+              <>
+                <p style={{ color: 'red' }}>{language.newLink_errorTitle}</p>
+                <ul style={{ color: 'red' }}>
+                  <li>{language.newLink_errorItem1}</li>
+                  <li>{language.newLink_errorItem2}</li>
+                </ul>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
+          <br></br>
+          <div>
+            <IonListHeader>
+              <IonLabel style={{ color: 'gray' }}>
+                {language.universal_customization}
+              </IonLabel>
+            </IonListHeader>
+            <CustomizeCategory
+              initColor={state.iconColor}
+              initType={state.iconType}
+              onChangeColor={changeColor}
+              onChangeType={changeType}
+            />
+          </div>
         </div>
         <IonFab vertical='bottom' horizontal='center' slot='fixed'>
           <IonFabButton className='fab' onClick={checkData}>
@@ -90,6 +110,20 @@ const NewLink = () => {
       </IonContent>
     </IonPage>
   );
+
+  function changeColor(e) {
+    setState({
+      ...state,
+      iconColor: e,
+    });
+  }
+
+  function changeType(e) {
+    setState({
+      ...state,
+      iconType: e,
+    });
+  }
 
   function checkData() {
     if (
@@ -102,7 +136,9 @@ const NewLink = () => {
           title: state.name,
           url: state.url,
           parentID: params.id,
-          id: "link_"+generateCategoryID()
+          id: 'link_' + generateCategoryID(),
+          iconColor: state.iconColor,
+          iconType: state.iconType,
         });
         history.goBack();
       }

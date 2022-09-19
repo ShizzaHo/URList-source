@@ -34,7 +34,10 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 import DataStore from './store/data';
+import SettingsState from './store/settings';
+
 DataStore.loadDataFromLocalStorage();
+SettingsState.loadSettingsFromLocalStorage();
 
 if (localStorage.getItem("URLIST_LANG") == undefined) {
   const userLang = navigator.language || navigator.userLanguage; 
@@ -66,7 +69,8 @@ const App = () => {
             <Settings />
           </Route>
           <Route path='/settings/importExport' exact={true}>
-            <ImportExportPage />
+            <ImportExportPage />import Settings from './pages/settings/index';
+
           </Route>
           <Route path='/settings/userAgreement' exact={true}>
             <UserAgreement />

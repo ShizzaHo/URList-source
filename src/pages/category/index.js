@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import SettingsState from '../../store/settings';
 import {
   IonContent,
   IonHeader,
@@ -16,6 +16,7 @@ import {
   IonLabel,
 } from '@ionic/react';
 import { settingsSharp, add, search } from 'ionicons/icons';
+import CategoryItem from './../../components/category-item/index';
 import './styles.css';
 import language from '../../language';
 
@@ -57,7 +58,7 @@ const Category = () => {
             >
               <IonIcon slot='icon-only' icon={search} />
             </IonButton> */}
-            <SortButton setSortMethod={setSortMethod}/>
+            <SortButton setSortMethod={setSortMethod} />
             <IonButton
               onClick={() => {
                 history.push('/settings');
@@ -70,34 +71,60 @@ const Category = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div>
+        {SortList(DataStore.getCategories(), sortMethod).map(
+            (item, index) => {
+              if (item.isFavorite) {
+                return (
+                  <CategoryItem
+                    key={item.id}
+                    title={item.title}
+                    desc={item.desc}
+                    onOpen={() => {
+                      history.push('/openCategory/' + item.id);
+                    }}
+                    onEdit={() => {
+                      history.push('/editCategory/' + item.id);
+                    }}
+                    onFavorite={() => {
+                      DataStore.categoryFavoriteToggle(item.id);
+                    }}
+                    isFavorite={item.isFavorite}
+                    showIcon={SettingsState.getSettings().showIcons}
+                    iconColor={item.iconColor}
+                    iconType={item.iconType}
+                  />
+                );
+              } else {
+                return <></>;
+              }
+            }
+          )}
           {SortList(DataStore.getCategories(), sortMethod).map(
             (item, index) => {
-              return (
-                <IonItem
-                  button
-                  key={index}
-                  onTouchStart={() => {
-                    touchStart(item);
-                  }}
-                  onTouchEnd={() => {
-                    touchEnd(item.id);
-                  }}
-                  onMouseDown={() => {
-                    touchStart(item);
-                  }}
-                  onMouseUp={() => {
-                    touchEnd(item.id);
-                  }}
-                  onClick={() => {
-                    history.push('/openCategory/' + item.id);
-                  }}
-                >
-                  <IonLabel>
-                    <h2>{item.title}</h2>
-                    <p>{item.desc}</p>
-                  </IonLabel>
-                </IonItem>
-              );
+              if (!item.isFavorite) {
+                return (
+                  <CategoryItem
+                    key={item.id}
+                    title={item.title}
+                    desc={item.desc}
+                    onOpen={() => {
+                      history.push('/openCategory/' + item.id);
+                    }}
+                    onEdit={() => {
+                      history.push('/editCategory/' + item.id);
+                    }}
+                    onFavorite={() => {
+                      DataStore.categoryFavoriteToggle(item.id);
+                    }}
+                    isFavorite={item.isFavorite}
+                    showIcon={SettingsState.getSettings().showIcons}
+                    iconColor={item.iconColor}
+                    iconType={item.iconType}
+                  />
+                );
+              } else {
+                return <></>;
+              }
             }
           )}
         </div>
@@ -115,21 +142,6 @@ const Category = () => {
     </IonPage>
   );
 
-  function touchStart(item) {
-    if (!longPress) {
-      const timer = setTimeout(() => {
-        history.push('/editCategory/' + item.id);
-      }, 800);
-      setLongPress(timer);
-    }
-  }
-
-  function touchEnd(id) {
-    if (longPress) {
-      clearTimeout(longPress);
-      setLongPress(null);
-    }
-  }
 };
 
 export default observer(Category);

@@ -1,6 +1,7 @@
 import russian from './ru';
 import english from './en';
 import chinese from './zh';
+import ukrain from './uk';
 
 
 function selectLanguage(lang){
@@ -11,6 +12,8 @@ function selectLanguage(lang){
             return english;
         case "chinese":
             return chinese;
+        case "ukrain":
+            return ukrain;
         default:
             return english;
     }

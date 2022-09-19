@@ -53,12 +53,13 @@ const NewLink = () => {
               onIonChange={(e) => {
                 setState({ ...state, data: e.detail.value });
               }}
+              rows={20}
             ></IonTextarea>
           </IonItem>
           <br/>
-          <IonLabel position='floating'>{language.universalPage_info1}</IonLabel>
+          {/* <IonLabel position='floating'>{language.universalPage_info1}</IonLabel>
           <br/>
-          <br/>
+          <br/> */}
           <IonLabel position='floating'>{language.universalPage_info2}</IonLabel>
         </div>
         <IonFab vertical='bottom' horizontal='center' slot='fixed'>
@@ -73,6 +74,7 @@ const NewLink = () => {
   function functionSpec(){
     if (params.mode === "importData") {
       DataStore.importFromJson(state.data)
+      window.location = "/";
     } else if (params.mode === "exportData") {
       history.index = -1;
       history.goBack();
