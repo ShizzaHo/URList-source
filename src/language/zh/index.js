@@ -11,6 +11,7 @@ const words = {
   settings_selectLanguage: '选择界面语言',
   settings_selectLanguage_title: '选择一种语言:',
   settings_showIcons: '在类别和链接中显示图标',
+  settings_guide: "参加培训课程",
   settings_userAgreement: '用户协议（仅限俄语）',
   settings_about: '关于应用程序',
 
@@ -73,6 +74,17 @@ const words = {
   universal_iconType: '图标类型',
   universal_nothing: '没有什么',
   universal_favicon: '网站的Favicon',
+
+  guide: "培训",
+  guide_slide1_title: "基本名单管理",
+  guide_slide1_desc: "要改变列表，或添加到收藏夹，只需向左或向右滑动，打开一个类别或链接，只需点击它即可",
+  guide_slide2_title: "一切为了您的方便",
+  guide_slide2_desc: "随心所欲地改变图标，改变你的类别和链接上的颜色或图标（禁用可以在细微处进行）。",
+  guide_slide3_title: "将您需要的一切添加到您的收藏夹中",
+  guide_slide3_desc: "你不再需要在成堆的其他链接中寻找最重要的链接，现在有了收藏夹，就可以做到这一点。",
+  guide_slide4_title: "这就是它的全部内容。",
+  guide_slide4_desc: "你现在已经完全准备好使用URList了，请享受吧",
+  guide_slide4_button: "近距离培训",
 };
 
 export default words;

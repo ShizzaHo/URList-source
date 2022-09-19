@@ -11,6 +11,7 @@ const words = {
   settings_selectLanguage: 'Select interface language',
   settings_selectLanguage_title: 'Select a language:',
   settings_showIcons: 'Show icons in categories and links',
+  settings_guide: "Go through the training",
   settings_userAgreement: 'User Agreement (russian only)',
   settings_about: 'About the app',
 
@@ -75,6 +76,17 @@ const words = {
   universal_iconType: 'Type of icon',
   universal_nothing: 'Nothing',
   universal_favicon: 'Favicon from the site',
+
+  guide: "Training",
+  guide_slide1_title: "Basic list management",
+  guide_slide1_desc: "To change the lists, or to add to favorites just swipe the sheet to the left or right, to open a category or link, just click on it",
+  guide_slide2_title: "All for your comfort",
+  guide_slide2_desc: "Change the icons as you like, change the colors or icons of your categories and links (you can disable them in the nitty-gritty)",
+  guide_slide3_title: "Add everything you need to your favorites",
+  guide_slide3_desc: "You no longer have to search for the most important links among the piles of others, now there are favorites for that!",
+  guide_slide4_title: "That's it",
+  guide_slide4_desc: "Now you're all set to use the URList, enjoy!",
+  guide_slide4_button: "Close Training",
 };
 
 export default words;

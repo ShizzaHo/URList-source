@@ -11,6 +11,7 @@ const words = {
     settings_selectLanguage: "Выбрать язык интерфейса",
     settings_selectLanguage_title: "Выберите язык:",
     settings_showIcons: "Показывать иконки у категорий и ссылок",
+    settings_guide: "Пройти обучение",
     settings_userAgreement: "Пользовательское соглашение",
     settings_about: "О приложении",
 
@@ -50,7 +51,6 @@ const words = {
     editCategory_delete_OK: "Отмена",
     editCategory_delete_DELETE: "Удалить",
 
-
     editLink: "Редактирование ссылки",
     editLink_name: "Название ссылки",
     editLink_url: "URL-адрес",
@@ -75,6 +75,21 @@ const words = {
     universal_nothing: "Ничего",
     universal_favicon: "Favicon с сайта",
 
+    guide_dialog_title: "Впервые здесь?",
+    guide_dialog_desc: "Хотите пройти обучение по управлению в интерфейсе? (Позже обучение можно будет пройти в настройках)",
+    guide_dialog_OK: "Начать обучение",
+    guide_dialog_NO: "Закрыть",
+
+    guide: "Обучение",
+    guide_slide1_title: "Базовое управление списками",
+    guide_slide1_desc: "Для изменения списков, или для добавления в избранное достаточно просто свайпнуть лист влево или вправо, чтобы открыть категорию или ссылку, просто нажмите на нее",
+    guide_slide2_title: "Все для вашего удобства",
+    guide_slide2_desc: "Изменяйте иконки как вам угодно, меняйте цвета или иконки у ваших категорий и ссылок (Отключить можно в найтройках)",
+    guide_slide3_title: "Добавляйте все необходимое в избранное",
+    guide_slide3_desc: "Больше вам не придется искать самые важные ссылки среди кучи других, теперь для этого сущесутвуют избранные!",
+    guide_slide4_title: "Вот и все",
+    guide_slide4_desc: "Теперь вы полностью готовы к использованию URList, приятного использования!",
+    guide_slide4_button: "Закрыть обучение",
 }
 
 export default words;

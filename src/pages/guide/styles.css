@@ -1,0 +1,25 @@
+.guide-slider {
+    height: 100%;
+}
+
+.guide-title{
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(189.12deg, #74d6eb 4.11%, rgba(0, 255, 133, 0.99) 95.05%), #ffffff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    font-size: 28px;
+    margin-top: 10px;
+}
+
+.guide-desc{
+    font-weight: 400;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.guide-page img {
+    width: 60%;
+}

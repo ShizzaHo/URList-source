@@ -11,6 +11,7 @@ const words = {
   settings_selectLanguage: 'вибрати мову інтерфейсу',
   settings_selectLanguage_title: 'Виберіть мову:',
   settings_showIcons: 'Показувати іконки у категорій і посилань',
+  settings_guide: "Пройти навчання",
   settings_userAgreement: 'Угода користувача',
   settings_about: 'про програму',
 
@@ -74,6 +75,17 @@ const words = {
   universal_iconType: 'Тип іконки',
   universal_nothing: 'Нічого',
   universal_favicon: 'Favicon із сайту',
+
+  guide: "Навчання",
+  guide_slide1_title: "Базове управління списками",
+  guide_slide1_desc: "Для зміни списків, або для додавання до вибраного достатньо просто свайпнути аркуш ліворуч або праворуч, щоб відкрити категорію або посилання, просто натисніть на неї",
+  guide_slide2_title: "Усе для вашої зручності",
+  guide_slide2_desc: "Змінюйте іконки як вам завгодно, міняйте кольори або іконки у ваших категорій і посилань (Відключити можна в найтройках)",
+  guide_slide3_title: "Додавайте все необхідне в обране",
+  guide_slide3_desc: "Більше вам не доведеться шукати найважливіші посилання серед купи інших, тепер для цього існують обрані!",
+  guide_slide4_title: "Ось і все",
+  guide_slide4_desc: "Тепер ви повністю готові до використання URList, приємного використання!",
+  guide_slide4_button: "Закрити навчання",
 };
 
 export default words;

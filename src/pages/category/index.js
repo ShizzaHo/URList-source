@@ -14,6 +14,7 @@ import {
   IonFabButton,
   IonItem,
   IonLabel,
+  useIonAlert,
 } from '@ionic/react';
 import { settingsSharp, add, search } from 'ionicons/icons';
 import CategoryItem from './../../components/category-item/index';
@@ -30,6 +31,7 @@ import { App } from '@capacitor/app';
 import { useIonRouter } from '@ionic/react';
 
 const Category = () => {
+  const [presentAlert] = useIonAlert();
   const [longPress, setLongPress] = useState(null);
   const [sortMethod, setSortMethod] = useState(
     localStorage.getItem('URLIST_SORTMETHOD')
@@ -44,6 +46,10 @@ const Category = () => {
       }
     });
   });
+
+  if(SettingsState.getSettings().guideStart === false){
+    guideDialog();
+  }
 
   return (
     <IonPage id='category-page'>
@@ -142,6 +148,31 @@ const Category = () => {
     </IonPage>
   );
 
+  function guideDialog() {
+    presentAlert({
+      header: language.guide_dialog_title,
+      message: language.guide_dialog_desc,
+      buttons: [
+        {
+          text: language.guide_dialog_NO,
+          role: 'cancel',
+          handler: () => {
+            SettingsState.toggleSetting("guideStart");
+          },
+        },
+        {
+          text: language.guide_dialog_OK,
+          role: 'confirm',
+          handler: () => {
+            SettingsState.toggleSetting("guideStart");
+            history.push("/guide");
+          },
+        },
+      ],
+    });
+  }
+
 };
+
 
 export default observer(Category);

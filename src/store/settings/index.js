@@ -3,6 +3,7 @@ import { makeAutoObservable, toJS } from "mobx"
 class SettingsState {
     settings = {
         showIcons: true,
+        guideStart: false,
     }
 
     constructor() {
@@ -18,13 +19,13 @@ class SettingsState {
     }
 
     saveSettingsToLocalStorage(){
-        localStorage.setItem("URLIST_SETTINGS", JSON.stringify(toJS(this.data)))
+        localStorage.setItem("URLIST_SETTINGS", JSON.stringify(toJS(this.settings)))
     }
 
     loadSettingsFromLocalStorage(){
         const newData = JSON.parse(localStorage.getItem("URLIST_SETTINGS"));
         if (newData != undefined) {
-            this.setData(newData);
+            this.setSettings({...this.getSettings(), ...newData});
         }
     }
 
@@ -34,7 +35,7 @@ class SettingsState {
             ...this.getSettings(),
             [setting]: !state,
         })
-        console.log(this.getSettings().showIcons);
+        this.saveSettingsToLocalStorage()
     }
 }
 

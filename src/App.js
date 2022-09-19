@@ -35,6 +35,7 @@ import './theme/variables.css';
 
 import DataStore from './store/data';
 import SettingsState from './store/settings';
+import Guide from './pages/guide';
 
 DataStore.loadDataFromLocalStorage();
 SettingsState.loadSettingsFromLocalStorage();
@@ -94,6 +95,9 @@ const App = () => {
             <EditLink />
           </Route>
 
+          <Route path='/guide' exact={true}>
+            <Guide />
+          </Route>
           <Route path='/universalInput/:mode' exact={true}>
             <UniversalInputPage />
           </Route>

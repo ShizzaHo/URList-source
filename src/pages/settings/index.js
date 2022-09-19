@@ -89,7 +89,7 @@ const Settings = () => {
             <IonLabel>
               <h2>{language.settings_selectLanguage}</h2>
             </IonLabel>
-          </IonItem>
+          </IonItem>  
           <IonItem
             button
             onClick={() => {
@@ -103,6 +103,16 @@ const Settings = () => {
               slot='end'
               checked={SettingsState.getSettings().showIcons}
             ></IonCheckbox>
+          </IonItem>
+          <IonItem
+            button
+            onClick={() => {
+              history.push("/guide");
+            }}
+          >
+            <IonLabel>
+              <h2>{language.settings_guide}</h2>
+            </IonLabel>
           </IonItem>
           <IonItem
             button
