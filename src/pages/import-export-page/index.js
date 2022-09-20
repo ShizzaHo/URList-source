@@ -16,7 +16,7 @@ import {
   IonLabel,
   IonBackButton,
   IonInput,
-  IonTextarea
+  IonTextarea,
 } from '@ionic/react';
 import { saveSharp } from 'ionicons/icons';
 import './styles.css';
@@ -26,6 +26,8 @@ import DataStore from '../../store/data';
 
 import { generateCategoryID } from './../../utils/generator/index';
 import language from '../../language';
+import { exportDataFile } from './module/exporter';
+import { importDataFile } from './module/importer';
 
 const NewCategory = () => {
   const history = useHistory();
@@ -47,14 +49,55 @@ const NewCategory = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div className='p-20'>
-          {/* <IonButton expand="block" className='buttonGray'>Экспортировать данные</IonButton> */}
-          <IonButton expand="block" className='buttonGray' onClick={()=>{history.push("/universalInput/exportData")}}>{language.importExport_exportJSON}</IonButton>
+          <IonButton
+            expand='block'
+            className='buttonGray'
+            onClick={() => {
+              exportDataFile(DataStore.exportDataToJSON());
+            }}
+          >
+            {language.importExport_exportJSON}
+          </IonButton>
+          <IonButton
+            expand='block'
+            className='buttonGray'
+            onClick={() => {
+              history.push('/universalInput/exportData');
+            }}
+          >
+            {language.importExport_exportJSON_2}
+          </IonButton>
           <br />
-          {/* <IonButton expand="block" className='buttonGray'>Импортировать данные</IonButton> */}
-          <IonButton expand="block" className='buttonGray' onClick={()=>{history.push("/universalInput/importData")}}>{language.importExport_importJSON}</IonButton>
-          <div className='import-export-bottom-box'>
-            <IonButton expand="block" className='buttonGray' onClick={()=>{window.open("https://shizzaho.notion.site/URList-47f2dd4cb6894b2489506d39f48e6a8b")}}>{language.importExport_manual}</IonButton>
-          </div>
+          <IonButton
+            expand='block'
+            className='buttonGray'
+            onClick={async () => {
+              alert(await importDataFile())
+              // DataStore.importFromJson()
+              // window.location = "/"
+            }}
+          >
+            {language.importExport_importJSON}
+          </IonButton>
+          <IonButton
+            expand='block'
+            className='buttonGray'
+            onClick={() => {
+              history.push('/universalInput/importData');
+            }}
+          >
+            {language.importExport_importJSON_2}
+          </IonButton>
+          <IonButton
+            expand='block'
+            className='buttonGray'
+            onClick={() => {
+              history.push('/universalInput/importData');
+            }}
+          >
+            {language.importExport_importJSON_3}
+          </IonButton>
+          <br />
         </div>
       </IonContent>
     </IonPage>

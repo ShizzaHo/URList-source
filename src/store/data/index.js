@@ -1,5 +1,6 @@
 import { makeAutoObservable, toJS } from "mobx"
 import config from "../../config";
+import language from "../../language";
 
 class DataState {
     data = {
@@ -120,7 +121,11 @@ class DataState {
 
     importFromJson(data) {
         const newData = data;
-        localStorage.setItem("URLIST_DATA", newData)
+        if (window.isValidJson(newData)) {
+            localStorage.setItem("URLIST_DATA", newData)
+        } else {
+            alert(language.importError_validation);
+        }
     }
 
     categoryFavoriteToggle(id){

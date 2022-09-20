@@ -75,6 +75,11 @@ const words = {
   universal_nothing: '没有什么',
   universal_favicon: '网站的Favicon',
 
+  guide_dialog_title: "第一次来这里？",
+  guide_dialog_desc: "你愿意接受界面管理方面的培训吗？(培训将在以后的设置中提供)",
+  guide_dialog_OK: "开始培训",
+  guide_dialog_NO: "关闭",
+
   guide: "培训",
   guide_slide1_title: "基本名单管理",
   guide_slide1_desc: "要改变列表，或添加到收藏夹，只需向左或向右滑动，打开一个类别或链接，只需点击它即可",

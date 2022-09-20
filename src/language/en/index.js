@@ -77,6 +77,11 @@ const words = {
   universal_nothing: 'Nothing',
   universal_favicon: 'Favicon from the site',
 
+  guide_dialog_title: "The first ones here?",
+  guide_dialog_desc: "Do you want training on how to manage in the interface? (Training will be available later in the settings)",
+  guide_dialog_OK: "Start training",
+  guide_dialog_NO: "Close",
+
   guide: "Training",
   guide_slide1_title: "Basic list management",
   guide_slide1_desc: "To change the lists, or to add to favorites just swipe the sheet to the left or right, to open a category or link, just click on it",

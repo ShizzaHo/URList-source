@@ -36,6 +36,7 @@ import './theme/variables.css';
 import DataStore from './store/data';
 import SettingsState from './store/settings';
 import Guide from './pages/guide';
+import SendToOtherDevice from './pages/send-to-other-device';
 
 DataStore.loadDataFromLocalStorage();
 SettingsState.loadSettingsFromLocalStorage();
@@ -70,8 +71,10 @@ const App = () => {
             <Settings />
           </Route>
           <Route path='/settings/importExport' exact={true}>
-            <ImportExportPage />import Settings from './pages/settings/index';
-
+            <ImportExportPage />
+          </Route>
+          <Route path='/sendToOtherDevice' exact={true}>
+            <SendToOtherDevice />
           </Route>
           <Route path='/settings/userAgreement' exact={true}>
             <UserAgreement />

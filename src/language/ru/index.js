@@ -16,8 +16,11 @@ const words = {
     settings_about: "О приложении",
 
     importExport: "Импорт и экспорт данных",
-    importExport_exportJSON: "Экспортировать данные в JSON",
-    importExport_importJSON: "Импортировать данные из JSON",
+    importExport_exportJSON: "Экспортировать данные в .JSON файл",
+    importExport_exportJSON_2: "Экспортировать данные в буфер",
+    importExport_importJSON: "Импортировать данные из .JSON файла",
+    importExport_importJSON_2: "Импортировать данные из буфера",
+    importExport_importJSON_3: "Импортировать данные из Linkbox",
     importExport_manual: "Инструкция",
 
     about: "О приложении",
@@ -90,6 +93,11 @@ const words = {
     guide_slide4_title: "Вот и все",
     guide_slide4_desc: "Теперь вы полностью готовы к использованию URList, приятного использования!",
     guide_slide4_button: "Закрыть обучение",
+
+    export_complete: "Файл сохранен экспорта успешно сохранен по пути: %PATH%", // %PATH% - Instead of this value the path to the file will appear
+    exportError_dir: "ОШИБКА: Невозможно создать папку, проверьте разрешения приложения",
+    exportError_file: "ОШИБКА: Невозможно создать файл, проверьте разрешения приложения",
+    importError_validation: "ОШИБКА: Импортированные данные повреждены",
 }
 
 export default words;
