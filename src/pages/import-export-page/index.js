@@ -28,6 +28,8 @@ import { generateCategoryID } from './../../utils/generator/index';
 import language from '../../language';
 import { exportDataFile } from './module/exporter';
 import { importDataFile } from './module/importer';
+import { Buffer } from 'buffer';
+import { isPlatform } from '@ionic/core';
 
 const NewCategory = () => {
   const history = useHistory();
@@ -53,7 +55,11 @@ const NewCategory = () => {
             expand='block'
             className='buttonGray'
             onClick={() => {
-              exportDataFile(DataStore.exportDataToJSON());
+              if (isPlatform('android')) {
+                exportDataFile(DataStore.exportDataToJSON());
+              } else {
+                alert(language.universal_onlyAndroid);
+              }
             }}
           >
             {language.importExport_exportJSON}
@@ -72,9 +78,13 @@ const NewCategory = () => {
             expand='block'
             className='buttonGray'
             onClick={async () => {
-              alert(await importDataFile())
-              // DataStore.importFromJson()
-              // window.location = "/"
+              if (isPlatform('android')) {
+                const data = await importDataFile();
+                DataStore.importFromJson(await data);
+                window.location = '/';
+              } else {
+                alert(language.universal_onlyAndroid);
+              }
             }}
           >
             {language.importExport_importJSON}
@@ -88,15 +98,19 @@ const NewCategory = () => {
           >
             {language.importExport_importJSON_2}
           </IonButton>
-          <IonButton
+          {/* <IonButton
             expand='block'
             className='buttonGray'
             onClick={() => {
-              history.push('/universalInput/importData');
+              if (isPlatform('android')) {
+                
+              } else {
+                alert(language.universal_onlyAndroid);
+              }
             }}
           >
             {language.importExport_importJSON_3}
-          </IonButton>
+          </IonButton> */}
           <br />
         </div>
       </IonContent>

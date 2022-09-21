@@ -1,6 +1,7 @@
 import { makeAutoObservable, toJS } from "mobx"
 import config from "../../config";
 import language from "../../language";
+import {validateJSON} from '../../utils/valid'
 
 class DataState {
     data = {
@@ -121,7 +122,7 @@ class DataState {
 
     importFromJson(data) {
         const newData = data;
-        if (window.isValidJson(newData)) {
+        if (validateJSON(JSON.stringify(newData))) {
             localStorage.setItem("URLIST_DATA", newData)
         } else {
             alert(language.importError_validation);

@@ -63,6 +63,8 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-base: var(--ion-color-urlDarkToolbar);
   --ion-text-color: #FFFFFF;
 	--ion-text-color-rgb: 255,255,255;
+  --ion-color-favorite-contrast: #ffffff;
+  --ion-color-favorite-contrast-rgb: 255, 255, 255;
 }
 
 .ion-color-favorite {

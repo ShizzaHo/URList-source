@@ -17,9 +17,9 @@ const words = {
 
     importExport: "Импорт и экспорт данных",
     importExport_exportJSON: "Экспортировать данные в .JSON файл",
-    importExport_exportJSON_2: "Экспортировать данные в буфер",
+    importExport_exportJSON_2: "Экспортировать данные в строку",
     importExport_importJSON: "Импортировать данные из .JSON файла",
-    importExport_importJSON_2: "Импортировать данные из буфера",
+    importExport_importJSON_2: "Импортировать данные из строки",
     importExport_importJSON_3: "Импортировать данные из Linkbox",
     importExport_manual: "Инструкция",
 
@@ -29,7 +29,7 @@ const words = {
     about_version: "Версия приложения:",
     about_4pda: "Тема приложения на 4PDA",
     about_site: "Официальный сайт проекта",
-    about_donate: "Поддержать проект",
+    about_donat: "Поддержать проект",
 
     universalPage_inputPlaceholder: "Введите/скопируйте необходимые данные",
     universalPage_info1: "После взаимодейтсвия с этим окном, обязательно перезапустите приложение для применения изменений",
@@ -77,6 +77,7 @@ const words = {
     universal_iconType: "Тип иконки",
     universal_nothing: "Ничего",
     universal_favicon: "Favicon с сайта",
+    universal_onlyAndroid: "Данная функция доступна только для Android устройств",
 
     guide_dialog_title: "Впервые здесь?",
     guide_dialog_desc: "Хотите пройти обучение по управлению в интерфейсе? (Позже обучение можно будет пройти в настройках)",
@@ -95,6 +96,7 @@ const words = {
     guide_slide4_button: "Закрыть обучение",
 
     export_complete: "Файл сохранен экспорта успешно сохранен по пути: %PATH%", // %PATH% - Instead of this value the path to the file will appear
+    import_complete: "Данные успешно импортированы",
     exportError_dir: "ОШИБКА: Невозможно создать папку, проверьте разрешения приложения",
     exportError_file: "ОШИБКА: Невозможно создать файл, проверьте разрешения приложения",
     importError_validation: "ОШИБКА: Импортированные данные повреждены",

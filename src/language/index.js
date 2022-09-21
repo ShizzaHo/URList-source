@@ -11,9 +11,9 @@ function selectLanguage(lang){
         case "english":
             return english;
         case "chinese":
-            return chinese;
+            return {...english, ...chinese};
         case "ukrain":
-            return ukrain;
+            return {...english, ...ukrain};
         default:
             return english;
     }

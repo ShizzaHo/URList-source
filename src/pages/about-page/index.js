@@ -55,7 +55,7 @@ const NewCategory = () => {
             <h2>{language.about_subtitle}</h2>
           </div>
           <div className='about-footer'>
-            {!isPlatform('android') ? <a onClick={()=>{window.open("https://www.donationalerts.com/r/hu_tao_goddess")}}>{language.about_donat}</a> : <></>}
+            {isPlatform('android') ? <></> : <a onClick={()=>{window.open("https://www.donationalerts.com/r/hu_tao_goddess")}}>{language.about_donat}</a>}
             <a onClick={()=>{window.open("https://urlist.vercel.app")}}>{language.about_site}</a>
             <a onClick={()=>{window.open("https://4pda.to/forum/index.php?showtopic=1054931")}}>Тема приложения на 4PDA</a>
             <p>{language.about_developer} <a onClick={()=>{window.open("https://shizzaho-portfolio.vercel.app")}}>ShizzaHo</a></p>
