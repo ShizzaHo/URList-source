@@ -47,7 +47,7 @@ const Category = () => {
     });
   });
 
-  if(SettingsState.getSettings().guideStart === false){
+  if (SettingsState.getSettings().guideStart === false) {
     guideDialog();
   }
 
@@ -55,7 +55,7 @@ const Category = () => {
     <IonPage id='category-page'>
       <IonHeader>
         <IonToolbar color='urlDarkToolbar'>
-          <IonTitle>{language.category}</IonTitle>
+          <IonTitle color='light'>{language.category}</IonTitle>
           <IonButtons slot='secondary'>
             {/* <IonButton
               onClick={() => {
@@ -66,6 +66,7 @@ const Category = () => {
             </IonButton> */}
             <SortButton setSortMethod={setSortMethod} />
             <IonButton
+              color='light'
               onClick={() => {
                 history.push('/settings');
               }}
@@ -77,7 +78,7 @@ const Category = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div>
-        {SortList(DataStore.getCategories(), sortMethod).map(
+          {SortList(DataStore.getCategories(), sortMethod).map(
             (item, index) => {
               if (item.isFavorite) {
                 return (
@@ -157,22 +158,20 @@ const Category = () => {
           text: language.guide_dialog_NO,
           role: 'cancel',
           handler: () => {
-            SettingsState.toggleSetting("guideStart");
+            SettingsState.toggleSetting('guideStart');
           },
         },
         {
           text: language.guide_dialog_OK,
           role: 'confirm',
           handler: () => {
-            SettingsState.toggleSetting("guideStart");
-            history.push("/guide");
+            SettingsState.toggleSetting('guideStart');
+            history.push('/guide');
           },
         },
       ],
     });
   }
-
 };
-
 
 export default observer(Category);

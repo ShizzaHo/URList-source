@@ -44,9 +44,9 @@ const NewCategory = () => {
       <IonHeader>
         <IonToolbar color='urlDarkToolbar'>
           <IonButtons slot='start'>
-            <IonBackButton defaultHref='/' />
+            <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle>{language.importExport}</IonTitle>
+          <IonTitle color='light'>{language.importExport}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -80,8 +80,12 @@ const NewCategory = () => {
             onClick={async () => {
               if (isPlatform('android')) {
                 const data = await importDataFile();
-                DataStore.importFromJson(await data);
-                window.location = '/';
+                if (data) {
+                  DataStore.importFromJson(await data);
+                  window.location = '/';
+                } else {
+                  alert(language.exportError_file);
+                }
               } else {
                 alert(language.universal_onlyAndroid);
               }

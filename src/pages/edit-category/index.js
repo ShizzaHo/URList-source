@@ -58,11 +58,12 @@ const EditCategory = () => {
       <IonHeader>
         <IonToolbar color='urlDarkToolbar'>
           <IonButtons slot='start'>
-            <IonBackButton defaultHref='/' />
+            <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle>{language.editCategory}</IonTitle>
+          <IonTitle color='light'>{language.editCategory}</IonTitle>
           <IonButtons slot='secondary'>
             <IonButton
+              color='light'
               onClick={() => {
                 deleteCategoryDialog();
               }}
@@ -111,7 +112,12 @@ const EditCategory = () => {
             </IonLabel>
           </IonListHeader>
 
-          <CustomizeCategory initColor={state.iconColor} initType={state.iconType} onChangeColor={changeColor} onChangeType={changeType}/>
+          <CustomizeCategory
+            initColor={state.iconColor}
+            initType={state.iconType}
+            onChangeColor={changeColor}
+            onChangeType={changeType}
+          />
         </div>
         <IonFab vertical='bottom' horizontal='center' slot='fixed'>
           <IonFabButton
@@ -137,15 +143,15 @@ const EditCategory = () => {
   function changeColor(e) {
     setState({
       ...state,
-      iconColor: e
-    })
+      iconColor: e,
+    });
   }
 
   function changeType(e) {
     setState({
       ...state,
-      iconType: e
-    })
+      iconType: e,
+    });
   }
 
   function deleteCategoryDialog() {

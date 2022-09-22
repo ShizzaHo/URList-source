@@ -39,9 +39,9 @@ const OpenCategory = () => {
       <IonHeader>
         <IonToolbar color='urlDarkToolbar'>
           <IonButtons slot='start'>
-            <IonBackButton defaultHref='/' />
+            <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle>{DataStore.getCategory(params.id).title}</IonTitle>
+          <IonTitle color='light'>{DataStore.getCategory(params.id).title}</IonTitle>
           <IonButtons slot='end'>
             <SortButton setSortMethod={setSortMethod} />
           </IonButtons>

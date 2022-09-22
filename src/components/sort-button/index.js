@@ -6,11 +6,12 @@ import { funnel } from 'ionicons/icons';
 import { Sort } from '../../utils/sort';
 import language from '../../language';
 
-function SortButton({setSortMethod}) {
+function SortButton({ setSortMethod }) {
   const [present, dismiss] = useIonActionSheet();
 
   return (
     <IonButton
+      color='light'
       onClick={() => {
         present({
           buttons: [
@@ -46,7 +47,7 @@ function SortButton({setSortMethod}) {
 }
 
 SortButton.defaultProps = {
-  setSortMethod: ()=>{}
-}
+  setSortMethod: () => {},
+};
 
 export default SortButton;

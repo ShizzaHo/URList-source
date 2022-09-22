@@ -31,9 +31,9 @@ const Settings = () => {
       <IonHeader>
         <IonToolbar color='urlDarkToolbar'>
           <IonButtons slot='start'>
-            <IonBackButton defaultHref='/' />
+            <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle>{language.settings}</IonTitle>
+          <IonTitle color='light'>{language.settings}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

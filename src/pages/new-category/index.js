@@ -50,9 +50,9 @@ const NewCategory = () => {
       <IonHeader>
         <IonToolbar color='urlDarkToolbar'>
           <IonButtons slot='start'>
-            <IonBackButton defaultHref='/' />
+            <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle>{language.newCategory}</IonTitle>
+          <IonTitle color='light'>{language.newCategory}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

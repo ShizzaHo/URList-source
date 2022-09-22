@@ -35,6 +35,8 @@ const NewLink = () => {
   const [state, setState] = useState({
     name: '',
     url: '',
+    iconColor: '',
+    iconType: '',
   });
 
   const [error, setError] = useState(false);
@@ -44,9 +46,9 @@ const NewLink = () => {
       <IonHeader>
         <IonToolbar color='urlDarkToolbar'>
           <IonButtons slot='start'>
-            <IonBackButton defaultHref='/' />
+            <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle>{language.newLink}</IonTitle>
+          <IonTitle color='light'>{language.newLink}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

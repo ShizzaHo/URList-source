@@ -75,6 +75,7 @@ const words = {
     universal_iconColor: "Цвет иконки",
     universal_clickToColorSelect: "Нажмите на кружок для выбора цвета",
     universal_iconType: "Тип иконки",
+    universal_firstWord: "Первая буква",
     universal_nothing: "Ничего",
     universal_favicon: "Favicon с сайта",
     universal_onlyAndroid: "Данная функция доступна только для Android устройств",

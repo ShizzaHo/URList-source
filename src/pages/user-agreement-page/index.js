@@ -37,9 +37,9 @@ const NewCategory = () => {
       <IonHeader>
         <IonToolbar color='urlDarkToolbar'>
           <IonButtons slot='start'>
-            <IonBackButton defaultHref='/' />
+            <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle>Пользовательское соглашение</IonTitle>
+          <IonTitle color='light'>Пользовательское соглашение</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

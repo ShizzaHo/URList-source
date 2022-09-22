@@ -16,8 +16,11 @@ const words = {
   settings_about: 'про програму',
 
   importExport: 'імпорт та експорт даних',
-  importExport_exportJSON: 'експортувати дані в JSON',
-  importExport_importJSON: 'імпортувати дані з JSON',
+  importExport_exportJSON: "Експортувати дані в .JSON файл",
+  importExport_exportJSON_2: "Експортувати дані в рядок",
+  importExport_importJSON: "Імпортувати дані з .JSON файлу",
+  importExport_importJSON_2: "Імпортувати дані з рядка",
+  importExport_importJSON_3: "Імпортувати дані з Linkbox",
   importExport_manual: 'Інструкція',
 
   about: ' про програму',
@@ -73,8 +76,10 @@ const words = {
   universal_iconColor: 'Колір іконки',
   universal_clickToColorSelect: 'Натисніть на кружок для вибору кольору',
   universal_iconType: 'Тип іконки',
+  universal_firstWord: "Перша буква",
   universal_nothing: 'Нічого',
   universal_favicon: 'Favicon із сайту',
+  universal_onlyAndroid: "Ця функція доступна тільки для Android пристроїв",
 
   guide_dialog_title: "Уперше тут?",
   guide_dialog_desc: "Хочете пройти навчання з управління в інтерфейсі? (Пізніше навчання можна буде пройти в налаштуваннях)",
@@ -91,6 +96,12 @@ const words = {
   guide_slide4_title: "Ось і все",
   guide_slide4_desc: "Тепер ви повністю готові до використання URList, приємного використання!",
   guide_slide4_button: "Закрити навчання",
+
+  export_complete: "Файл збережений експорту успішно збережений за шляхом: %PATH%", // %PATH% - Instead of this value the path to the file will appear
+  import_complete: "Дані успішно імпортовано",
+  exportError_dir: "ПОМИЛКА: Неможливо створити папку, перевірте дозволи програми",
+  exportError_file: "ПОМИЛКА: Неможливо створити файл, перевірте дозволи програми",
+  importError_validation: "ПОМИЛКА: Імпортовані дані пошкоджені",
 };
 
 export default words;

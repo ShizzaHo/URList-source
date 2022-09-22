@@ -47,6 +47,9 @@ function CustomizeCategory({ onChangeColor, onChangeType, initColor, initType })
             <IonSelectOption value='nothing'>
               {language.universal_nothing}
             </IonSelectOption>
+            <IonSelectOption value='firstWord'>
+              {language.universal_firstWord}
+            </IonSelectOption>
           </IonSelect>
         </IonItem>
       </IonList>

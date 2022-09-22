@@ -16,8 +16,11 @@ const words = {
   settings_about: 'About the app',
 
   ImportExport: 'Data import and export',
-  importExport_exportJSON: 'Export data to JSON',
-  importExport_importJSON: 'Import data from JSON',
+  importExport_exportJSON: "Export data to a .JSON file",
+  importExport_exportJSON_2: "Export data to a string",
+  importExport_importJSON: "Import data from a .JSON file",
+  importExport_importJSON_2: "Import data from a string",
+  importExport_importJSON_3: "Import data from Linkbox",
   importExport_manual: 'Instruction (russian only)',
 
   about: 'About the app',
@@ -72,10 +75,12 @@ const words = {
   universal_basicInformation: 'Basic information',
   universal_customization: 'Customization',
   universal_iconColor: 'Icon color',
+  universal_firstWord: "First letter",
   universal_clickToColorSelect: 'Click on the circle to select a color',
   universal_iconType: 'Type of icon',
   universal_nothing: 'Nothing',
   universal_favicon: 'Favicon from the site',
+  universal_onlyAndroid: "This function is only available for Android devices",
 
   guide_dialog_title: "The first ones here?",
   guide_dialog_desc: "Do you want training on how to manage in the interface? (Training will be available later in the settings)",
@@ -92,6 +97,12 @@ const words = {
   guide_slide4_title: "That's it",
   guide_slide4_desc: "Now you're all set to use the URList, enjoy!",
   guide_slide4_button: "Close Training",
+
+  export_complete: "The file has been successfully saved to the path: %PATH%", // %PATH% - Instead of this value the path to the file will appear
+  import_complete: "Data successfully imported",
+  exportError_dir: "ERROR: Unable to create folder, check application permissions",
+  exportError_file: "ERROR: Cannot create file, check application permissions",
+  importError_validation: "ERROR: Imported data is corrupted",
 };
 
 export default words;

@@ -16,6 +16,6 @@ async function getFile() {
       );
     })
     .catch((error) => {
-      return error;
+      return false;
     });
 }

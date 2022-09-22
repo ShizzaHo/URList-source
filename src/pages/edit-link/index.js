@@ -38,8 +38,12 @@ const EditLink = () => {
       ? DataStore.getLink(params.id).title
       : '',
     url: DataStore.getLink(params.id) ? DataStore.getLink(params.id).url : '',
-    iconColor: DataStore.getLink(params.id) ? DataStore.getLink(params.id).iconColor : '',
-    iconType: DataStore.getLink(params.id) ? DataStore.getLink(params.id).iconType : '',
+    iconColor: DataStore.getLink(params.id)
+      ? DataStore.getLink(params.id).iconColor
+      : '',
+    iconType: DataStore.getLink(params.id)
+      ? DataStore.getLink(params.id).iconType
+      : '',
   });
 
   const [error, setError] = useState(false);
@@ -49,16 +53,17 @@ const EditLink = () => {
       <IonHeader>
         <IonToolbar color='urlDarkToolbar'>
           <IonButtons slot='start'>
-            <IonBackButton defaultHref='/' />
+            <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle>{language.editLink}</IonTitle>
+          <IonTitle color='light'>{language.editLink}</IonTitle>
           <IonButtons slot='secondary'>
             <IonButton
+              color='light'
               onClick={() => {
                 deleteCategoryDialog();
               }}
             >
-              <IonIcon slot='icon-only' icon={trashSharp} />
+              <IonIcon color='light' slot='icon-only' icon={trashSharp} />
             </IonButton>
           </IonButtons>
         </IonToolbar>

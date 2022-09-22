@@ -16,8 +16,11 @@ const words = {
   settings_about: '关于应用程序',
 
   importExport: '数据导入和导出',
-  importExport_exportJSON: '将数据导出到JSON',
-  importExport_importJSON: '从JSON导入数据',
+  importExport_exportJSON: "将数据导出到一个.JSON文件",
+  importExport_exportJSON_2: "将数据导出为一个字符串",
+  importExport_importJSON: "从一个.JSON文件导入数据",
+  importExport_importJSON_2: "从一个字符串中导入数据",
+  importExport_importJSON_3: "从Linkbox导入数据",
   importExport_manual: '说明（仅限俄语）',
 
   about: '关于应用程序',
@@ -72,8 +75,10 @@ const words = {
   universal_iconColor: '图标颜色',
   universal_clickToColorSelect: '按圆圈选择一种颜色',
   universal_iconType: '图标类型',
+  universal_firstWord: "第一封信",
   universal_nothing: '没有什么',
   universal_favicon: '网站的Favicon',
+  universal_onlyAndroid: "该功能仅适用于安卓设备",
 
   guide_dialog_title: "第一次来这里？",
   guide_dialog_desc: "你愿意接受界面管理方面的培训吗？(培训将在以后的设置中提供)",
@@ -90,6 +95,12 @@ const words = {
   guide_slide4_title: "这就是它的全部内容。",
   guide_slide4_desc: "你现在已经完全准备好使用URList了，请享受吧",
   guide_slide4_button: "近距离培训",
+
+  export_complete: "文件保存导出成功，保存到路径：%PATH%。", // %PATH% - Instead of this value the path to the file will appear
+  import_complete: "数据成功导入",
+  exportError_dir: "错误：无法创建文件夹，检查应用程序的权限",
+  exportError_file: "错误：无法创建文件，请检查应用程序的权限",
+  importError_validation: "错误：导入的数据被破坏",
 };
 
 export default words;
