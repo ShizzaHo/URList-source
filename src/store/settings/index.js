@@ -4,6 +4,8 @@ class SettingsState {
     settings = {
         showIcons: true,
         guideStart: false,
+        showDeleteButton: false,
+        swipeIcons: false,
     }
 
     constructor() {

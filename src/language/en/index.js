@@ -2,7 +2,7 @@ const words = {
   langName_ru: 'Русский',
   langName_en: 'English',
   langName_cz: '中文',
-  langName_uk: 'Українська',
+  langName_uk: 'Українська (не повний переклад)',
 
   category: 'Categories',
 
@@ -14,6 +14,8 @@ const words = {
   settings_guide: "Go through the training",
   settings_userAgreement: 'User Agreement (russian only)',
   settings_about: 'About the app',
+  settings_showDeleteButton: "Show delete button on swipe",
+  settings_swipeIcons: "Icons instead of text on swipe",
 
   ImportExport: 'Data import and export',
   importExport_exportJSON: "Export data to a .JSON file",

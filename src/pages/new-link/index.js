@@ -35,8 +35,8 @@ const NewLink = () => {
   const [state, setState] = useState({
     name: '',
     url: '',
-    iconColor: '',
-    iconType: '',
+    iconColor: 'gray',
+    iconType: 'nothing',
   });
 
   const [error, setError] = useState(false);

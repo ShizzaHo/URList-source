@@ -13,6 +13,7 @@ import ImportExportPage from './pages/import-export-page';
 import UserAgreement from './pages/user-agreement-page';
 import About from './pages/about-page';
 import UniversalInputPage from './pages/universal-input-page';
+import Search from './pages/search';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -42,21 +43,29 @@ DataStore.loadDataFromLocalStorage();
 SettingsState.loadSettingsFromLocalStorage();
 
 if (localStorage.getItem("URLIST_LANG") == undefined) {
-  const userLang = navigator.language || navigator.userLanguage; 
-  if (userLang == "ru-RU") {
-    localStorage.setItem("URLIST_LANG", "russian");
-  } else if (userLang == "en-EN")  {
-    localStorage.setItem("URLIST_LANG", "english");
-  } else if (userLang == "zh_CN")  {
-    localStorage.setItem("URLIST_LANG", "chinese");
-  } else {
-    localStorage.setItem("URLIST_LANG", "english");
+  const userLang = navigator.language; 
+  switch (userLang) {
+    case "ru-RU":
+      localStorage.setItem("URLIST_LANG", "russian");
+      break;
+    case "en-EN":
+      localStorage.setItem("URLIST_LANG", "english");
+      break;
+    case "zh-CN":
+      localStorage.setItem("URLIST_LANG", "chinese");
+      break;
+    default:
+      localStorage.setItem("URLIST_LANG", "english");
+      break;
   }
 }
 
 setupIonicReact();
 
 const App = () => {
+  
+  
+
   return (
     <IonApp>
       <IonReactRouter>
@@ -96,6 +105,9 @@ const App = () => {
           </Route>
           <Route path='/editLink/:id' exact={true}>
             <EditLink />
+          </Route>
+          <Route path='/search' exact={true}>
+            <Search />
           </Route>
 
           <Route path='/guide' exact={true}>

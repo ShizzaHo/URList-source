@@ -28,6 +28,7 @@ import { generateCategoryID } from './../../utils/generator/index';
 import language from '../../language';
 import { exportDataFile } from './module/exporter';
 import { importDataFile } from './module/importer';
+import { importLinkBoxDataFile } from './module/importer-linkbox';
 import { Buffer } from 'buffer';
 import { isPlatform } from '@ionic/core';
 
@@ -102,19 +103,21 @@ const NewCategory = () => {
           >
             {language.importExport_importJSON_2}
           </IonButton>
-          {/* <IonButton
+          <IonButton
             expand='block'
             className='buttonGray'
-            onClick={() => {
+            onClick={async () => {
               if (isPlatform('android')) {
-                
+                const data = await importLinkBoxDataFile();
+                DataStore.importFromJson(await data);
+                window.location = '/';
               } else {
                 alert(language.universal_onlyAndroid);
               }
             }}
           >
             {language.importExport_importJSON_3}
-          </IonButton> */}
+          </IonButton>
           <br />
         </div>
       </IonContent>

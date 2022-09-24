@@ -93,6 +93,34 @@ const Settings = () => {
           <IonItem
             button
             onClick={() => {
+              SettingsState.toggleSetting('showDeleteButton');
+            }}
+          >
+            <IonLabel>
+              <h2>{language.settings_showDeleteButton}</h2>
+            </IonLabel>
+            <IonCheckbox
+              slot='end'
+              checked={SettingsState.getSettings().showDeleteButton}
+            ></IonCheckbox>
+          </IonItem>
+          <IonItem
+            button
+            onClick={() => {
+              SettingsState.toggleSetting('swipeIcons');
+            }}
+          >
+            <IonLabel>
+              <h2>{language.settings_swipeIcons}</h2>
+            </IonLabel>
+            <IonCheckbox
+              slot='end'
+              checked={SettingsState.getSettings().swipeIcons}
+            ></IonCheckbox>
+          </IonItem>
+          <IonItem
+            button
+            onClick={() => {
               SettingsState.toggleSetting('showIcons');
             }}
           >

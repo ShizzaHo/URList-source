@@ -2,7 +2,7 @@ const words = {
     langName_ru: "Русский",
     langName_en: "English",
     langName_cz: "中文",
-    langName_uk: "Українська",
+    langName_uk: "Українська (не повний переклад)",
 
     category: "Категории",
 
@@ -14,6 +14,8 @@ const words = {
     settings_guide: "Пройти обучение",
     settings_userAgreement: "Пользовательское соглашение",
     settings_about: "О приложении",
+    settings_showDeleteButton: "Показать кнопку удаления при свайпе",
+    settings_swipeIcons: "Иконки вместо текста при свайпе",
 
     importExport: "Импорт и экспорт данных",
     importExport_exportJSON: "Экспортировать данные в .JSON файл",
@@ -101,6 +103,9 @@ const words = {
     exportError_dir: "ОШИБКА: Невозможно создать папку, проверьте разрешения приложения",
     exportError_file: "ОШИБКА: Невозможно создать файл, проверьте разрешения приложения",
     importError_validation: "ОШИБКА: Импортированные данные повреждены",
+    import_linkBox_converting: "Идет процесс конвертирования данных из Linkbox в конфиг URList, пожалуйста подождите...",
+
+    search: "Поиск",
 }
 
 export default words;

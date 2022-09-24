@@ -10,7 +10,7 @@ import {
   IonItemOption,
   IonIcon,
 } from '@ionic/react';
-import { star } from 'ionicons/icons';
+import { star, trash, pencil } from 'ionicons/icons';
 
 import language from '../../language';
 
@@ -20,17 +20,31 @@ function LinkItem({
   onOpen,
   onEdit,
   onFavorite,
+  onDelete,
   isFavorite,
   showIcon,
   iconColor,
   iconType,
+  showDeleteButton,
+  swipeIcons,
 }) {
   return (
     <IonItemSliding>
       <IonItemOptions side='start'>
         <IonItemOption color='tertiary' expandable onClick={onEdit}>
-          {language.categoryItem_edit}
+          {swipeIcons ? (
+            <IonIcon slot='icon-only' icon={pencil} />
+          ) : (
+            language.categoryItem_edit
+          )}
         </IonItemOption>
+        {showDeleteButton ? (
+          <IonItemOption color='danger' expandable onClick={onDelete}>
+            <IonIcon slot='icon-only' icon={trash} />
+          </IonItemOption>
+        ) : (
+          <></>
+        )}
       </IonItemOptions>
 
       <IonItem onClick={onOpen}>
@@ -78,7 +92,11 @@ function LinkItem({
 
       <IonItemOptions side='end'>
         <IonItemOption color='favorite' expandable onClick={onFavorite}>
-          {language.categoryItem_favoriteAdd}
+          {swipeIcons ? (
+            <IonIcon slot='icon-only' icon={star} />
+          ) : (
+            language.categoryItem_favoriteAdd
+          )}
         </IonItemOption>
       </IonItemOptions>
     </IonItemSliding>
@@ -91,10 +109,13 @@ LinkItem.defaultProps = {
   onOpen: () => {},
   onEdit: () => {},
   onFavorite: () => {},
+  onDelete: () => {},
   isFavorite: false,
   showIcon: true,
   iconColor: 'gray',
   iconType: 'nothing',
+  showDeleteButton: false,
+  swipeIcons: false,
 };
 
 function pickTextColor(bgColor, lightColor, darkColor) {

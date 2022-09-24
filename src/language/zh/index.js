@@ -2,7 +2,7 @@ const words = {
   langName_ru: 'Русский',
   langName_en: 'English',
   langName_cz: '中文',
-  langName_uk: 'Українська',
+  langName_uk: 'Українська (не повний переклад)',
 
   category: '类别',
 
@@ -14,6 +14,8 @@ const words = {
   settings_guide: "参加培训课程",
   settings_userAgreement: '用户协议（仅限俄语）',
   settings_about: '关于应用程序',
+  settings_showDeleteButton: "刷卡时显示删除按钮",
+  settings_swipeIcons: "刷卡时用图标代替文字",
 
   importExport: '数据导入和导出',
   importExport_exportJSON: "将数据导出到一个.JSON文件",

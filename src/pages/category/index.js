@@ -57,13 +57,14 @@ const Category = () => {
         <IonToolbar color='urlDarkToolbar'>
           <IonTitle color='light'>{language.category}</IonTitle>
           <IonButtons slot='secondary'>
-            {/* <IonButton
+            <IonButton
+              color='light'
               onClick={() => {
-                history.push('/settings');
+                history.push('/search');
               }}
             >
               <IonIcon slot='icon-only' icon={search} />
-            </IonButton> */}
+            </IonButton>
             <SortButton setSortMethod={setSortMethod} />
             <IonButton
               color='light'
@@ -95,10 +96,17 @@ const Category = () => {
                     onFavorite={() => {
                       DataStore.categoryFavoriteToggle(item.id);
                     }}
+                    onDelete={() => {
+                      deleteCategoryDialog(item.id);
+                    }}
                     isFavorite={item.isFavorite}
                     showIcon={SettingsState.getSettings().showIcons}
                     iconColor={item.iconColor}
                     iconType={item.iconType}
+                    showDeleteButton={
+                      SettingsState.getSettings().showDeleteButton
+                    }
+                    swipeIcons={SettingsState.getSettings().swipeIcons}
                   />
                 );
               } else {
@@ -123,10 +131,17 @@ const Category = () => {
                     onFavorite={() => {
                       DataStore.categoryFavoriteToggle(item.id);
                     }}
+                    onDelete={() => {
+                      deleteCategoryDialog(item.id);
+                    }}
                     isFavorite={item.isFavorite}
                     showIcon={SettingsState.getSettings().showIcons}
                     iconColor={item.iconColor}
                     iconType={item.iconType}
+                    showDeleteButton={
+                      SettingsState.getSettings().showDeleteButton
+                    }
+                    swipeIcons={SettingsState.getSettings().swipeIcons}
                   />
                 );
               } else {
@@ -167,6 +182,27 @@ const Category = () => {
           handler: () => {
             SettingsState.toggleSetting('guideStart');
             history.push('/guide');
+          },
+        },
+      ],
+    });
+  }
+
+  function deleteCategoryDialog(id) {
+    presentAlert({
+      header: language.editCategory_delete_title,
+      message: language.editCategory_delete_desc,
+      buttons: [
+        {
+          text: language.editCategory_delete_OK,
+          role: 'cancel',
+        },
+        {
+          text: language.editCategory_delete_DELETE,
+          role: 'confirm',
+          handler: () => {
+            DataStore.deleteCategory(id);
+            history.goBack();
           },
         },
       ],
