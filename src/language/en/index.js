@@ -105,6 +105,9 @@ const words = {
   exportError_dir: "ERROR: Unable to create folder, check application permissions",
   exportError_file: "ERROR: Cannot create file, check application permissions",
   importError_validation: "ERROR: Imported data is corrupted",
+  import_linkBox_converting: "There is a process of converting data from Linkbox to URList config, please wait...",
+
+  search: "Search",
 };
 
 export default words;

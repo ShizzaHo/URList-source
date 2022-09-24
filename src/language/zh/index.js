@@ -103,6 +103,9 @@ const words = {
   exportError_dir: "错误：无法创建文件夹，检查应用程序的权限",
   exportError_file: "错误：无法创建文件，请检查应用程序的权限",
   importError_validation: "错误：导入的数据被破坏",
+  import_linkBox_converting: "有一个将数据从Linkbox转换为URList配置的过程，请稍候。..",
+
+  search: "搜索",
 };
 
 export default words;
