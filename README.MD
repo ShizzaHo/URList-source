@@ -80,8 +80,6 @@ URList реализован на [Ionic framework](https://ionicframework.com), 
 
 </details>
 
-<br>
-
 # Поддержка проекта
 
 Если вам нравится проект, то можете поддержать его через [Donation Alerts](https://www.donationalerts.com/r/hu_tao_goddess)

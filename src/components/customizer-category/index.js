@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ServiceModule from './../../service';
 import './styles.css';
 
 import {
@@ -10,14 +11,15 @@ import {
   IonSelectOption,
 } from '@ionic/react';
 
-import language from '../../language';
 import IconColorPicker from '../icon-color-picker/index';
 
 function CustomizeCategory({ onChangeColor, onChangeType, initColor, initType }) {
+  const Service = new ServiceModule();
+
   return (
     <>
       <IonListHeader>
-        <IonLabel>{language.universal_iconColor}</IonLabel>
+        <IonLabel>{Service.language.universal_iconColor}</IonLabel>
       </IonListHeader>
 
       <IonListHeader>
@@ -28,13 +30,13 @@ function CustomizeCategory({ onChangeColor, onChangeType, initColor, initType })
           }}
         />
         <span>   </span>
-        <IonLabel>{language.universal_clickToColorSelect}</IonLabel>
+        <IonLabel>{Service.language.universal_clickToColorSelect}</IonLabel>
       </IonListHeader>
 
       <br></br>
 
       <IonListHeader>
-        <IonLabel>{language.universal_iconType}</IonLabel>
+        <IonLabel>{Service.language.universal_iconType}</IonLabel>
       </IonListHeader>
       <IonList>
         <IonItem>
@@ -45,10 +47,10 @@ function CustomizeCategory({ onChangeColor, onChangeType, initColor, initType })
             }}
           >
             <IonSelectOption value='nothing'>
-              {language.universal_nothing}
+              {Service.language.universal_nothing}
             </IonSelectOption>
             <IonSelectOption value='firstWord'>
-              {language.universal_firstWord}
+              {Service.language.universal_firstWord}
             </IonSelectOption>
           </IonSelect>
         </IonItem>

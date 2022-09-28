@@ -1,4 +1,5 @@
 import React from 'react';
+import ServiceModule from './../../service';
 import './styles.css';
 
 import {
@@ -11,8 +12,6 @@ import {
   IonIcon,
 } from '@ionic/react';
 import { star, trash, pencil } from 'ionicons/icons';
-
-import language from '../../language';
 
 function CategoryItem({
   title,
@@ -28,11 +27,12 @@ function CategoryItem({
   showDeleteButton,
   swipeIcons,
 }) {
+  const Service = new ServiceModule();
   return (
     <IonItemSliding>
       <IonItemOptions side='start'>
         <IonItemOption color='tertiary' expandable onClick={onEdit}>
-          {swipeIcons ? <IonIcon slot='icon-only' icon={pencil} /> : language.categoryItem_edit}
+          {swipeIcons ? <IonIcon slot='icon-only' icon={pencil} /> : Service.language.categoryItem_edit}
         </IonItemOption>
         {showDeleteButton ? (
           <IonItemOption color='danger' expandable onClick={onDelete}>
@@ -77,7 +77,7 @@ function CategoryItem({
 
       <IonItemOptions side='end'>
         <IonItemOption color='favorite' expandable onClick={onFavorite}>
-          {swipeIcons ? <IonIcon slot='icon-only' icon={star} /> : language.categoryItem_favoriteAdd}
+          {swipeIcons ? <IonIcon slot='icon-only' icon={star} /> : Service.language.categoryItem_favoriteAdd}
         </IonItemOption>
       </IonItemOptions>
     </IonItemSliding>
