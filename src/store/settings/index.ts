@@ -1,7 +1,12 @@
 import { makeAutoObservable, toJS } from "mobx"
 
+//SETTINGS FORMAT
+interface Isettings {
+    [key: string]: boolean
+}
+
 class SettingsState {
-    settings = {
+    settings: Isettings = {
         showIcons: true,
         guideStart: false,
         showDeleteButton: false,
@@ -12,11 +17,11 @@ class SettingsState {
         makeAutoObservable(this)
     }
 
-    getSettings(){
+    getSettings(): Isettings {
         return toJS(this.settings);
     }
 
-    setSettings(newData){
+    setSettings(newData: Isettings){
         this.settings = newData;
     }
 
@@ -25,13 +30,13 @@ class SettingsState {
     }
 
     loadSettingsFromLocalStorage(){
-        const newData = JSON.parse(localStorage.getItem("URLIST_SETTINGS"));
+        const newData = JSON.parse(localStorage.getItem("URLIST_SETTINGS") || '{}');
         if (newData != undefined) {
             this.setSettings({...this.getSettings(), ...newData});
         }
     }
 
-    toggleSetting(setting){
+    toggleSetting(setting: string){
         const state = this.getSettings()[setting];
         this.setSettings({
             ...this.getSettings(),

@@ -24,12 +24,15 @@ interface Ilink {
     isFavorite ?: boolean;
 }
 
+//META FORMAT
+interface Imeta {
+  name ?: string;
+  version ?: string;
+}
+
 //FORMAT DATA OBJECT
 interface Idata {
-  meta?: {
-    name?: string;
-    version?: string;
-  };
+  meta?: Imeta;
   categories: Array<Icategory>;
   links: Array<Ilink>;
 }
@@ -45,7 +48,7 @@ class DataState {
     makeAutoObservable(this);
   }
 
-  getData() {
+  getData(): Idata {
     return toJS(this.data);
   }
 
@@ -53,18 +56,18 @@ class DataState {
     this.data = newData;
   }
 
-  getCategories() {
+  getCategories(): Array<Icategory> {
     return toJS(this.data.categories);
   }
 
-  getCategory(id: string) {
+  getCategory(id: string): (Icategory | undefined){
     const finded = this.getCategories().find((item: any) => {
       return item.id == id;
     });
     return toJS(finded);
   }
 
-  editCategory(id: string, newObject: any) {
+  editCategory(id: string, newObject: (Icategory | any) ) {
     const filtered = this.getCategories().filter((item: any) => {
       return item.id !== id;
     });
@@ -93,7 +96,7 @@ class DataState {
     return toJS(this.data.links);
   }
 
-  getLink(id: string) {
+  getLink(id: string): (Ilink | undefined) {
     const finded = this.getLinks().find((item) => {
       return item.id == id;
     });
@@ -143,11 +146,11 @@ class DataState {
     localStorage.setItem('URLIST_DATA', JSON.stringify(toJS(this.data)));
   }
 
-  exportDataToJSON() {
+  exportDataToJSON(): string {
     return JSON.stringify(toJS(this.data));
   }
 
-  importFromJson(data: any) {
+  importFromJson(data: string) {
     const newData = data;
     if (validateJSON(JSON.stringify(newData))) {
       localStorage.setItem('URLIST_DATA', newData);
@@ -178,11 +181,11 @@ class DataState {
     this.saveDataToLocalStorage();
   }
 
-  getMeta() {
+  getMeta(): (Imeta | undefined) {
     return toJS(this.data.meta);
   }
 
-  setMeta(newObj: any) {
+  setMeta(newObj: Imeta) {
     this.setData({
       ...this.getData(),
       meta: newObj,
