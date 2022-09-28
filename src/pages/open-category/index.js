@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import ServiceContext from '../../context/service-context';
 import { useHistory, useParams } from 'react-router-dom';
 import {
   IonContent,
@@ -10,12 +11,9 @@ import {
   IonIcon,
   IonFab,
   IonFabButton,
-  IonItem,
-  IonLabel,
   IonBackButton,
   useIonAlert
 } from '@ionic/react';
-import SettingsState from '../../store/settings';
 import { add } from 'ionicons/icons';
 import './styles.css';
 
@@ -23,13 +21,11 @@ import { SortList } from '../../utils/sort';
 import SortButton from '../../components/sort-button';
 
 import { observer } from 'mobx-react';
-import DataStore from '../../store/data';
 import LinkItem from './../../components/url-item/index';
-import language from '../../language';
 
 const OpenCategory = () => {
+  const Service = useContext(ServiceContext);
   const [presentAlert] = useIonAlert();
-  const [longPress, setLongPress] = useState(null);
   const [sortMethod, setSortMethod] = useState(
     localStorage.getItem('URLIST_SORTMETHOD')
   );
@@ -44,7 +40,7 @@ const OpenCategory = () => {
           <IonButtons slot='start'>
             <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle color='light'>{DataStore.getCategory(params.id).title}</IonTitle>
+          <IonTitle color='light'>{Service.data.getCategory(params.id).title}</IonTitle>
           <IonButtons slot='end'>
             <SortButton setSortMethod={setSortMethod} />
           </IonButtons>
@@ -52,7 +48,7 @@ const OpenCategory = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div>
-        {SortList(DataStore.getLinks(), sortMethod)
+        {SortList(Service.data.getLinks(), sortMethod)
             .filter((value) => {
               return value.parentID == params.id;
             })
@@ -70,24 +66,24 @@ const OpenCategory = () => {
                       history.push('/editLink/' + item.id);
                     }}
                     onFavorite={() => {
-                      DataStore.linkFavoriteToggle(item.id);
+                      Service.data.linkFavoriteToggle(item.id);
                     }}
                     onDelete={()=>{
                       deleteLinkDialog(item.id)
                     }}
                     isFavorite={item.isFavorite}
-                    showIcon={SettingsState.getSettings().showIcons}
+                    showIcon={Service.settings.getSettings().showIcons}
                     iconColor={item.iconColor}
                     iconType={item.iconType}
-                    showDeleteButton={SettingsState.getSettings().showDeleteButton}
-                    swipeIcons={SettingsState.getSettings().swipeIcons}
+                    showDeleteButton={Service.settings.getSettings().showDeleteButton}
+                    swipeIcons={Service.settings.getSettings().swipeIcons}
                   />
                 );
               } else {
                 return <></>;
               }
             })}
-          {SortList(DataStore.getLinks(), sortMethod)
+          {SortList(Service.data.getLinks(), sortMethod)
             .filter((value) => {
               return value.parentID == params.id;
             })
@@ -105,17 +101,17 @@ const OpenCategory = () => {
                       history.push('/editLink/' + item.id);
                     }}
                     onFavorite={() => {
-                      DataStore.linkFavoriteToggle(item.id);
+                      Service.data.linkFavoriteToggle(item.id);
                     }}
                     onDelete={()=>{
                       deleteLinkDialog(item.id)
                     }}
                     isFavorite={item.isFavorite}
-                    showIcon={SettingsState.getSettings().showIcons}
+                    showIcon={Service.settings.getSettings().showIcons}
                     iconColor={item.iconColor}
                     iconType={item.iconType}
-                    showDeleteButton={SettingsState.getSettings().showDeleteButton}
-                    swipeIcons={SettingsState.getSettings().swipeIcons}
+                    showDeleteButton={Service.settings.getSettings().showDeleteButton}
+                    swipeIcons={Service.settings.getSettings().swipeIcons}
                   />
                 );
               } else {
@@ -139,18 +135,18 @@ const OpenCategory = () => {
 
   function deleteLinkDialog(id) {
     presentAlert({
-      header: language.editCategory_delete_title,
-      message: language.editCategory_delete_desc,
+      header: Service.language.editCategory_delete_title,
+      message: Service.language.editCategory_delete_desc,
       buttons: [
         {
-          text: language.editCategory_delete_OK,
+          text: Service.language.editCategory_delete_OK,
           role: 'cancel',
         },
         {
-          text: language.editCategory_delete_DELETE,
+          text: Service.language.editCategory_delete_DELETE,
           role: 'confirm',
           handler: () => {
-            DataStore.deleteLink(id);
+            Service.data.deleteLink(id);
           },
         },
       ],

@@ -1,13 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import ServiceContext from '../../context/service-context';
 import { useHistory } from 'react-router-dom';
-import { Redirect, Route } from 'react-router-dom';
 import {
   IonContent,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
-  IonButton,
   IonButtons,
   IonIcon,
   IonFab,
@@ -17,25 +16,19 @@ import {
   IonBackButton,
   IonInput,
   IonTextarea,
-  IonRadioGroup,
-  IonRadio,
   IonListHeader,
-  IonList,
-  IonSelect,
-  IonSelectOption,
 } from '@ionic/react';
 import { saveSharp } from 'ionicons/icons';
 import './styles.css';
-import IconColorPicker from './../../components/icon-color-picker/index';
 
 import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
 
 import { generateCategoryID } from './../../utils/generator/index';
-import language from '../../language';
 import CustomizeCategory from '../../components/customizer-category/index';
 
 const NewCategory = () => {
+  const Service = useContext(ServiceContext);
   const history = useHistory();
 
   const [state, setState] = useState({
@@ -52,19 +45,19 @@ const NewCategory = () => {
           <IonButtons slot='start'>
             <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle color='light'>{language.newCategory}</IonTitle>
+          <IonTitle color='light'>{Service.language.newCategory}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <div className='p-10'>
           <div>
             <IonListHeader>
-              <IonLabel style={{ color: 'gray' }}>{language.universal_basicInformation}</IonLabel>
+              <IonLabel style={{ color: 'gray' }}>{Service.language.universal_basicInformation}</IonLabel>
             </IonListHeader>
 
             <IonItem color='no'>
               <IonLabel position='floating'>
-                {language.newCategory_name}
+                {Service.language.newCategory_name}
               </IonLabel>
               <IonInput
                 value={state.name}
@@ -75,7 +68,7 @@ const NewCategory = () => {
             </IonItem>
             <IonItem color='no'>
               <IonLabel position='floating'>
-                {language.newCategory_desc}
+                {Service.language.newCategory_desc}
               </IonLabel>
               <IonTextarea
                 value={state.desc}
@@ -89,7 +82,7 @@ const NewCategory = () => {
           <br></br>
           <div>
             <IonListHeader>
-              <IonLabel style={{ color: 'gray' }}>{language.universal_customization}</IonLabel>
+              <IonLabel style={{ color: 'gray' }}>{Service.language.universal_customization}</IonLabel>
             </IonListHeader>
 
             <CustomizeCategory initColor={state.iconColor} initType={state.iconType} onChangeColor={changeColor} onChangeType={changeType}/>

@@ -1,8 +1,6 @@
-import { useState } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { useContext } from 'react';
+import ServiceContext from '../../context/service-context';
 import { useHistory } from 'react-router-dom';
-import { App } from '@capacitor/app';
-import SettingsState from '../../store/settings';
 import { observer } from 'mobx-react';
 import {
   IonContent,
@@ -18,11 +16,10 @@ import {
   useIonActionSheet,
   IonCheckbox,
 } from '@ionic/react';
-import { settingsSharp, add } from 'ionicons/icons';
 import './styles.css';
-import language from '../../language';
 
 const Settings = () => {
+  const Service = useContext(ServiceContext);
   const [present, dismiss] = useIonActionSheet();
   const history = useHistory();
 
@@ -33,7 +30,7 @@ const Settings = () => {
           <IonButtons slot='start'>
             <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle color='light'>{language.settings}</IonTitle>
+          <IonTitle color='light'>{Service.language.settings}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -45,7 +42,7 @@ const Settings = () => {
             }}
           >
             <IonLabel>
-              <h2>{language.settings_importExport}</h2>
+              <h2>{Service.language.settings_importExport}</h2>
             </IonLabel>
           </IonItem>
           <IonItem
@@ -54,82 +51,82 @@ const Settings = () => {
               present({
                 buttons: [
                   {
-                    text: language.langName_ru,
+                    text: Service.language.langName_ru,
                     handler: () => {
                       localStorage.setItem('URLIST_LANG', 'russian');
                       reload();
                     },
                   },
                   {
-                    text: language.langName_en,
+                    text: Service.language.langName_en,
                     handler: () => {
                       localStorage.setItem('URLIST_LANG', 'english');
                       reload();
                     },
                   },
                   {
-                    text: language.langName_cz,
+                    text: Service.language.langName_cz,
                     handler: () => {
                       localStorage.setItem('URLIST_LANG', 'chinese');
                       reload();
                     },
                   },
                   {
-                    text: language.langName_uk,
+                    text: Service.language.langName_uk,
                     handler: () => {
                       localStorage.setItem('URLIST_LANG', 'ukrain');
                       reload();
                     },
                   },
                 ],
-                header: language.settings_selectLanguage_title,
+                header: Service.language.settings_selectLanguage_title,
               });
             }}
           >
             <IonLabel>
-              <h2>{language.settings_selectLanguage}</h2>
+              <h2>{Service.language.settings_selectLanguage}</h2>
             </IonLabel>
           </IonItem>  
           <IonItem
             button
             onClick={() => {
-              SettingsState.toggleSetting('showDeleteButton');
+              Service.settings.toggleSetting('showDeleteButton');
             }}
           >
             <IonLabel>
-              <h2>{language.settings_showDeleteButton}</h2>
+              <h2>{Service.language.settings_showDeleteButton}</h2>
             </IonLabel>
             <IonCheckbox
               slot='end'
-              checked={SettingsState.getSettings().showDeleteButton}
+              checked={Service.settings.getSettings().showDeleteButton}
             ></IonCheckbox>
           </IonItem>
           <IonItem
             button
             onClick={() => {
-              SettingsState.toggleSetting('swipeIcons');
+              Service.settings.toggleSetting('swipeIcons');
             }}
           >
             <IonLabel>
-              <h2>{language.settings_swipeIcons}</h2>
+              <h2>{Service.language.settings_swipeIcons}</h2>
             </IonLabel>
             <IonCheckbox
               slot='end'
-              checked={SettingsState.getSettings().swipeIcons}
+              checked={Service.settings.getSettings().swipeIcons}
             ></IonCheckbox>
           </IonItem>
           <IonItem
             button
             onClick={() => {
-              SettingsState.toggleSetting('showIcons');
+              Service.settings.toggleSetting('showIcons');
             }}
           >
             <IonLabel>
-              <h2>{language.settings_showIcons}</h2>
+              <h2>{Service.language.settings_showIcons}</h2>
             </IonLabel>
             <IonCheckbox
               slot='end'
-              checked={SettingsState.getSettings().showIcons}
+              checked={Service.settings.getSettings().showIcons}
             ></IonCheckbox>
           </IonItem>
           <IonItem
@@ -139,7 +136,7 @@ const Settings = () => {
             }}
           >
             <IonLabel>
-              <h2>{language.settings_guide}</h2>
+              <h2>{Service.language.settings_guide}</h2>
             </IonLabel>
           </IonItem>
           <IonItem
@@ -149,7 +146,7 @@ const Settings = () => {
             }}
           >
             <IonLabel>
-              <h2>{language.settings_userAgreement}</h2>
+              <h2>{Service.language.settings_userAgreement}</h2>
             </IonLabel>
           </IonItem>
           <IonItem
@@ -159,7 +156,7 @@ const Settings = () => {
             }}
           >
             <IonLabel>
-              <h2>{language.settings_about}</h2>
+              <h2>{Service.language.settings_about}</h2>
             </IonLabel>
           </IonItem>
         </div>

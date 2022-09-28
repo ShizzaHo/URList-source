@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import ServiceContext from '../../context/service-context';
 import { useHistory } from 'react-router-dom';
 import { Redirect, Route } from 'react-router-dom';
 import {
@@ -9,36 +10,20 @@ import {
   IonToolbar,
   IonButton,
   IonButtons,
-  IonIcon,
-  IonFab,
-  IonFabButton,
-  IonItem,
-  IonLabel,
   IonBackButton,
-  IonInput,
-  IonTextarea,
 } from '@ionic/react';
-import { saveSharp } from 'ionicons/icons';
 import './styles.css';
 
 import { observer } from 'mobx-react';
-import DataStore from '../../store/data';
 
-import { generateCategoryID } from './../../utils/generator/index';
-import language from '../../language';
 import { exportDataFile } from './module/exporter';
 import { importDataFile } from './module/importer';
 import { importLinkBoxDataFile } from './module/importer-linkbox';
-import { Buffer } from 'buffer';
 import { isPlatform } from '@ionic/core';
 
 const NewCategory = () => {
+  const Service = useContext(ServiceContext);
   const history = useHistory();
-
-  const [state, setState] = useState({
-    name: '',
-    desc: '',
-  });
 
   return (
     <IonPage id='category-page'>
@@ -47,7 +32,7 @@ const NewCategory = () => {
           <IonButtons slot='start'>
             <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle color='light'>{language.importExport}</IonTitle>
+          <IonTitle color='light'>{Service.language.importExport}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -57,13 +42,13 @@ const NewCategory = () => {
             className='buttonGray'
             onClick={() => {
               if (isPlatform('android')) {
-                exportDataFile(DataStore.exportDataToJSON());
+                exportDataFile(Service.data.exportDataToJSON());
               } else {
-                alert(language.universal_onlyAndroid);
+                alert(Service.language.universal_onlyAndroid);
               }
             }}
           >
-            {language.importExport_exportJSON}
+            {Service.language.importExport_exportJSON}
           </IonButton>
           <IonButton
             expand='block'
@@ -72,7 +57,7 @@ const NewCategory = () => {
               history.push('/universalInput/exportData');
             }}
           >
-            {language.importExport_exportJSON_2}
+            {Service.language.importExport_exportJSON_2}
           </IonButton>
           <br />
           <IonButton
@@ -82,17 +67,17 @@ const NewCategory = () => {
               if (isPlatform('android')) {
                 const data = await importDataFile();
                 if (data) {
-                  DataStore.importFromJson(await data);
+                  Service.data.importFromJson(await data);
                   window.location = '/';
                 } else {
-                  alert(language.exportError_file);
+                  alert(Service.language.exportError_file);
                 }
               } else {
-                alert(language.universal_onlyAndroid);
+                alert(Service.language.universal_onlyAndroid);
               }
             }}
           >
-            {language.importExport_importJSON}
+            {Service.language.importExport_importJSON}
           </IonButton>
           <IonButton
             expand='block'
@@ -101,7 +86,7 @@ const NewCategory = () => {
               history.push('/universalInput/importData');
             }}
           >
-            {language.importExport_importJSON_2}
+            {Service.language.importExport_importJSON_2}
           </IonButton>
           <IonButton
             expand='block'
@@ -109,14 +94,14 @@ const NewCategory = () => {
             onClick={async () => {
               if (isPlatform('android')) {
                 const data = await importLinkBoxDataFile();
-                DataStore.importFromJson(await data);
+                Service.data.importFromJson(await data);
                 window.location = '/';
               } else {
-                alert(language.universal_onlyAndroid);
+                alert(Service.language.universal_onlyAndroid);
               }
             }}
           >
-            {language.importExport_importJSON_3}
+            {Service.language.importExport_importJSON_3}
           </IonButton>
           <br />
         </div>

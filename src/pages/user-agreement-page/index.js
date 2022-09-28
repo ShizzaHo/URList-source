@@ -1,28 +1,17 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Redirect, Route } from 'react-router-dom';
 import {
   IonContent,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
-  IonButton,
   IonButtons,
-  IonIcon,
-  IonFab,
-  IonFabButton,
-  IonItem,
-  IonLabel,
   IonBackButton,
-  IonInput,
-  IonTextarea
 } from '@ionic/react';
-import { saveSharp } from 'ionicons/icons';
 import './styles.css';
 
 import { observer } from 'mobx-react';
-import DataStore from '../../store/data';
 
 const NewCategory = () => {
   const history = useHistory();

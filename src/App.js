@@ -1,6 +1,5 @@
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
-import { useHistory } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
 import Categories from './pages/category';
 import Settings from './pages/settings';
@@ -37,25 +36,24 @@ import './theme/variables.css';
 import DataStore from './store/data';
 import SettingsState from './store/settings';
 import Guide from './pages/guide';
-import SendToOtherDevice from './pages/send-to-other-device';
 
 DataStore.loadDataFromLocalStorage();
 SettingsState.loadSettingsFromLocalStorage();
 
-if (localStorage.getItem("URLIST_LANG") == undefined) {
-  const userLang = navigator.language; 
+if (localStorage.getItem('URLIST_LANG') == undefined) {
+  const userLang = navigator.language;
   switch (userLang) {
-    case "ru-RU":
-      localStorage.setItem("URLIST_LANG", "russian");
+    case 'ru-RU':
+      localStorage.setItem('URLIST_LANG', 'russian');
       break;
-    case "en-EN":
-      localStorage.setItem("URLIST_LANG", "english");
+    case 'en-EN':
+      localStorage.setItem('URLIST_LANG', 'english');
       break;
-    case "zh-CN":
-      localStorage.setItem("URLIST_LANG", "chinese");
+    case 'zh-CN':
+      localStorage.setItem('URLIST_LANG', 'chinese');
       break;
     default:
-      localStorage.setItem("URLIST_LANG", "english");
+      localStorage.setItem('URLIST_LANG', 'english');
       break;
   }
 }
@@ -63,9 +61,6 @@ if (localStorage.getItem("URLIST_LANG") == undefined) {
 setupIonicReact();
 
 const App = () => {
-  
-  
-
   return (
     <IonApp>
       <IonReactRouter>
@@ -81,9 +76,6 @@ const App = () => {
           </Route>
           <Route path='/settings/importExport' exact={true}>
             <ImportExportPage />
-          </Route>
-          <Route path='/sendToOtherDevice' exact={true}>
-            <SendToOtherDevice />
           </Route>
           <Route path='/settings/userAgreement' exact={true}>
             <UserAgreement />

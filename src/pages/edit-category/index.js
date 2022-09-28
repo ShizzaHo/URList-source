@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import ServiceContext from '../../context/service-context';
 import { useHistory, useParams } from 'react-router-dom';
-import { Redirect, Route } from 'react-router-dom';
 import {
   IonContent,
   IonHeader,
@@ -19,37 +19,32 @@ import {
   IonTextarea,
   useIonAlert,
   IonListHeader,
-  IonSelect,
-  IonList,
-  IonSelectOption,
 } from '@ionic/react';
 import { saveSharp, trashSharp } from 'ionicons/icons';
 import './styles.css';
 
 import { observer } from 'mobx-react';
-import DataStore from '../../store/data';
-import language from '../../language';
-import IconColorPicker from './../../components/icon-color-picker/index';
 import CustomizeCategory from '../../components/customizer-category';
 
 const EditCategory = () => {
+  const Service = useContext(ServiceContext);
   const [presentAlert] = useIonAlert();
 
   const history = useHistory();
   const params = useParams();
 
   const [state, setState] = useState({
-    name: DataStore.getCategory(params.id)
-      ? DataStore.getCategory(params.id).title
+    name: Service.data.getCategory(params.id)
+      ? Service.data.getCategory(params.id).title
       : '',
-    desc: DataStore.getCategory(params.id)
-      ? DataStore.getCategory(params.id).desc
+    desc: Service.data.getCategory(params.id)
+      ? Service.data.getCategory(params.id).desc
       : '',
-    iconColor: DataStore.getCategory(params.id)
-      ? DataStore.getCategory(params.id).iconColor
+    iconColor: Service.data.getCategory(params.id)
+      ? Service.data.getCategory(params.id).iconColor
       : '',
-    iconType: DataStore.getCategory(params.id)
-      ? DataStore.getCategory(params.id).iconType
+    iconType: Service.data.getCategory(params.id)
+      ? Service.data.getCategory(params.id).iconType
       : '',
   });
 
@@ -60,7 +55,7 @@ const EditCategory = () => {
           <IonButtons slot='start'>
             <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle color='light'>{language.editCategory}</IonTitle>
+          <IonTitle color='light'>{Service.language.editCategory}</IonTitle>
           <IonButtons slot='secondary'>
             <IonButton
               color='light'
@@ -77,12 +72,12 @@ const EditCategory = () => {
         <div className='p-10'>
           <IonListHeader>
             <IonLabel style={{ color: 'gray' }}>
-              {language.universal_basicInformation}
+              {Service.language.universal_basicInformation}
             </IonLabel>
           </IonListHeader>
           <IonItem color='no'>
             <IonLabel position='floating'>
-              {language.editCategory_name}
+              {Service.language.editCategory_name}
             </IonLabel>
             <IonInput
               value={state.name}
@@ -93,7 +88,7 @@ const EditCategory = () => {
           </IonItem>
           <IonItem color='no'>
             <IonLabel position='floating'>
-              {language.editCategory_desc}
+              {Service.language.editCategory_desc}
             </IonLabel>
             <IonTextarea
               value={state.desc}
@@ -108,7 +103,7 @@ const EditCategory = () => {
         <div>
           <IonListHeader>
             <IonLabel style={{ color: 'gray' }}>
-              {language.universal_customization}
+              {Service.language.universal_customization}
             </IonLabel>
           </IonListHeader>
 
@@ -123,7 +118,7 @@ const EditCategory = () => {
           <IonFabButton
             className='fab'
             onClick={() => {
-              DataStore.editCategory(params.id, {
+              Service.data.editCategory(params.id, {
                 title: state.name,
                 desc: state.desc,
                 id: params.id,
@@ -156,18 +151,18 @@ const EditCategory = () => {
 
   function deleteCategoryDialog() {
     presentAlert({
-      header: language.editCategory_delete_title,
-      message: language.editCategory_delete_desc,
+      header: Service.language.editCategory_delete_title,
+      message: Service.language.editCategory_delete_desc,
       buttons: [
         {
-          text: language.editCategory_delete_OK,
+          text: Service.language.editCategory_delete_OK,
           role: 'cancel',
         },
         {
-          text: language.editCategory_delete_DELETE,
+          text: Service.language.editCategory_delete_DELETE,
           role: 'confirm',
           handler: () => {
-            DataStore.deleteCategory(params.id);
+            Service.data.deleteCategory(params.id);
             history.goBack();
           },
         },

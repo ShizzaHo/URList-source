@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import ServiceContext from '../../context/service-context';
 import { useHistory, useParams } from 'react-router-dom';
-import { Redirect, Route } from 'react-router-dom';
 import {
   IonContent,
   IonHeader,
@@ -25,24 +25,24 @@ import CustomizeCategory from '../../components/customizer-link';
 
 import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
-import language from '../../language';
 
 const EditLink = () => {
+  const Service = useContext(ServiceContext);
   const [presentAlert] = useIonAlert();
 
   const history = useHistory();
   const params = useParams();
 
   const [state, setState] = useState({
-    name: DataStore.getLink(params.id)
-      ? DataStore.getLink(params.id).title
+    name: Service.data.getLink(params.id)
+      ? Service.data.getLink(params.id).title
       : '',
-    url: DataStore.getLink(params.id) ? DataStore.getLink(params.id).url : '',
-    iconColor: DataStore.getLink(params.id)
-      ? DataStore.getLink(params.id).iconColor
+    url: Service.data.getLink(params.id) ? DataStore.getLink(params.id).url : '',
+    iconColor: Service.data.getLink(params.id)
+      ? Service.data.getLink(params.id).iconColor
       : '',
-    iconType: DataStore.getLink(params.id)
-      ? DataStore.getLink(params.id).iconType
+    iconType: Service.data.getLink(params.id)
+      ? Service.data.getLink(params.id).iconType
       : '',
   });
 
@@ -55,7 +55,7 @@ const EditLink = () => {
           <IonButtons slot='start'>
             <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle color='light'>{language.editLink}</IonTitle>
+          <IonTitle color='light'>{Service.language.editLink}</IonTitle>
           <IonButtons slot='secondary'>
             <IonButton
               color='light'
@@ -73,11 +73,11 @@ const EditLink = () => {
           <div>
             <IonListHeader>
               <IonLabel style={{ color: 'gray' }}>
-                {language.universal_basicInformation}
+                {Service.language.universal_basicInformation}
               </IonLabel>
             </IonListHeader>
             <IonItem color='no'>
-              <IonLabel position='floating'>{language.editLink_name}</IonLabel>
+              <IonLabel position='floating'>{Service.language.editLink_name}</IonLabel>
               <IonInput
                 value={state.name}
                 onIonChange={(e) => {
@@ -86,7 +86,7 @@ const EditLink = () => {
               ></IonInput>
             </IonItem>
             <IonItem color='no'>
-              <IonLabel position='floating'>{language.editLink_url}</IonLabel>
+              <IonLabel position='floating'>{Service.language.editLink_url}</IonLabel>
               <IonInput
                 value={state.url}
                 onIonChange={(e) => {
@@ -96,10 +96,10 @@ const EditLink = () => {
             </IonItem>
             {error ? (
               <>
-                <p style={{ color: 'red' }}>{language.editLink_errorTitle}</p>
+                <p style={{ color: 'red' }}>{Service.language.editLink_errorTitle}</p>
                 <ul style={{ color: 'red' }}>
-                  <li>{language.editLink_errorItem1}</li>
-                  <li>{language.editLink_errorItem2}</li>
+                  <li>{Service.language.editLink_errorItem1}</li>
+                  <li>{Service.language.editLink_errorItem2}</li>
                 </ul>
               </>
             ) : (
@@ -110,7 +110,7 @@ const EditLink = () => {
           <div>
             <IonListHeader>
               <IonLabel style={{ color: 'gray' }}>
-                {language.universal_customization}
+                {Service.language.universal_customization}
               </IonLabel>
             </IonListHeader>
             <CustomizeCategory
@@ -168,18 +168,18 @@ const EditLink = () => {
 
   function deleteCategoryDialog() {
     presentAlert({
-      header: language.editCategory_delete_title,
-      message: language.editCategory_delete_desc,
+      header: Service.language.editCategory_delete_title,
+      message: Service.language.editCategory_delete_desc,
       buttons: [
         {
-          text: language.editCategory_delete_OK,
+          text: Service.language.editCategory_delete_OK,
           role: 'cancel',
         },
         {
-          text: language.editCategory_delete_DELETE,
+          text: Service.language.editCategory_delete_DELETE,
           role: 'confirm',
           handler: () => {
-            DataStore.deleteLink(params.id);
+            Service.data.deleteLink(params.id);
             history.goBack();
           },
         },

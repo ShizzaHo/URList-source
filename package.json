@@ -1,6 +1,6 @@
 {
   "name": "ur-list",
-  "version": "0.0.1",
+  "version": "1.5",
   "private": true,
   "dependencies": {
     "@awesome-cordova-plugins/chooser": "^5.45.0",
@@ -36,7 +36,6 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.0",
-    "sass": "^1.54.9",
     "typescript": "^4.1.3",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
@@ -78,6 +77,5 @@
   },
   "devDependencies": {
     "@capacitor/cli": "4.2.0"
-  },
-  "description": "An Ionic project"
+  }
 }

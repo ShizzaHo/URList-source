@@ -1,13 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import ServiceContext from '../../context/service-context';
 import { useHistory, useParams } from 'react-router-dom';
-import { Redirect, Route } from 'react-router-dom';
 import {
   IonContent,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
-  IonButton,
   IonButtons,
   IonIcon,
   IonFab,
@@ -23,12 +22,10 @@ import './styles.css';
 import CustomizeCategory from '../../components/customizer-link';
 
 import { observer } from 'mobx-react';
-import DataStore from '../../store/data';
 
 import { generateCategoryID } from './../../utils/generator/index';
-import language from '../../language';
-
 const NewLink = () => {
+  const Service = useContext(ServiceContext);
   const history = useHistory();
   const params = useParams();
 
@@ -48,7 +45,7 @@ const NewLink = () => {
           <IonButtons slot='start'>
             <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
-          <IonTitle color='light'>{language.newLink}</IonTitle>
+          <IonTitle color='light'>{Service.language.newLink}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -56,11 +53,11 @@ const NewLink = () => {
           <div>
             <IonListHeader>
               <IonLabel style={{ color: 'gray' }}>
-                {language.universal_basicInformation}
+                {Service.language.universal_basicInformation}
               </IonLabel>
             </IonListHeader>
             <IonItem color='no'>
-              <IonLabel position='floating'>{language.newLink_name}</IonLabel>
+              <IonLabel position='floating'>{Service.language.newLink_name}</IonLabel>
               <IonInput
                 value={state.name}
                 onIonChange={(e) => {
@@ -69,7 +66,7 @@ const NewLink = () => {
               ></IonInput>
             </IonItem>
             <IonItem color='no'>
-              <IonLabel position='floating'>{language.newLink_url}</IonLabel>
+              <IonLabel position='floating'>{Service.language.newLink_url}</IonLabel>
               <IonInput
                 value={state.url}
                 onIonChange={(e) => {
@@ -79,10 +76,10 @@ const NewLink = () => {
             </IonItem>
             {error ? (
               <>
-                <p style={{ color: 'red' }}>{language.newLink_errorTitle}</p>
+                <p style={{ color: 'red' }}>{Service.language.newLink_errorTitle}</p>
                 <ul style={{ color: 'red' }}>
-                  <li>{language.newLink_errorItem1}</li>
-                  <li>{language.newLink_errorItem2}</li>
+                  <li>{Service.language.newLink_errorItem1}</li>
+                  <li>{Service.language.newLink_errorItem2}</li>
                 </ul>
               </>
             ) : (
@@ -93,7 +90,7 @@ const NewLink = () => {
           <div>
             <IonListHeader>
               <IonLabel style={{ color: 'gray' }}>
-                {language.universal_customization}
+                {Service.language.universal_customization}
               </IonLabel>
             </IonListHeader>
             <CustomizeCategory
@@ -134,7 +131,7 @@ const NewLink = () => {
     ) {
       if (state.url.indexOf('.') !== -1) {
         setError(false);
-        DataStore.createNewLink({
+        Service.data.createNewLink({
           title: state.name,
           url: state.url,
           parentID: params.id,

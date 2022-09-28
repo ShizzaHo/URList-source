@@ -1,13 +1,19 @@
-import React from 'react';
+import Service from './service';
+import ServiceContext from './context/service-context';
+
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+const service = new Service();
+
 const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(
-  <App />
+  <ServiceContext.Provider value={service}>
+    <App />
+  </ServiceContext.Provider>
 );
 
 // If you want your app to work offline and load faster, you can change

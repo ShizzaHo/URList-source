@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import ServiceContext from '../../context/service-context';
 import { useHistory } from 'react-router-dom';
-import SettingsState from '../../store/settings';
+// import SettingsState from '../../store/settings';
 import {
   IonContent,
   IonHeader,
@@ -12,17 +13,13 @@ import {
   IonIcon,
   IonFab,
   IonFabButton,
-  IonItem,
-  IonLabel,
   useIonAlert,
 } from '@ionic/react';
 import { settingsSharp, add, search } from 'ionicons/icons';
 import CategoryItem from './../../components/category-item/index';
 import './styles.css';
-import language from '../../language';
 
 import { observer } from 'mobx-react';
-import DataStore from '../../store/data';
 
 import { SortList } from '../../utils/sort';
 import SortButton from '../../components/sort-button';
@@ -31,8 +28,9 @@ import { App } from '@capacitor/app';
 import { useIonRouter } from '@ionic/react';
 
 const Category = () => {
+  const Service = useContext(ServiceContext);
+
   const [presentAlert] = useIonAlert();
-  const [longPress, setLongPress] = useState(null);
   const [sortMethod, setSortMethod] = useState(
     localStorage.getItem('URLIST_SORTMETHOD')
   );
@@ -47,7 +45,7 @@ const Category = () => {
     });
   });
 
-  if (SettingsState.getSettings().guideStart === false) {
+  if (Service.settings.getSettings().guideStart === false) {
     guideDialog();
   }
 
@@ -55,7 +53,7 @@ const Category = () => {
     <IonPage id='category-page'>
       <IonHeader>
         <IonToolbar color='urlDarkToolbar'>
-          <IonTitle color='light'>{language.category}</IonTitle>
+          <IonTitle color='light'>{Service.language.category}</IonTitle>
           <IonButtons slot='secondary'>
             <IonButton
               color='light'
@@ -79,7 +77,7 @@ const Category = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div>
-          {SortList(DataStore.getCategories(), sortMethod).map(
+          {SortList(Service.data.getCategories(), sortMethod).map(
             (item, index) => {
               if (item.isFavorite) {
                 return (
@@ -94,19 +92,19 @@ const Category = () => {
                       history.push('/editCategory/' + item.id);
                     }}
                     onFavorite={() => {
-                      DataStore.categoryFavoriteToggle(item.id);
+                      Service.data.categoryFavoriteToggle(item.id);
                     }}
                     onDelete={() => {
                       deleteCategoryDialog(item.id);
                     }}
                     isFavorite={item.isFavorite}
-                    showIcon={SettingsState.getSettings().showIcons}
+                    showIcon={Service.settings.getSettings().showIcons}
                     iconColor={item.iconColor}
                     iconType={item.iconType}
                     showDeleteButton={
-                      SettingsState.getSettings().showDeleteButton
+                      Service.settings.getSettings().showDeleteButton
                     }
-                    swipeIcons={SettingsState.getSettings().swipeIcons}
+                    swipeIcons={Service.settings.getSettings().swipeIcons}
                   />
                 );
               } else {
@@ -114,7 +112,7 @@ const Category = () => {
               }
             }
           )}
-          {SortList(DataStore.getCategories(), sortMethod).map(
+          {SortList(Service.data.getCategories(), sortMethod).map(
             (item, index) => {
               if (!item.isFavorite) {
                 return (
@@ -129,19 +127,19 @@ const Category = () => {
                       history.push('/editCategory/' + item.id);
                     }}
                     onFavorite={() => {
-                      DataStore.categoryFavoriteToggle(item.id);
+                      Service.data.categoryFavoriteToggle(item.id);
                     }}
                     onDelete={() => {
                       deleteCategoryDialog(item.id);
                     }}
                     isFavorite={item.isFavorite}
-                    showIcon={SettingsState.getSettings().showIcons}
+                    showIcon={Service.settings.getSettings().showIcons}
                     iconColor={item.iconColor}
                     iconType={item.iconType}
                     showDeleteButton={
-                      SettingsState.getSettings().showDeleteButton
+                      Service.settings.getSettings().showDeleteButton
                     }
-                    swipeIcons={SettingsState.getSettings().swipeIcons}
+                    swipeIcons={Service.settings.getSettings().swipeIcons}
                   />
                 );
               } else {
@@ -166,21 +164,21 @@ const Category = () => {
 
   function guideDialog() {
     presentAlert({
-      header: language.guide_dialog_title,
-      message: language.guide_dialog_desc,
+      header: Service.language.guide_dialog_title,
+      message: Service.language.guide_dialog_desc,
       buttons: [
         {
-          text: language.guide_dialog_NO,
+          text: Service.language.guide_dialog_NO,
           role: 'cancel',
           handler: () => {
-            SettingsState.toggleSetting('guideStart');
+            Service.settings.toggleSetting('guideStart');
           },
         },
         {
-          text: language.guide_dialog_OK,
+          text: Service.language.guide_dialog_OK,
           role: 'confirm',
           handler: () => {
-            SettingsState.toggleSetting('guideStart');
+            Service.settings.toggleSetting('guideStart');
             history.push('/guide');
           },
         },
@@ -190,18 +188,18 @@ const Category = () => {
 
   function deleteCategoryDialog(id) {
     presentAlert({
-      header: language.editCategory_delete_title,
-      message: language.editCategory_delete_desc,
+      header: Service.language.editCategory_delete_title,
+      message: Service.language.editCategory_delete_desc,
       buttons: [
         {
-          text: language.editCategory_delete_OK,
+          text: Service.language.editCategory_delete_OK,
           role: 'cancel',
         },
         {
-          text: language.editCategory_delete_DELETE,
+          text: Service.language.editCategory_delete_DELETE,
           role: 'confirm',
           handler: () => {
-            DataStore.deleteCategory(id);
+            Service.data.deleteCategory(id);
             history.goBack();
           },
         },

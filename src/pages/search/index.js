@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import ServiceContext from '../../context/service-context';
 import { useHistory } from 'react-router-dom';
 import SettingsState from '../../store/settings';
 import {
@@ -18,22 +19,14 @@ import {
   IonSearchbar,
   IonBackButton,
 } from '@ionic/react';
-import { settingsSharp, add, search } from 'ionicons/icons';
-import CategoryItem from './../../components/category-item/index';
 import './styles.css';
-import language from '../../language';
 
 import { observer } from 'mobx-react';
-import DataStore from '../../store/data';
 
-import { SortList } from '../../utils/sort';
-import SortButton from '../../components/sort-button';
-
-import { App } from '@capacitor/app';
-import { useIonRouter } from '@ionic/react';
 import LinkItem from './../../components/url-item/index';
 
 const Category = () => {
+  const Service = useContext(ServiceContext);
   const [presentAlert] = useIonAlert();
   const [serachText, setSerachText] = useState('');
 
@@ -49,13 +42,13 @@ const Category = () => {
           <IonSearchbar
             value={serachText}
             onIonChange={(e) => setSerachText(e.detail.value)}
-            placeholder={language.search}
+            placeholder={Service.language.search}
           ></IonSearchbar>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <div>
-          {DataStore.getLinks()
+          {Service.data.getLinks()
             .filter((item) =>
               item.title.toUpperCase().includes(serachText.toUpperCase())
             )
@@ -72,7 +65,7 @@ const Category = () => {
                     history.push('/editLink/' + item.id);
                   }}
                   onFavorite={() => {
-                    DataStore.linkFavoriteToggle(item.id);
+                    Service.data.linkFavoriteToggle(item.id);
                   }}
                   onDelete={() => {
                     deleteLinkDialog(item.id)
@@ -82,9 +75,9 @@ const Category = () => {
                   iconColor={item.iconColor}
                   iconType={item.iconType}
                   showDeleteButton={
-                    SettingsState.getSettings().showDeleteButton
+                    Service.settings.getSettings().showDeleteButton
                   }
-                  swipeIcons={SettingsState.getSettings().swipeIcons}
+                  swipeIcons={Service.settings.getSettings().swipeIcons}
                 />
               );
             })}
@@ -95,18 +88,18 @@ const Category = () => {
 
   function guideDialog() {
     presentAlert({
-      header: language.guide_dialog_title,
-      message: language.guide_dialog_desc,
+      header: Service.language.guide_dialog_title,
+      message: Service.language.guide_dialog_desc,
       buttons: [
         {
-          text: language.guide_dialog_NO,
+          text: Service.language.guide_dialog_NO,
           role: 'cancel',
           handler: () => {
             SettingsState.toggleSetting('guideStart');
           },
         },
         {
-          text: language.guide_dialog_OK,
+          text: Service.language.guide_dialog_OK,
           role: 'confirm',
           handler: () => {
             SettingsState.toggleSetting('guideStart');
@@ -119,18 +112,18 @@ const Category = () => {
 
   function deleteLinkDialog(id) {
     presentAlert({
-      header: language.editCategory_delete_title,
-      message: language.editCategory_delete_desc,
+      header: Service.language.editCategory_delete_title,
+      message: Service.language.editCategory_delete_desc,
       buttons: [
         {
-          text: language.editCategory_delete_OK,
+          text: Service.language.editCategory_delete_OK,
           role: 'cancel',
         },
         {
-          text: language.editCategory_delete_DELETE,
+          text: Service.language.editCategory_delete_DELETE,
           role: 'confirm',
           handler: () => {
-            DataStore.deleteLink(id);
+            Service.data.deleteLink(id);
           },
         },
       ],
