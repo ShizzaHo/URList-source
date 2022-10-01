@@ -78,6 +78,13 @@ const Settings = () => {
                       reload();
                     },
                   },
+                  {
+                    text: Service.language.langName_fr,
+                    handler: () => {
+                      localStorage.setItem('URLIST_LANG', 'france');
+                      reload();
+                    },
+                  },
                 ],
                 header: Service.language.settings_selectLanguage_title,
               });

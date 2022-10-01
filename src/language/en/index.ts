@@ -3,6 +3,7 @@ const words = {
   langName_en: 'English',
   langName_cz: '中文',
   langName_uk: 'Українська (не повний переклад)',
+  langName_fr: "Français",
 
   category: 'Categories',
 

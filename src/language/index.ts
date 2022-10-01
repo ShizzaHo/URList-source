@@ -2,9 +2,10 @@ import russian from './ru';
 import english from './en';
 import chinese from './zh';
 import ukrain from './uk';
+import france from './fr';
 
 
-function selectLanguage(lang){
+function selectLanguage(lang: (string | null)){
     switch (lang) {
         case "russian":
             return russian;
@@ -14,6 +15,8 @@ function selectLanguage(lang){
             return {...english, ...chinese};
         case "ukrain":
             return {...russian, ...ukrain};
+        case "france":
+            return {...english, ...france};
         default:
             return english;
     }
