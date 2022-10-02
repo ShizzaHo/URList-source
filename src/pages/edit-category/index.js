@@ -46,6 +46,9 @@ const EditCategory = () => {
     iconType: Service.data.getCategory(params.id)
       ? Service.data.getCategory(params.id).iconType
       : '',
+    isFavorite: Service.data.getCategory(params.id)
+      ? Service.data.getCategory(params.id).isFavorite
+      : '',
   });
 
   return (
@@ -124,6 +127,7 @@ const EditCategory = () => {
                 id: params.id,
                 iconColor: state.iconColor,
                 iconType: state.iconType,
+                isFavorite: state.isFavorite
               });
               history.goBack();
             }}

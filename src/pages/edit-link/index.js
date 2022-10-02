@@ -44,6 +44,9 @@ const EditLink = () => {
     iconType: Service.data.getLink(params.id)
       ? Service.data.getLink(params.id).iconType
       : '',
+    isFavorite: Service.data.getLink(params.id)
+      ? Service.data.getLink(params.id).isFavorite
+      : '',
   });
 
   const [error, setError] = useState(false);
@@ -158,6 +161,7 @@ const EditLink = () => {
           id: params.id,
           iconColor: state.iconColor,
           iconType: state.iconType,
+          isFavorite: state.isFavorite
         });
         history.goBack();
       }
