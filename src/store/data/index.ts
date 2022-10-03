@@ -2,40 +2,7 @@ import { makeAutoObservable, toJS } from 'mobx';
 import config from '../../config';
 import language from '../../language';
 import { validateJSON } from '../../utils/valid';
-
-//CATEGORY FORMAT
-interface Icategory {
-    title ?: string;
-    desc ?: string;
-    iconColor ?: string;
-    iconType ?: string;
-    isFavorite ?: boolean;
-    id: string;
-}
-
-//LINK FORMAT
-interface Ilink {
-    title ?: string;
-    url: string;
-    parentID: string;
-    id: string;
-    iconColor ?: string;
-    iconType ?: string;
-    isFavorite ?: boolean;
-}
-
-//META FORMAT
-interface Imeta {
-  name ?: string;
-  version ?: string;
-}
-
-//FORMAT DATA OBJECT
-interface Idata {
-  meta?: Imeta;
-  categories: Array<Icategory>;
-  links: Array<Ilink>;
-}
+import { Icategory, Ilink, Imeta, Idata } from '../../interfaces/index';
 
 class DataState {
   data: Idata = {

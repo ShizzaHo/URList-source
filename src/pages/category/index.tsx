@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import ServiceContext from '../../context/service-context';
 import { useHistory } from 'react-router-dom';
-// import SettingsState from '../../store/settings';
+import { Iservice } from '../../interfaces';
 import {
   IonContent,
   IonHeader,
@@ -16,7 +16,7 @@ import {
   useIonAlert,
 } from '@ionic/react';
 import { settingsSharp, add, search } from 'ionicons/icons';
-import CategoryItem from './../../components/category-item/index';
+import CategoryItem from '../../components/category-item/index';
 import './styles.css';
 
 import { observer } from 'mobx-react';
@@ -26,9 +26,9 @@ import SortButton from '../../components/sort-button';
 
 import { App } from '@capacitor/app';
 import { useIonRouter } from '@ionic/react';
-
+import { Icategory } from '../../interfaces/index';
 const Category = () => {
-  const Service = useContext(ServiceContext);
+  const Service: Iservice = useContext(ServiceContext);
 
   const [presentAlert] = useIonAlert();
   const [sortMethod, setSortMethod] = useState(
@@ -37,7 +37,7 @@ const Category = () => {
   const history = useHistory();
 
   const ionRouter = useIonRouter();
-  document.addEventListener('ionBackButton', (ev) => {
+  document.addEventListener('ionBackButton', (ev: any) => {
     ev.detail.register(-1, () => {
       if (!ionRouter.canGoBack()) {
         App.exitApp();
@@ -78,11 +78,11 @@ const Category = () => {
       <IonContent fullscreen>
         <div>
           {SortList(Service.data.getCategories(), sortMethod).map(
-            (item, index) => {
+            (item: Icategory, index: number) => {
               if (item.isFavorite) {
                 return (
                   <CategoryItem
-                    key={item.title + index}
+                    key={item.title}
                     title={item.title}
                     desc={item.desc}
                     onOpen={() => {
@@ -95,7 +95,7 @@ const Category = () => {
                       Service.data.categoryFavoriteToggle(item.id);
                     }}
                     onDelete={() => {
-                      deleteCategoryDialog(item.id);
+                      deleteCategoryDialog(Number(item.id));
                     }}
                     isFavorite={item.isFavorite}
                     showIcon={Service.settings.getSettings().showIcons}
@@ -113,11 +113,11 @@ const Category = () => {
             }
           )}
           {SortList(Service.data.getCategories(), sortMethod).map(
-            (item, index) => {
+            (item: Icategory, index: number) => {
               if (!item.isFavorite) {
                 return (
                   <CategoryItem
-                    key={item.title + index}
+                    key={item.title}
                     title={item.title}
                     desc={item.desc}
                     onOpen={() => {
@@ -130,7 +130,7 @@ const Category = () => {
                       Service.data.categoryFavoriteToggle(item.id);
                     }}
                     onDelete={() => {
-                      deleteCategoryDialog(item.id);
+                      deleteCategoryDialog(Number(item.id));
                     }}
                     isFavorite={item.isFavorite}
                     showIcon={Service.settings.getSettings().showIcons}
@@ -186,7 +186,7 @@ const Category = () => {
     });
   }
 
-  function deleteCategoryDialog(id) {
+  function deleteCategoryDialog(id: number) {
     presentAlert({
       header: Service.language.editCategory_delete_title,
       message: Service.language.editCategory_delete_desc,

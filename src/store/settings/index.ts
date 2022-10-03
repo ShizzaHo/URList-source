@@ -1,9 +1,5 @@
 import { makeAutoObservable, toJS } from "mobx"
-
-//SETTINGS FORMAT
-interface Isettings {
-    [key: string]: boolean
-}
+import { Isettings } from '../../interfaces/index';
 
 class SettingsState {
     settings: Isettings = {
