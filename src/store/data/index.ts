@@ -53,7 +53,7 @@ class DataState {
   }
 
   setData(newData: Idata) {
-    this.data = newData;
+    this.data = {...this.getData(), ...newData};
   }
 
   getCategories(): Array<Icategory> {

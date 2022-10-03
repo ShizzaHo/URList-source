@@ -80,7 +80,7 @@ const OpenCategory = () => {
                   />
                 );
               } else {
-                return <></>;
+                return null;
               }
             })}
           {SortList(Service.data.getLinks(), sortMethod)
@@ -115,7 +115,7 @@ const OpenCategory = () => {
                   />
                 );
               } else {
-                return <></>;
+                return null;
               }
             })}
         </div>

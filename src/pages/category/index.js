@@ -82,7 +82,7 @@ const Category = () => {
               if (item.isFavorite) {
                 return (
                   <CategoryItem
-                    key={item.id}
+                    key={item.title + index}
                     title={item.title}
                     desc={item.desc}
                     onOpen={() => {
@@ -108,7 +108,7 @@ const Category = () => {
                   />
                 );
               } else {
-                return <></>;
+                return null;
               }
             }
           )}
@@ -117,7 +117,7 @@ const Category = () => {
               if (!item.isFavorite) {
                 return (
                   <CategoryItem
-                    key={item.id}
+                    key={item.title + index}
                     title={item.title}
                     desc={item.desc}
                     onOpen={() => {
@@ -143,7 +143,7 @@ const Category = () => {
                   />
                 );
               } else {
-                return <></>;
+                return null;
               }
             }
           )}
