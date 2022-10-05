@@ -97,7 +97,7 @@ const Category = () => {
                       Service.data.categoryFavoriteToggle(item.id);
                     }}
                     onDelete={() => {
-                      deleteCategoryDialog(Number(item.id));
+                      deleteCategoryDialog(item.id);
                     }}
                     isFavorite={item.isFavorite}
                     showIcon={Service.settings.getSettings().showIcons}
@@ -151,7 +151,7 @@ const Category = () => {
     });
   }
 
-  function deleteCategoryDialog(id: number) {
+  function deleteCategoryDialog(id: string) {
     presentAlert({
       header: Service.language.editCategory_delete_title,
       message: Service.language.editCategory_delete_desc,

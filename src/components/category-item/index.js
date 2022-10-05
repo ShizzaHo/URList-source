@@ -79,7 +79,6 @@ function CategoryItem({
       <IonItemOptions side='end'>
         <IonItemOption color='favorite' onClick={()=>{
           onFavorite()
-          console.log(ionItemSliding);
           ionItemSliding.current.closeOpened();
         }}>
           {swipeIcons ? <IonIcon slot='icon-only' icon={star} /> : Service.language.categoryItem_favoriteAdd}
