@@ -27,6 +27,7 @@ import SortButton from '../../components/sort-button';
 import { App } from '@capacitor/app';
 import { useIonRouter } from '@ionic/react';
 import { Icategory } from '../../interfaces/index';
+import { sortFavoriteAndSplit } from './../../utils/sort/index';
 const Category = () => {
   const Service: Iservice = useContext(ServiceContext);
 
@@ -77,74 +78,35 @@ const Category = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div>
-          {SortList(Service.data.getCategories(), sortMethod).map(
-            (item: Icategory, index: number) => {
-              if (item.isFavorite) {
-                return (
-                  <CategoryItem
-                    key={item.title}
-                    title={item.title}
-                    desc={item.desc}
-                    onOpen={() => {
-                      history.push('/openCategory/' + item.id);
-                    }}
-                    onEdit={() => {
-                      history.push('/editCategory/' + item.id);
-                    }}
-                    onFavorite={() => {
-                      Service.data.categoryFavoriteToggle(item.id);
-                    }}
-                    onDelete={() => {
-                      deleteCategoryDialog(Number(item.id));
-                    }}
-                    isFavorite={item.isFavorite}
-                    showIcon={Service.settings.getSettings().showIcons}
-                    iconColor={item.iconColor}
-                    iconType={item.iconType}
-                    showDeleteButton={
-                      Service.settings.getSettings().showDeleteButton
-                    }
-                    swipeIcons={Service.settings.getSettings().swipeIcons}
-                  />
-                );
-              } else {
-                return null;
-              }
-            }
-          )}
-          {SortList(Service.data.getCategories(), sortMethod).map(
-            (item: Icategory, index: number) => {
-              if (!item.isFavorite) {
-                return (
-                  <CategoryItem
-                    key={item.title}
-                    title={item.title}
-                    desc={item.desc}
-                    onOpen={() => {
-                      history.push('/openCategory/' + item.id);
-                    }}
-                    onEdit={() => {
-                      history.push('/editCategory/' + item.id);
-                    }}
-                    onFavorite={() => {
-                      Service.data.categoryFavoriteToggle(item.id);
-                    }}
-                    onDelete={() => {
-                      deleteCategoryDialog(Number(item.id));
-                    }}
-                    isFavorite={item.isFavorite}
-                    showIcon={Service.settings.getSettings().showIcons}
-                    iconColor={item.iconColor}
-                    iconType={item.iconType}
-                    showDeleteButton={
-                      Service.settings.getSettings().showDeleteButton
-                    }
-                    swipeIcons={Service.settings.getSettings().swipeIcons}
-                  />
-                );
-              } else {
-                return null;
-              }
+          {sortFavoriteAndSplit(Service.data.getCategories(), sortMethod).map(
+            (item: Icategory, index: number) => { 
+              return (
+                <CategoryItem
+                  key={item.title}
+                  title={item.title}
+                  desc={item.desc}
+                  onOpen={() => {
+                    history.push('/openCategory/' + item.id);
+                  }}
+                  onEdit={() => {
+                    history.push('/editCategory/' + item.id);
+                  }}
+                  onFavorite={() => {
+                    Service.data.categoryFavoriteToggle(item.id);
+                  }}
+                  onDelete={() => {
+                    deleteCategoryDialog(Number(item.id));
+                  }}
+                  isFavorite={item.isFavorite}
+                  showIcon={Service.settings.getSettings().showIcons}
+                  iconColor={item.iconColor}
+                  iconType={item.iconType}
+                  showDeleteButton={
+                    Service.settings.getSettings().showDeleteButton
+                  }
+                  swipeIcons={Service.settings.getSettings().swipeIcons}
+                />
+              );
             }
           )}
         </div>
