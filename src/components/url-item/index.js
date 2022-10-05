@@ -33,7 +33,7 @@ function LinkItem({
   return (
     <IonItemSliding>
       <IonItemOptions side='start'>
-        <IonItemOption color='tertiary' expandable onClick={onEdit}>
+        <IonItemOption color='tertiary' onClick={onEdit}>
           {swipeIcons ? (
             <IonIcon slot='icon-only' icon={pencil} />
           ) : (
@@ -41,7 +41,7 @@ function LinkItem({
           )}
         </IonItemOption>
         {showDeleteButton ? (
-          <IonItemOption color='danger' expandable onClick={onDelete}>
+          <IonItemOption color='danger' onClick={onDelete}>
             <IonIcon slot='icon-only' icon={trash} />
           </IonItemOption>
         ) : (
@@ -93,7 +93,7 @@ function LinkItem({
       </IonItem>
 
       <IonItemOptions side='end'>
-        <IonItemOption color='favorite' expandable onClick={onFavorite}>
+        <IonItemOption color='favorite' onClick={onFavorite}>
           {swipeIcons ? (
             <IonIcon slot='icon-only' icon={star} />
           ) : (
