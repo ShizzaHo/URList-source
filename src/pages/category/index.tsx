@@ -14,6 +14,7 @@ import {
   IonFab,
   IonFabButton,
   useIonAlert,
+  IonList,
 } from '@ionic/react';
 import { settingsSharp, add, search } from 'ionicons/icons';
 import CategoryItem from '../../components/category-item/index';
@@ -78,37 +79,39 @@ const Category = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div>
-          {sortFavoriteAndSplit(Service.data.getCategories(), sortMethod).map(
-            (item: Icategory, index: number) => { 
-              return (
-                <CategoryItem
-                  key={item.title}
-                  title={item.title}
-                  desc={item.desc}
-                  onOpen={() => {
-                    history.push('/openCategory/' + item.id);
-                  }}
-                  onEdit={() => {
-                    history.push('/editCategory/' + item.id);
-                  }}
-                  onFavorite={() => {
-                    Service.data.categoryFavoriteToggle(item.id);
-                  }}
-                  onDelete={() => {
-                    deleteCategoryDialog(Number(item.id));
-                  }}
-                  isFavorite={item.isFavorite}
-                  showIcon={Service.settings.getSettings().showIcons}
-                  iconColor={item.iconColor}
-                  iconType={item.iconType}
-                  showDeleteButton={
-                    Service.settings.getSettings().showDeleteButton
-                  }
-                  swipeIcons={Service.settings.getSettings().swipeIcons}
-                />
-              );
-            }
-          )}
+          <IonList lines='none'>
+            {sortFavoriteAndSplit(Service.data.getCategories(), sortMethod).map(
+              (item: Icategory, index: number) => {
+                return (
+                  <CategoryItem
+                    key={item.title}
+                    title={item.title}
+                    desc={item.desc}
+                    onOpen={() => {
+                      history.push('/openCategory/' + item.id);
+                    }}
+                    onEdit={() => {
+                      history.push('/editCategory/' + item.id);
+                    }}
+                    onFavorite={() => {
+                      Service.data.categoryFavoriteToggle(item.id);
+                    }}
+                    onDelete={() => {
+                      deleteCategoryDialog(Number(item.id));
+                    }}
+                    isFavorite={item.isFavorite}
+                    showIcon={Service.settings.getSettings().showIcons}
+                    iconColor={item.iconColor}
+                    iconType={item.iconType}
+                    showDeleteButton={
+                      Service.settings.getSettings().showDeleteButton
+                    }
+                    swipeIcons={Service.settings.getSettings().swipeIcons}
+                  />
+                );
+              }
+            )}
+          </IonList>
         </div>
         <IonFab vertical='bottom' horizontal='center' slot='fixed'>
           <IonFabButton

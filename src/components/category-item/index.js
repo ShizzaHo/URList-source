@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import ServiceModule from './../../service';
 import './styles.css';
 
@@ -28,8 +28,9 @@ function CategoryItem({
   swipeIcons,
 }) {
   const Service = new ServiceModule();
+  const ionItemSliding = useRef();
   return (
-    <IonItemSliding>
+    <IonItemSliding ref={ionItemSliding}>
       <IonItemOptions side='start'>
         <IonItemOption color='tertiary' onClick={onEdit}>
           {swipeIcons ? <IonIcon slot='icon-only' icon={pencil} /> : Service.language.categoryItem_edit}
@@ -76,7 +77,11 @@ function CategoryItem({
       </IonItem>
 
       <IonItemOptions side='end'>
-        <IonItemOption color='favorite' onClick={onFavorite}>
+        <IonItemOption color='favorite' onClick={()=>{
+          onFavorite()
+          console.log(ionItemSliding);
+          ionItemSliding.current.closeOpened();
+        }}>
           {swipeIcons ? <IonIcon slot='icon-only' icon={star} /> : Service.language.categoryItem_favoriteAdd}
         </IonItemOption>
       </IonItemOptions>
