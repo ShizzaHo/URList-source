@@ -25,13 +25,14 @@ import './styles.css';
 
 import { observer } from 'mobx-react';
 import CustomizeCategory from '../../components/customizer-category';
+import { Iservice } from '../../interfaces/index';
 
 const EditCategory = () => {
-  const Service = useContext(ServiceContext);
+  const Service: Iservice = useContext(ServiceContext);
   const [presentAlert] = useIonAlert();
 
   const history = useHistory();
-  const params = useParams();
+  const params = useParams<{ id?: string }>();
 
   const [state, setState] = useState({
     name: Service.data.getCategory(params.id)
@@ -139,14 +140,14 @@ const EditCategory = () => {
     </IonPage>
   );
 
-  function changeColor(e) {
+  function changeColor(e: string) {
     setState({
       ...state,
       iconColor: e,
     });
   }
 
-  function changeType(e) {
+  function changeType(e: string) {
     setState({
       ...state,
       iconType: e,

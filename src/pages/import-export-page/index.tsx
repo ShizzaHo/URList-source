@@ -20,9 +20,10 @@ import { exportDataFile } from './module/exporter';
 import { importDataFile } from './module/importer';
 import { importLinkBoxDataFile } from './module/importer-linkbox';
 import { isPlatform } from '@ionic/core';
+import { Iservice } from '../../interfaces/index';
 
 const NewCategory = () => {
-  const Service = useContext(ServiceContext);
+  const Service: Iservice = useContext(ServiceContext);
   const history = useHistory();
 
   return (
@@ -40,6 +41,7 @@ const NewCategory = () => {
           <IonButton
             expand='block'
             className='buttonGray'
+            color="urlDark"
             onClick={() => {
               if (isPlatform('android')) {
                 exportDataFile(Service.data.exportDataToJSON());
@@ -53,6 +55,7 @@ const NewCategory = () => {
           <IonButton
             expand='block'
             className='buttonGray'
+            color="urlDark"
             onClick={() => {
               history.push('/universalInput/exportData');
             }}
@@ -63,12 +66,14 @@ const NewCategory = () => {
           <IonButton
             expand='block'
             className='buttonGray'
+            color="urlDark"
             onClick={async () => {
               if (isPlatform('android')) {
                 const data = await importDataFile();
                 if (data) {
                   Service.data.importFromJson(await data);
-                  window.location = '/';
+                  const win: Window = window;
+                  win.location = '/';
                 } else {
                   alert(Service.language.exportError_file);
                 }
@@ -82,6 +87,7 @@ const NewCategory = () => {
           <IonButton
             expand='block'
             className='buttonGray'
+            color="urlDark"
             onClick={() => {
               history.push('/universalInput/importData');
             }}
@@ -91,11 +97,13 @@ const NewCategory = () => {
           <IonButton
             expand='block'
             className='buttonGray'
+            color="urlDark"
             onClick={async () => {
               if (isPlatform('android')) {
                 const data = await importLinkBoxDataFile();
                 Service.data.importFromJson(await data);
-                window.location = '/';
+                const win: Window = window;
+                win.location = '/';
               } else {
                 alert(Service.language.universal_onlyAndroid);
               }

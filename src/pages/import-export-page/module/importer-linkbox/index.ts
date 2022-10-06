@@ -4,6 +4,7 @@ import { Toast } from '@awesome-cordova-plugins/toast';
 import language from '../../../../language';
 import config from '../../../../config';
 import { generateCategoryID } from '../../../../utils/generator';
+import { Ilink, Iany } from '../../../../interfaces/index';
 
 export async function importLinkBoxDataFile() {
   const linkboxJson = await getFile();
@@ -17,7 +18,7 @@ export async function importLinkBoxDataFile() {
 
 async function getFile() {
   return await Chooser.getFile()
-    .then((file) => {
+    .then((file: any) => {
       return JSON.stringify(
         JSON.parse(Buffer.from(file.dataURI.split(',')[1], 'base64').toString())
       );
@@ -27,15 +28,17 @@ async function getFile() {
     });
 }
 
-async function linkboxToURList(data) {
+async function linkboxToURList(data: any) {
   const linkbox = JSON.parse(data);
-  let finalData = {
+  let finalData: any;
+  
+  finalData = {
     meta: { name: 'URLIST', version: config.thisVersion },
-    categories: [],
-    links: [],
+    categories: Array<Iany>,
+    links: Array<Iany>,
   };
 
-  linkbox.data.folders.map((item, index) => {
+  linkbox.data.folders.map((item: any, index: number) => {
     finalData = {
       ...finalData,
       categories: [
@@ -48,7 +51,7 @@ async function linkboxToURList(data) {
     };
   });
 
-  linkbox.data.links.map((item, index) => {
+  linkbox.data.links.map((item: any, index: number) => {
     finalData = {
       ...finalData,
       links: [

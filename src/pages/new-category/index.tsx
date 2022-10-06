@@ -24,11 +24,12 @@ import './styles.css';
 import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
 
-import { generateCategoryID } from './../../utils/generator/index';
+import { generateCategoryID } from '../../utils/generator/index';
 import CustomizeCategory from '../../components/customizer-category/index';
+import { Iservice } from '../../interfaces/index';
 
 const NewCategory = () => {
-  const Service = useContext(ServiceContext);
+  const Service: Iservice = useContext(ServiceContext);
   const history = useHistory();
 
   const [state, setState] = useState({
@@ -62,7 +63,7 @@ const NewCategory = () => {
               <IonInput
                 value={state.name}
                 onIonChange={(e) => {
-                  setState({ ...state, name: e.detail.value });
+                  setState({ ...state, name: (e.detail.value || "") });
                 }}
               ></IonInput>
             </IonItem>
@@ -74,7 +75,7 @@ const NewCategory = () => {
                 value={state.desc}
                 rows={6}
                 onIonChange={(e) => {
-                  setState({ ...state, desc: e.detail.value });
+                  setState({ ...state, desc: (e.detail.value || "") });
                 }}
               ></IonTextarea>
             </IonItem>
@@ -109,14 +110,14 @@ const NewCategory = () => {
     </IonPage>
   );
 
-  function changeColor(e) {
+  function changeColor(e: string) {
     setState({
       ...state,
       iconColor: e
     })
   }
 
-  function changeType(e) {
+  function changeType(e: string) {
     setState({
       ...state,
       iconType: e

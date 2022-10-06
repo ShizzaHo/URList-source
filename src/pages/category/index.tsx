@@ -28,7 +28,7 @@ import SortButton from '../../components/sort-button';
 import { App } from '@capacitor/app';
 import { useIonRouter } from '@ionic/react';
 import { Icategory } from '../../interfaces/index';
-import { sortFavoriteAndSplit } from './../../utils/sort/index';
+import { sortFavoriteAndSplit } from '../../utils/sort/index';
 const Category = () => {
   const Service: Iservice = useContext(ServiceContext);
 
@@ -80,7 +80,7 @@ const Category = () => {
       <IonContent fullscreen>
         <div>
           <IonList lines='none'>
-            {sortFavoriteAndSplit(Service.data.getCategories(), sortMethod).map(
+            {sortFavoriteAndSplit(Service.data.getCategories(), (sortMethod || "")).map(
               (item: Icategory, index: number) => {
                 return (
                   <CategoryItem

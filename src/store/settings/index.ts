@@ -6,7 +6,7 @@ class SettingsState {
         showIcons: true,
         guideStart: false,
         showDeleteButton: false,
-        swipeIcons: false,
+        swipeIcons: true,
     }
 
     constructor() {

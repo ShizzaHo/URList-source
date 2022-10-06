@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import ServiceModule from './../../service';
+import ServiceModule from '../../service';
 import './styles.css';
 
 import {
@@ -12,7 +12,8 @@ import {
   IonIcon,
 } from '@ionic/react';
 import { star, trash, pencil } from 'ionicons/icons';
-import { pickTextColor } from './../../utils/pickTextColor/index';
+import { pickTextColor } from '../../utils/pickTextColor/index';
+import { Iany, Iservice } from '../../interfaces/index';
 
 function LinkItem({
   title,
@@ -27,9 +28,9 @@ function LinkItem({
   iconType,
   showDeleteButton,
   swipeIcons,
-}) {
-  const Service = new ServiceModule();
-  const ionItemSliding = useRef();
+}: Iany) {
+  const Service: Iservice = new ServiceModule();
+  const ionItemSliding = useRef<any>();
 
   return (
     <IonItemSliding ref={ionItemSliding}>

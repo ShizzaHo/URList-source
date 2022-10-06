@@ -1,12 +1,13 @@
 import React from 'react';
-import ServiceModule from './../../service';
+import ServiceModule from '../../service';
 import { IonIcon, IonButton, useIonActionSheet } from '@ionic/react';
 import { funnel } from 'ionicons/icons';
 
 import { Sort } from '../../utils/sort';
+import { Iservice, Iany } from '../../interfaces/index';
 
-function SortButton({ setSortMethod }) {
-  const Service = new ServiceModule();
+function SortButton({ setSortMethod }: Iany) {
+  const Service: Iservice = new ServiceModule();
   const [present, dismiss] = useIonActionSheet();
 
   return (

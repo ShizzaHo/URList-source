@@ -63,7 +63,7 @@ class DataState {
     return toJS(this.data.links);
   }
 
-  getLink(id: string): (Ilink | undefined) {
+  getLink(id: (string | undefined)): (Ilink | undefined) {
     const finded = this.getLinks().find((item) => {
       return item.id == id;
     });
@@ -86,7 +86,7 @@ class DataState {
     this.saveDataToLocalStorage();
   }
 
-  editLink(id: string, newObject: any) {
+  editLink(id: (string | undefined), newObject: any) {
     const filtered = this.getLinks().filter((item) => {
       return item.id !== id;
     });

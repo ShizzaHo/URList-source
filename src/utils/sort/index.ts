@@ -4,7 +4,7 @@ export const Sort = {
   alphabetically2: 'alphabetically2',
 };
 
-export function SortList(array, sortMethod) {
+export function SortList(array: Array<any>, sortMethod: string): Array<any> {
   let newArray = null;
 
   switch (sortMethod) {
@@ -33,7 +33,7 @@ export function SortList(array, sortMethod) {
   return newArray;
 }
 
-export function sortFavoriteAndSplit(arr, sortMethod) {
+export function sortFavoriteAndSplit(arr: Array<any>, sortMethod: string): Array<any> {
   let favorite = SortList(
     arr.filter((item) => {
       if (item.isFavorite === true) {

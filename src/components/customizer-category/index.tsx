@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ServiceModule from './../../service';
+import ServiceModule from '../../service';
 import './styles.css';
 
 import {
@@ -12,8 +12,9 @@ import {
 } from '@ionic/react';
 
 import IconColorPicker from '../icon-color-picker/index';
+import { Icustomize } from '../../interfaces/index';
 
-function CustomizeCategory({ onChangeColor, onChangeType, initColor, initType }) {
+function CustomizeCategory({ onChangeColor, onChangeType, initColor, initType }: Icustomize) {
   const Service = new ServiceModule();
 
   return (
@@ -25,7 +26,7 @@ function CustomizeCategory({ onChangeColor, onChangeType, initColor, initType })
       <IonListHeader>
         <IconColorPicker
           initColor={initColor}
-          onChangeColor={(e) => {
+          onChangeColor={(e: string) => {
             onChangeColor(e);
           }}
         />
@@ -51,9 +52,6 @@ function CustomizeCategory({ onChangeColor, onChangeType, initColor, initType })
             </IonSelectOption>
             <IonSelectOption value='firstWord'>
               {Service.language.universal_firstWord}
-            </IonSelectOption>
-            <IonSelectOption value='favicon'>
-              {Service.language.universal_favicon}
             </IonSelectOption>
           </IonSelect>
         </IonItem>
