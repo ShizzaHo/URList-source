@@ -41,6 +41,7 @@ const NewCategory = () => {
           <IonButton
             expand='block'
             className='buttonGray'
+            color="urlDark"
             onClick={() => {
               if (isPlatform('android')) {
                 exportDataFile(Service.data.exportDataToJSON());
@@ -54,6 +55,7 @@ const NewCategory = () => {
           <IonButton
             expand='block'
             className='buttonGray'
+            color="urlDark"
             onClick={() => {
               history.push('/universalInput/exportData');
             }}
@@ -64,6 +66,7 @@ const NewCategory = () => {
           <IonButton
             expand='block'
             className='buttonGray'
+            color="urlDark"
             onClick={async () => {
               if (isPlatform('android')) {
                 const data = await importDataFile();
@@ -84,6 +87,7 @@ const NewCategory = () => {
           <IonButton
             expand='block'
             className='buttonGray'
+            color="urlDark"
             onClick={() => {
               history.push('/universalInput/importData');
             }}
@@ -93,6 +97,7 @@ const NewCategory = () => {
           <IonButton
             expand='block'
             className='buttonGray'
+            color="urlDark"
             onClick={async () => {
               if (isPlatform('android')) {
                 const data = await importLinkBoxDataFile();
