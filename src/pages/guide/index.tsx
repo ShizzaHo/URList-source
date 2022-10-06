@@ -19,6 +19,7 @@ import './styles.css';
 import guide_01 from '../../theme/guide/guide_01.gif';
 import guide_02 from '../../theme/guide/guide_02.gif';
 import guide_03 from '../../theme/guide/guide_03.gif';
+import { Iservice } from '../../interfaces/index';
 
 const slideOpts = {
   initialSlide: 0,
@@ -26,7 +27,7 @@ const slideOpts = {
 };
 
 const Guide = () => {
-  const Service = useContext(ServiceContext);
+  const Service: Iservice = useContext(ServiceContext);
   const history = useHistory();
 
   return (

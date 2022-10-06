@@ -8,10 +8,10 @@ export async function importDataFile() {
 async function getFile() {
   return await Chooser.getFile()
     .then((file) => {
-      console.log(Buffer.from(file.dataURI.split(",")[1], 'base64').toString());
+      console.log(Buffer.from(((file || {}).dataURI || "").split(",")[1], 'base64').toString());
       return JSON.stringify(
         JSON.parse(
-          Buffer.from(file.dataURI.split(",")[1], 'base64').toString()
+          Buffer.from(((file || {}).dataURI || "").split(",")[1], 'base64').toString()
         )
       );
     })

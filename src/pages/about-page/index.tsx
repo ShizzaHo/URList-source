@@ -14,9 +14,10 @@ import './styles.css';
 import logo from '../../theme/logo.png'
 
 import { observer } from 'mobx-react';
+import { Iservice } from '../../interfaces/index';
 
 const NewCategory = () => {
-  const Service = useContext(ServiceContext);
+  const Service: Iservice = useContext(ServiceContext);
 
   return (
     <IonPage id='category-page'>

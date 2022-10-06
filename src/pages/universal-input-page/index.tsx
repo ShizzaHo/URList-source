@@ -19,11 +19,12 @@ import { send } from 'ionicons/icons';
 import './styles.css';
 
 import { observer } from 'mobx-react';
+import { Iservice } from '../../interfaces/index';
 
 const NewLink = () => {
-  const Service = useContext(ServiceContext);
+  const Service: Iservice = useContext(ServiceContext);
   const history = useHistory();
-  const params = useParams();
+  const params = useParams<{ mode?: string }>();
 
   const [state, setState] = useState({
     data: params.mode == "exportData" ? Service.data.exportDataToJSON() : "",
@@ -66,11 +67,11 @@ const NewLink = () => {
   );
 
   function functionSpec(){
+    const win: Window = window;
     if (params.mode === "importData") {
       Service.data.importFromJson(state.data)
-      window.location = "/";
+      win.location = "/";
     } else if (params.mode === "exportData") {
-      history.index = -1;
       history.goBack();
     } else {
       history.goBack();

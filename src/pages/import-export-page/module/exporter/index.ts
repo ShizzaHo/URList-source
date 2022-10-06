@@ -2,7 +2,7 @@ import { File } from '@awesome-cordova-plugins/file';
 import language from '../../../../language';
 import { generateExportFileID } from '../../../../utils/generator';
 
-export async function exportDataFile(data) {
+export async function exportDataFile(data: string) {
   if (await checkDir()) {
     const id = await writeFile(data);
     alert(language.export_complete.replace("%PATH%", "/android/data/ru.shizzaho.urlist/files/exportData/exportData_"+await id+".json"));
@@ -26,7 +26,7 @@ async function checkDir() {
 }
 
 async function createDir() {
-  return await File.createDir(File.externalDataDirectory, 'exportData')
+  return await File.createDir(File.externalDataDirectory, 'exportData', true)
     .then(() => {
       return true;
     })
@@ -35,7 +35,7 @@ async function createDir() {
     });
 }
 
-async function writeFile(data) {
+async function writeFile(data: string) {
     const id = generateExportFileID();
     return await File.writeFile(File.externalDataDirectory + 'exportData', 'exportData_'+id+".json", data)
       .then(() => {
