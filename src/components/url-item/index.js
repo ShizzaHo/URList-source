@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import ServiceModule from './../../service';
 import './styles.css';
 
@@ -29,9 +29,10 @@ function LinkItem({
   swipeIcons,
 }) {
   const Service = new ServiceModule();
+  const ionItemSliding = useRef();
 
   return (
-    <IonItemSliding>
+    <IonItemSliding ref={ionItemSliding}>
       <IonItemOptions side='start'>
         <IonItemOption color='tertiary' onClick={onEdit}>
           {swipeIcons ? (
@@ -93,7 +94,10 @@ function LinkItem({
       </IonItem>
 
       <IonItemOptions side='end'>
-        <IonItemOption color='favorite' onClick={onFavorite}>
+        <IonItemOption color='favorite' onClick={()=>{
+          onFavorite();
+          ionItemSliding.current.closeOpened();
+        }}>
           {swipeIcons ? (
             <IonIcon slot='icon-only' icon={star} />
           ) : (
