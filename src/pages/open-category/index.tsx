@@ -23,7 +23,7 @@ import SortButton from '../../components/sort-button';
 
 import { observer } from 'mobx-react';
 import LinkItem from '../../components/url-item/index';
-import { sortFavoriteAndSplit } from './../../utils/sort/index';
+import { sortFavoriteAndSplit } from '../../utils/sort/index';
 import { Ilink, Iservice } from '../../interfaces/index';
 
 const OpenCategory = () => {
@@ -54,7 +54,7 @@ const OpenCategory = () => {
       <IonContent fullscreen>
         <div>
           <IonList lines='none'>
-            {sortFavoriteAndSplit(Service.data.getLinks(), sortMethod)
+            {sortFavoriteAndSplit(Service.data.getLinks(), (sortMethod || ""))
               .filter((value: Ilink) => {
                 return value.parentID == params.id;
               })

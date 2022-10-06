@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import ServiceModule from './../../service';
+import ServiceModule from '../../service';
 import './styles.css';
 
 import {

@@ -1,3 +1,8 @@
+//ANY
+export interface Iany {
+  [key: string]: any
+}
+
 // SERVICE
 export interface Iservice {
   [key: string]: any;
@@ -40,4 +45,14 @@ export interface Idata {
   meta?: Imeta;
   categories: Array<Icategory>;
   links: Array<Ilink>;
+}
+
+//CATEGORY ITEM 
+export interface Icategoryitem {
+  [key: string]: any
+}
+
+//CUSTOMIZER ITEM 
+export interface Icustomize {
+  [key: string]: any
 }

@@ -25,7 +25,7 @@ import { observer } from 'mobx-react';
 
 import LinkItem from '../../components/url-item/index';
 import { Iservice, Ilink } from '../../interfaces/index';
-import { sortFavoriteAndSplit } from './../../utils/sort/index';
+import { sortFavoriteAndSplit } from '../../utils/sort/index';
 
 const Category = () => {
   const Service: Iservice = useContext(ServiceContext);
@@ -50,7 +50,7 @@ const Category = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div>
-          {sortFavoriteAndSplit(Service.data.getLinks(), localStorage.getItem('URLIST_SORTMETHOD'))
+          {sortFavoriteAndSplit(Service.data.getLinks(), (localStorage.getItem('URLIST_SORTMETHOD') || ""))
             .filter((item: any) =>
               (item.title.toUpperCase()+item.url.toUpperCase()).includes((searchText || "").toUpperCase())
             )

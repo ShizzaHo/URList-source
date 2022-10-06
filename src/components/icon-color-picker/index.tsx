@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './styles.css';
+import { Iany } from '../../interfaces/index';
 
-function IconColorPicker({ onChangeColor, initColor }) {
+function IconColorPicker({ onChangeColor, initColor }: Iany) {
   const [color, setColor] = useState(initColor);
 
   return (
@@ -9,7 +10,7 @@ function IconColorPicker({ onChangeColor, initColor }) {
       <div
         className='iconcolorpicker-picker'
         onClick={() => {
-          document.getElementById('test').click();
+          (document.getElementById('test') || {click: ()=>{}}).click();
         }}
         style={{ backgroundColor: color }}
       >

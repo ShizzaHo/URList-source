@@ -1,5 +1,5 @@
 import React from 'react';
-import ServiceModule from './../../service';
+import ServiceModule from '../../service';
 import { IonIcon, IonButton, useIonActionSheet } from '@ionic/react';
 import { funnel } from 'ionicons/icons';
 
