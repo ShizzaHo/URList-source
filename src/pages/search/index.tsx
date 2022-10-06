@@ -23,12 +23,14 @@ import './styles.css';
 
 import { observer } from 'mobx-react';
 
-import LinkItem from './../../components/url-item/index';
+import LinkItem from '../../components/url-item/index';
+import { Iservice, Ilink } from '../../interfaces/index';
+import { sortFavoriteAndSplit } from './../../utils/sort/index';
 
 const Category = () => {
-  const Service = useContext(ServiceContext);
+  const Service: Iservice = useContext(ServiceContext);
   const [presentAlert] = useIonAlert();
-  const [serachText, setSerachText] = useState('');
+  const [searchText, setSearchText] = useState<(string|undefined)>();
 
   const history = useHistory();
 
@@ -40,24 +42,24 @@ const Category = () => {
             <IonBackButton color='light' defaultHref='/' />
           </IonButtons>
           <IonSearchbar
-            value={serachText}
-            onIonChange={(e) => setSerachText(e.detail.value)}
+            value={searchText}
+            onIonChange={(e) => setSearchText(e.detail.value)}
             placeholder={Service.language.search}
           ></IonSearchbar>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <div>
-          {Service.data.getLinks()
-            .filter((item) =>
-              item.title.toUpperCase().includes(serachText.toUpperCase())
+          {sortFavoriteAndSplit(Service.data.getLinks(), localStorage.getItem('URLIST_SORTMETHOD'))
+            .filter((item: any) =>
+              (item.title.toUpperCase()+item.url.toUpperCase()).includes((searchText || "").toUpperCase())
             )
-            .map((item, index) => {
+            .map((item: Ilink, index: number) => {
               return (
                 <LinkItem
                   key={item.id}
                   title={item.title}
-                  desc={item.desc}
+                  desc={item.url}
                   onOpen={() => {
                     window.open(item.url);
                   }}
@@ -110,7 +112,7 @@ const Category = () => {
     });
   }
 
-  function deleteLinkDialog(id) {
+  function deleteLinkDialog(id: string) {
     presentAlert({
       header: Service.language.editCategory_delete_title,
       message: Service.language.editCategory_delete_desc,
