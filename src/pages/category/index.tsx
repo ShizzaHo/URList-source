@@ -29,6 +29,7 @@ import { App } from '@capacitor/app';
 import { useIonRouter } from '@ionic/react';
 import { Icategory } from '../../interfaces/index';
 import { sortFavoriteAndSplit } from '../../utils/sort/index';
+import { generateReactKey } from '../../utils/generator/index';
 const Category = () => {
   const Service: Iservice = useContext(ServiceContext);
 
@@ -84,7 +85,7 @@ const Category = () => {
               (item: Icategory, index: number) => {
                 return (
                   <CategoryItem
-                    key={item.title}
+                    key={generateReactKey()}
                     title={item.title}
                     desc={item.desc}
                     onOpen={() => {

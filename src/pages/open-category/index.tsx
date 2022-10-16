@@ -25,6 +25,7 @@ import { observer } from 'mobx-react';
 import LinkItem from '../../components/url-item/index';
 import { sortFavoriteAndSplit } from '../../utils/sort/index';
 import { Ilink, Iservice } from '../../interfaces/index';
+import { generateReactKey } from '../../utils/generator/index';
 
 const OpenCategory = () => {
   const Service: Iservice = useContext(ServiceContext);
@@ -61,7 +62,7 @@ const OpenCategory = () => {
               .map((item: Ilink, index: number) => {
                 return (
                   <LinkItem
-                    key={item.id}
+                    key={generateReactKey()}
                     title={item.title}
                     desc={item.url}
                     onOpen={() => {
