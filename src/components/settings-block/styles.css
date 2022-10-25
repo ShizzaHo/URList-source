@@ -1,0 +1,17 @@
+.settingsblock {
+    margin-top: 8px;
+    padding: 10px;
+}
+
+.settingsblock-title {
+    background: linear-gradient(189.12deg, #74d6eb 4.11%, rgba(0, 255, 133, 0.99) 95.05%), #ffffff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 10px;
+
+    margin-bottom: 8px;
+    padding-left: 14px;
+}

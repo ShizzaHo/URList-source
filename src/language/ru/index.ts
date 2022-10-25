@@ -17,6 +17,9 @@ const words = {
     settings_about: "О приложении",
     settings_showDeleteButton: "Показать кнопку удаления при свайпе",
     settings_swipeIcons: "Иконки вместо текста при свайпе",
+    settings_dateBlock: 'Данные',
+    settings_interfaceBlock: 'Интерфейс',
+    settings_informationBlock: 'Информация',
 
     importExport: "Импорт и экспорт данных",
     importExport_exportJSON: "Экспортировать данные в .JSON файл",
@@ -107,6 +110,8 @@ const words = {
     import_linkBox_converting: "Идет процесс конвертирования данных из Linkbox в конфиг URList, пожалуйста подождите...",
 
     search: "Поиск",
+
+
 }
 
 export default words;

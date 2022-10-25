@@ -17,6 +17,9 @@ const words = {
   settings_about: 'About the app',
   settings_showDeleteButton: "Show delete button on swipe",
   settings_swipeIcons: "Icons instead of text on swipe",
+  settings_dateBlock: 'Data',
+  settings_interfaceBlock: 'Interface',
+  settings_informationBlock: 'Information',
 
   ImportExport: 'Data import and export',
   importExport_exportJSON: "Export data to a .JSON file",

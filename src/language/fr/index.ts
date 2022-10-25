@@ -17,6 +17,9 @@ const words = {
     settings_about: "À propos de l'application",
     settings_showDeleteButton: "Afficher le bouton de suppression lors du balayage",
     settings_swipeIcons: "Icônes au lieu de texte lorsque vous glissez",
+    settings_dateBlock: 'Données',
+    settings_interfaceBlock: 'Interface',
+    settings_informationBlock: 'Information',
 
     importExport: "Importer et exporter des données",
     importExport_exportJSON: "Exporter les données vers .Fichier JSON",

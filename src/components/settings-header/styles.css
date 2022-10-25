@@ -1,0 +1,9 @@
+.settingsheader_on * {
+    opacity: 1;
+    transition: all 100ms ease-in-out;
+}
+
+.settingsheader_off * {
+    opacity: 0;
+    transition: all 100ms ease-in-out;
+}

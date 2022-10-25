@@ -17,6 +17,9 @@ const words = {
   settings_about: '关于应用程序',
   settings_showDeleteButton: "刷卡时显示删除按钮",
   settings_swipeIcons: "刷卡时用图标代替文字",
+  settings_dateBlock: '日期',
+  settings_interfaceBlock: '介面',
+  settings_informationBlock: '信息',
 
   importExport: '数据导入和导出',
   importExport_exportJSON: "将数据导出到一个.JSON文件",
