@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 import ServiceContext from '../../context/service-context';
 import { useHistory } from 'react-router-dom';
 import {
@@ -11,14 +11,14 @@ import {
   IonIcon,
   IonFab,
   IonFabButton,
-  IonItem,
   IonLabel,
   IonBackButton,
-  IonInput,
-  IonTextarea,
-  IonListHeader,
+  IonSlides,
+  IonSlide,
+  IonTabBar,
+  IonTabButton,
 } from '@ionic/react';
-import { saveSharp } from 'ionicons/icons';
+import { saveSharp, informationCircle, colorPalette, call } from 'ionicons/icons';
 import './styles.css';
 
 import { observer } from 'mobx-react';
@@ -27,17 +27,55 @@ import DataStore from '../../store/data';
 import { generateCategoryID } from '../../utils/generator/index';
 import CustomizeCategory from '../../components/customizer-category/index';
 import { Iservice } from '../../interfaces/index';
+import SzhInput from '../../components/szh-input/index';
 
 const NewCategory = () => {
   const Service: Iservice = useContext(ServiceContext);
   const history = useHistory();
+  const slider: any = useRef();
 
   const [state, setState] = useState({
     name: '',
     desc: '',
     iconColor: '#808080',
-    iconType: 'nothing'
+    iconType: 'nothing',
   });
+
+  const handlers = {
+    name: (e: any) => {
+      setState({
+        ...state,
+        name: e.target.value,
+      });
+    },
+    desc: (e: any) => {
+      setState({
+        ...state,
+        desc: e.target.value,
+      });
+    },
+  }
+
+  const callbacks = {
+    changeColor: (e: string) => {
+      setState({
+        ...state,
+        iconColor: e,
+      });
+    },
+    changeType: (e: string) => {
+      setState({
+        ...state,
+        iconType: e,
+      });
+    },
+    openSlideOne: () => {
+      console.log(slider.current.slideTo(0));
+    },
+    openSlideTwo: () => {
+      console.log(slider.current.slideTo(1));
+    },
+  }
 
   return (
     <IonPage id='category-page'>
@@ -50,79 +88,69 @@ const NewCategory = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <div className='p-10'>
-          <div>
-            <IonListHeader>
-              <IonLabel style={{ color: 'gray' }}>{Service.language.universal_basicInformation}</IonLabel>
-            </IonListHeader>
-
-            <IonItem color='no'>
-              <IonLabel position='floating'>
-                {Service.language.newCategory_name}
-              </IonLabel>
-              <IonInput
+        <IonSlides className='newcategory-slider' ref={slider}>
+          <IonSlide>
+            <div className='p-10 newcategory-page'>
+              <SzhInput
+                id='name'
                 value={state.name}
-                onIonChange={(e) => {
-                  setState({ ...state, name: (e.detail.value || "") });
-                }}
-              ></IonInput>
-            </IonItem>
-            <IonItem color='no'>
-              <IonLabel position='floating'>
-                {Service.language.newCategory_desc}
-              </IonLabel>
-              <IonTextarea
+                placeholder={Service.language.newCategory_name}
+                onChange={handlers.name}
+              />
+              <SzhInput
+                id='desc'
                 value={state.desc}
-                rows={6}
-                onIonChange={(e) => {
-                  setState({ ...state, desc: (e.detail.value || "") });
-                }}
-              ></IonTextarea>
-            </IonItem>
-          </div>
-          <br></br>
-          <div>
-            <IonListHeader>
-              <IonLabel style={{ color: 'gray' }}>{Service.language.universal_customization}</IonLabel>
-            </IonListHeader>
-
-            <CustomizeCategory initColor={state.iconColor} initType={state.iconType} onChangeColor={changeColor} onChangeType={changeType}/>
-          </div>
-        </div>
-        <IonFab vertical='bottom' horizontal='center' slot='fixed'>
-          <IonFabButton
-            className='fab'
-            onClick={() => {
-              DataStore.createNewCategory({
-                title: state.name,
-                desc: state.desc,
-                iconColor: state.iconColor,
-                iconType: state.iconType,
-                id: 'category_' + generateCategoryID(),
-              });
-              history.goBack();
-            }}
-          >
-            <IonIcon icon={saveSharp} />
-          </IonFabButton>
-        </IonFab>
+                placeholder={Service.language.newCategory_desc}
+                onChange={handlers.desc}
+              />
+            </div>
+          </IonSlide>
+          <IonSlide>
+            <div className='p-10 newcategory-page'>
+              <CustomizeCategory initColor={state.iconColor} initType={state.iconType} onChangeColor={callbacks.changeColor} onChangeType={callbacks.changeType}/>
+            </div>
+          </IonSlide>
+        </IonSlides>
       </IonContent>
+      <IonFab
+        vertical='bottom'
+        horizontal='center'
+        slot='fixed'
+        className='newcategory-fab'
+      >
+        <IonFabButton
+          className='fab'
+          onClick={() => {
+            DataStore.createNewCategory({
+              title: state.name,
+              desc: state.desc,
+              iconColor: state.iconColor,
+              iconType: state.iconType,
+              id: 'category_' + generateCategoryID(),
+            });
+            history.goBack();
+          }}
+        >
+          <IonIcon icon={saveSharp} />
+        </IonFabButton>
+      </IonFab>
+      <IonTabBar
+        slot='bottom'
+        color='urlDarkToolbar'
+        className='newcategory-tabbar'
+      >
+        <IonTabButton tab='schedule' onClick={callbacks.openSlideOne}>
+          <IonIcon icon={informationCircle} />
+          <IonLabel>Базовая информация</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton tab='speakers' onClick={callbacks.openSlideTwo}>
+          <IonIcon icon={colorPalette} />
+          <IonLabel>Кастомизация</IonLabel>
+        </IonTabButton>
+      </IonTabBar>
     </IonPage>
   );
-
-  function changeColor(e: string) {
-    setState({
-      ...state,
-      iconColor: e
-    })
-  }
-
-  function changeType(e: string) {
-    setState({
-      ...state,
-      iconType: e
-    })
-  }
 };
 
 export default observer(NewCategory);
