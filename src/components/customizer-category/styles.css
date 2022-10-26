@@ -62,4 +62,5 @@
 
 .customiconcategory-type span:nth-child(2) {
     float: right;
+    margin-top: 3px;
 }

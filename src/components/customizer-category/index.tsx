@@ -14,6 +14,8 @@ import {
 import IconColorPicker from '../icon-color-picker/index';
 import { Icustomize } from '../../interfaces/index';
 import { pickTextColor } from '../../utils/pickTextColor/index';
+import { IonIcon } from '@ionic/react';
+import { chevronDownOutline } from 'ionicons/icons';
 
 function CustomizeCategory({
   onChangeColor,
@@ -73,7 +75,9 @@ function CustomizeCategory({
         }}
       >
         <span>{Service.language['universal_' + initType]}</span>
-        <span>*</span>
+        <span>
+          <IonIcon slot='end' icon={chevronDownOutline} />
+        </span>
       </div>
 
       <IonSelect

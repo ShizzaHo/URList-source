@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 import ServiceContext from '../../context/service-context';
 import { useHistory, useParams } from 'react-router-dom';
 import {
@@ -12,20 +12,22 @@ import {
   IonIcon,
   IonFab,
   IonFabButton,
-  IonItem,
   IonLabel,
   IonBackButton,
-  IonInput,
   useIonAlert,
-  IonListHeader,
+  IonSlides,
+  IonSlide,
+  IonTabBar,
+  IonTabButton,
 } from '@ionic/react';
-import { saveSharp, trashSharp } from 'ionicons/icons';
+import { saveSharp, trashSharp, informationCircle, colorPalette } from 'ionicons/icons';
 import './styles.css';
-import CustomizeCategory from '../../components/customizer-link';
 
 import { observer } from 'mobx-react';
 import DataStore from '../../store/data';
 import { Iservice } from '../../interfaces/index';
+import SzhInput from '../../components/szh-input/index';
+import CustomizeLink from '../../components/customizer-link/index';
 
 const EditLink = () => {
   const Service: Iservice = useContext(ServiceContext);
@@ -50,7 +52,70 @@ const EditLink = () => {
       : '',
   });
 
-  const [error, setError] = useState(false);
+  const slider: any = useRef();
+
+  const handlers = {
+    name: (e: any) => {
+      setState({
+        ...state,
+        name: e.target.value,
+      });
+    },
+    url: (e: any) => {
+      setState({
+        ...state,
+        url: e.target.value,
+      });
+    },
+  };
+
+  const callbacks = {
+    changeColor: (e: string) => {
+      setState({
+        ...state,
+        iconColor: e,
+      });
+    },
+    changeType: (e: string) => {
+      setState({
+        ...state,
+        iconType: e,
+      });
+    },
+    openSlideOne: () => {
+      console.log(slider.current.slideTo(0));
+    },
+    openSlideTwo: () => {
+      console.log(slider.current.slideTo(1));
+    },
+    editCategory: () => {
+      if (
+        state.url.indexOf('https://') !== -1 ||
+        state.url.indexOf('http://') !== -1
+      ) {
+        if (state.url.indexOf('.') !== -1) {
+          DataStore.editLink(params.id, {
+            title: state.name,
+            url: state.url,
+            parentID: (DataStore.getLink(params.id) || {}).parentID,
+            id: params.id,
+            iconColor: state.iconColor,
+            iconType: state.iconType,
+            isFavorite: state.isFavorite
+          });
+          history.goBack();
+        }
+      } else {
+        alert(
+          Service.language.editLink_errorTitle +
+            '\n' +
+            Service.language.editLink_errorItem1 +
+            '\n' +
+            Service.language.editLink_errorItem2
+        );
+      }
+    },
+  };
 
   return (
     <IonPage id='edit-link-page'>
@@ -73,64 +138,63 @@ const EditLink = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <div className='p-10'>
-          <div>
-            <IonListHeader>
-              <IonLabel style={{ color: 'gray' }}>
-                {Service.language.universal_basicInformation}
-              </IonLabel>
-            </IonListHeader>
-            <IonItem color='no'>
-              <IonLabel position='floating'>{Service.language.editLink_name}</IonLabel>
-              <IonInput
+        <IonSlides className='newcategory-slider' ref={slider}>
+          <IonSlide>
+            <div className='p-10 newcategory-page'>
+              <SzhInput
+                id='name'
                 value={state.name}
-                onIonChange={(e) => {
-                  setState({ ...state, name: e.detail.value });
-                }}
-              ></IonInput>
-            </IonItem>
-            <IonItem color='no'>
-              <IonLabel position='floating'>{Service.language.editLink_url}</IonLabel>
-              <IonInput
+                placeholder={Service.language.newCategory_name}
+                onChange={handlers.name}
+              />
+              <SzhInput
+                id='url'
                 value={state.url}
-                onIonChange={(e) => {
-                  setState({ ...state, url: (e.detail.value || "") });
-                }}
-              ></IonInput>
-            </IonItem>
-            {error ? (
-              <>
-                <p style={{ color: 'red' }}>{Service.language.editLink_errorTitle}</p>
-                <ul style={{ color: 'red' }}>
-                  <li>{Service.language.editLink_errorItem1}</li>
-                  <li>{Service.language.editLink_errorItem2}</li>
-                </ul>
-              </>
-            ) : (
-              <></>
-            )}
-          </div>
-          <br></br>
-          <div>
-            <IonListHeader>
-              <IonLabel style={{ color: 'gray' }}>
-                {Service.language.universal_customization}
-              </IonLabel>
-            </IonListHeader>
-            <CustomizeCategory
-              initColor={state.iconColor}
-              initType={state.iconType}
-              onChangeColor={changeColor}
-              onChangeType={changeType}
-            />
-          </div>
-        </div>
-        <IonFab vertical='bottom' horizontal='center' slot='fixed'>
-          <IonFabButton className='fab' onClick={checkData}>
-            <IonIcon icon={saveSharp} />
-          </IonFabButton>
-        </IonFab>
+                placeholder={Service.language.newLink_url}
+                onChange={handlers.url}
+              />
+            </div>
+          </IonSlide>
+          <IonSlide>
+            <div className='p-10 newcategory-page'>
+              <CustomizeLink
+                initColor={state.iconColor}
+                initType={state.iconType}
+                onChangeColor={callbacks.changeColor}
+                onChangeType={callbacks.changeType}
+                linkName={state.name}
+                service={Service}
+                url={state.url}
+              />
+            </div>
+          </IonSlide>
+        </IonSlides>
       </IonContent>
+      <IonFab
+        vertical='bottom'
+        horizontal='center'
+        slot='fixed'
+        className='newcategory-fab'
+      >
+        <IonFabButton className='fab' onClick={callbacks.editCategory}>
+          <IonIcon icon={saveSharp} />
+        </IonFabButton>
+      </IonFab>
+      <IonTabBar
+        slot='bottom'
+        color='urlDarkToolbar'
+        className='newcategory-tabbar'
+      >
+        <IonTabButton tab='schedule' onClick={callbacks.openSlideOne}>
+          <IonIcon icon={informationCircle} />
+          <IonLabel>{Service.language.tabbar_basicInformation}</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton tab='speakers' onClick={callbacks.openSlideTwo}>
+          <IonIcon icon={colorPalette} />
+          <IonLabel>{Service.language.tabbar_customization}</IonLabel>
+        </IonTabButton>
+      </IonTabBar>
     </IonPage>
   );
 
@@ -146,29 +210,6 @@ const EditLink = () => {
       ...state,
       iconType: e,
     });
-  }
-
-  function checkData() {
-    if (
-      (state.url || "").indexOf('https://') !== -1 ||
-      (state.url || "").indexOf('http://') !== -1
-    ) {
-      if ((state.url || "").indexOf('.') !== -1) {
-        setError(false);
-        DataStore.editLink(params.id, {
-          title: state.name,
-          url: state.url,
-          parentID: (DataStore.getLink(params.id) || {}).parentID,
-          id: params.id,
-          iconColor: state.iconColor,
-          iconType: state.iconType,
-          isFavorite: state.isFavorite
-        });
-        history.goBack();
-      }
-    } else {
-      setError(true);
-    }
   }
 
   function deleteCategoryDialog() {
