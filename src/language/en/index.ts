@@ -112,6 +112,9 @@ const words = {
   import_linkBox_converting: "There is a process of converting data from Linkbox to URList config, please wait...",
 
   search: "Search",
+
+  tabbar_basicInformation: "Basic information",
+  tabbar_customization: "Appearance",
 };
 
 export default words;

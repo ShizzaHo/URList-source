@@ -110,6 +110,9 @@ const words = {
     import_linkBox_converting: "le processus de conversion de Listbox en config Url list est En cours, veuillez patienter...",
 
     search: "Recherche",
+
+    tabbar_basicInformation: "Informations de base",
+    tabbar_customization: "Apparition",
 }
 
 export default words;

@@ -41,7 +41,6 @@ function CustomizeCategory({
       onChangeType(e.detail.value);
     },
   };
-  
 
   return (
     <div className='customiconcategory'>
@@ -50,23 +49,38 @@ function CustomizeCategory({
           style={{ backgroundColor: preview.color }}
           className='customiconcategory-preview'
         >
-          {initType == "nothing" ? <></> : <></>}
-          {initType == "firstWord" ? <h1 style={{color: pickTextColor(preview.color, "white", "black")}}>{categoryName[0]}</h1> : <></>}
+          {initType == 'nothing' ? <></> : <></>}
+          {initType == 'firstWord' ? (
+            <h1
+              style={{ color: pickTextColor(preview.color, 'white', 'black') }}
+            >
+              {categoryName[0]}
+            </h1>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <IconColorPicker
         initColor={initColor}
         onChangeColor={callbacks.setColor}
+        service={Service}
       />
-      <div className='customiconcategory-type' onClick={()=>{document.getElementById('dialogList')?.click();}}>
-        <span>{Service.language["universal_"+initType]}</span>
+      <div
+        className='customiconcategory-type'
+        onClick={() => {
+          document.getElementById('dialogList')?.click();
+        }}
+      >
+        <span>{Service.language['universal_' + initType]}</span>
         <span>*</span>
       </div>
 
       <IonSelect
         value={initType}
         onIonChange={callbacks.setType}
-        style={{display: "none", TouchEvent: "none"}} id="dialogList"
+        style={{ display: 'none', TouchEvent: 'none' }}
+        id='dialogList'
       >
         <IonSelectOption value='nothing'>
           {Service.language.universal_nothing}

@@ -111,7 +111,8 @@ const words = {
 
     search: "Поиск",
 
-
+    tabbar_basicInformation: "Базовая информация",
+    tabbar_customization: "Внешний вид",
 }
 
 export default words;

@@ -110,6 +110,9 @@ const words = {
   import_linkBox_converting: "有一个将数据从Linkbox转换为URList配置的过程，请稍候。..",
 
   search: "搜索",
+
+  tabbar_basicInformation: "基本信息",
+  tabbar_customization: "外观",
 };
 
 export default words;

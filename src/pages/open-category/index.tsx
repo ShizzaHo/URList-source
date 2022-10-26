@@ -26,6 +26,7 @@ import LinkItem from '../../components/url-item/index';
 import { sortFavoriteAndSplit } from '../../utils/sort/index';
 import { Ilink, Iservice } from '../../interfaces/index';
 import { generateReactKey } from '../../utils/generator/index';
+import Spacer from '../../components/spacer/index';
 
 const OpenCategory = () => {
   const Service: Iservice = useContext(ServiceContext);
@@ -100,6 +101,7 @@ const OpenCategory = () => {
             <IonIcon icon={add} />
           </IonFabButton>
         </IonFab>
+        <Spacer />
       </IonContent>
     </IonPage>
   );

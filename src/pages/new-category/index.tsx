@@ -75,6 +75,16 @@ const NewCategory = () => {
     openSlideTwo: () => {
       console.log(slider.current.slideTo(1));
     },
+    createCategory: () => {
+      DataStore.createNewCategory({
+        title: state.name,
+        desc: state.desc,
+        iconColor: state.iconColor,
+        iconType: state.iconType,
+        id: 'category_' + generateCategoryID(),
+      });
+      history.goBack();
+    }
   };
 
   return (
@@ -126,16 +136,7 @@ const NewCategory = () => {
       >
         <IonFabButton
           className='fab'
-          onClick={() => {
-            DataStore.createNewCategory({
-              title: state.name,
-              desc: state.desc,
-              iconColor: state.iconColor,
-              iconType: state.iconType,
-              id: 'category_' + generateCategoryID(),
-            });
-            history.goBack();
-          }}
+          onClick={callbacks.createCategory}
         >
           <IonIcon icon={saveSharp} />
         </IonFabButton>
@@ -147,12 +148,12 @@ const NewCategory = () => {
       >
         <IonTabButton tab='schedule' onClick={callbacks.openSlideOne}>
           <IonIcon icon={informationCircle} />
-          <IonLabel>Базовая информация</IonLabel>
+          <IonLabel>{Service.language.tabbar_basicInformation}</IonLabel>
         </IonTabButton>
 
         <IonTabButton tab='speakers' onClick={callbacks.openSlideTwo}>
           <IonIcon icon={colorPalette} />
-          <IonLabel>Кастомизация</IonLabel>
+          <IonLabel>{Service.language.tabbar_customization}</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonPage>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './styles.css';
 import { Iany } from '../../interfaces/index';
 
-function IconColorPicker({ onChangeColor, initColor }: Iany) {
+function IconColorPicker({ onChangeColor, initColor, service }: Iany) {
   const [color, setColor] = useState(initColor);
 
   return (
@@ -13,7 +13,7 @@ function IconColorPicker({ onChangeColor, initColor }: Iany) {
           (document.getElementById('test') || { click: () => {} }).click();
         }}
       >
-        <span>Цвет иконки</span>
+        <span>{service.language.universal_iconColor}</span>
         <span style={{color: color}}>{color}</span>
         <input
           type='color'

@@ -30,6 +30,7 @@ import { useIonRouter } from '@ionic/react';
 import { Icategory } from '../../interfaces/index';
 import { sortFavoriteAndSplit } from '../../utils/sort/index';
 import { generateReactKey } from '../../utils/generator/index';
+import Spacer from '../../components/spacer';
 const Category = () => {
   const Service: Iservice = useContext(ServiceContext);
 
@@ -124,6 +125,7 @@ const Category = () => {
             <IonIcon icon={add} />
           </IonFabButton>
         </IonFab>
+        <Spacer />
       </IonContent>
     </IonPage>
   );
