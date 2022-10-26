@@ -18,7 +18,7 @@ import {
   IonTabBar,
   IonTabButton,
 } from '@ionic/react';
-import { saveSharp, informationCircle, colorPalette, call } from 'ionicons/icons';
+import { saveSharp, informationCircle, colorPalette } from 'ionicons/icons';
 import './styles.css';
 
 import { observer } from 'mobx-react';
@@ -54,7 +54,7 @@ const NewCategory = () => {
         desc: e.target.value,
       });
     },
-  }
+  };
 
   const callbacks = {
     changeColor: (e: string) => {
@@ -75,7 +75,7 @@ const NewCategory = () => {
     openSlideTwo: () => {
       console.log(slider.current.slideTo(1));
     },
-  }
+  };
 
   return (
     <IonPage id='category-page'>
@@ -107,7 +107,13 @@ const NewCategory = () => {
           </IonSlide>
           <IonSlide>
             <div className='p-10 newcategory-page'>
-              <CustomizeCategory initColor={state.iconColor} initType={state.iconType} onChangeColor={callbacks.changeColor} onChangeType={callbacks.changeType}/>
+              <CustomizeCategory
+                initColor={state.iconColor}
+                initType={state.iconType}
+                onChangeColor={callbacks.changeColor}
+                onChangeType={callbacks.changeType}
+                categoryName={state.name}
+              />
             </div>
           </IonSlide>
         </IonSlides>

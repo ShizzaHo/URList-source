@@ -8,19 +8,20 @@ function IconColorPicker({ onChangeColor, initColor }: Iany) {
   return (
     <>
       <div
-        className='iconcolorpicker-picker'
+        className='customiconcategory-colorpicker'
         onClick={() => {
-          (document.getElementById('test') || {click: ()=>{}}).click();
+          (document.getElementById('test') || { click: () => {} }).click();
         }}
-        style={{ backgroundColor: color }}
       >
+        <span>Цвет иконки</span>
+        <span style={{color: color}}>{color}</span>
         <input
           type='color'
           className='iconcolorpicker-input'
           id='test'
           onChange={(e) => {
             setColor(e.target.value);
-            onChangeColor(e.target.value)
+            onChangeColor(e.target.value);
           }}
         />
       </div>
@@ -30,7 +31,7 @@ function IconColorPicker({ onChangeColor, initColor }: Iany) {
 
 IconColorPicker.defaultProps = {
   onChangeColor: () => {},
-  initColor: "#808080",
+  initColor: '#808080',
 };
 
 export default IconColorPicker;
