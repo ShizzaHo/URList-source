@@ -1,9 +1,11 @@
 .settingsheader_on * {
     opacity: 1;
+    pointer-events: all;
     transition: all 100ms ease-in-out;
 }
 
 .settingsheader_off * {
     opacity: 0;
+    pointer-events: none;
     transition: all 100ms ease-in-out;
 }

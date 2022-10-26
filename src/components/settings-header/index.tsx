@@ -13,8 +13,6 @@ function SettingsHeader({
   animationMode,
   animationScrollLevel,
 }: Iany) {
-  console.log(animationScrollLevel);
-  
   return (
     <div className={animationMode === true ? animationScrollLevel > 70 ? "settingsheader_on" : "settingsheader_off" : undefined}>
       <IonHeader>

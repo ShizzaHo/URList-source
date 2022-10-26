@@ -1,6 +1,7 @@
 .settingsblock {
     margin-top: 8px;
     padding: 10px;
+    user-select: none;
 }
 
 .settingsblock-title {
