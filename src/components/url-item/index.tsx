@@ -11,9 +11,19 @@ import {
   IonItemOption,
   IonIcon,
 } from '@ionic/react';
-import { star, trash, pencil, shareSocialSharp, copy } from 'ionicons/icons';
+import {
+  star,
+  trash,
+  pencil,
+  shareSocialSharp,
+  copy,
+  share,
+  shareSocial,
+} from 'ionicons/icons';
 import { pickTextColor } from '../../utils/pickTextColor/index';
 import { Iany, Iservice } from '../../interfaces/index';
+
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 function LinkItem({
   title,
@@ -38,10 +48,17 @@ function LinkItem({
       ionItemSliding.current.closeOpened();
     },
     share: () => {
-      
+      SocialSharing.share('', title, null, desc);
     },
     copy: () => {
-      
+      navigator.clipboard
+        .writeText(desc)
+        .then(() => {
+          
+        })
+        .catch((err) => {
+          console.log('Ошибка копирования в буфер: ', err);
+        });
     },
   };
 
