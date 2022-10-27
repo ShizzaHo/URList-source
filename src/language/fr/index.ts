@@ -30,12 +30,14 @@ const words = {
     importExport_manual: "instruction",
 
     about: "À propos de l'application",
-    about_subtitle: "Votre Assistant pour conserver les liens",
+    about_subtitle: "Plus vos liens ne seront jamais perdus, car maintenant vous pouvez les stocker dans une application multiplateforme pratique URList! Créez des Catégories et stockez des liens thématiques en les ouvrant facilement en un seul clic!",
     about_developer: "Développeur:",
     about_version: "version de l'application:",
     about_4pda:"Thème de l'application sur 4PDA",
     about_site: "site Officiel du projet",
     about_donat: "Soutenir le projet",
+    about_telegram: "Canal développeur dans Telegram",
+    about_github: "Code source sur GitHub",
 
     universalPage_inputPlaceholder: "Entrez/copiez les données requises",
     universalPage_info1: "après avoir interagi avec cette fenêtre, assurez-vous de redémarrer l'application pour appliquer les modifications",

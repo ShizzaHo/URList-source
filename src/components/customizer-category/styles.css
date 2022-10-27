@@ -40,7 +40,7 @@
 .customiconcategory-colorpicker {
     width: 100%;
     background-color: transparent;
-    border: 2px solid #4F4F4F;
+    border: 2px solid #4f4f4f;
     border-radius: 8px;
     padding: 14px;
     margin-bottom: 8px;
@@ -53,12 +53,11 @@
 .customiconcategory-type {
     width: 100%;
     background-color: transparent;
-    border: 2px solid #4F4F4F;
+    border: 2px solid #4f4f4f;
     border-radius: 8px;
     padding: 14px;
     margin-bottom: 8px;
 }
-
 
 .customiconcategory-type span:nth-child(2) {
     float: right;

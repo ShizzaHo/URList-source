@@ -168,7 +168,6 @@ const Category = () => {
           role: 'confirm',
           handler: () => {
             Service.data.deleteCategory(id);
-            history.goBack();
           },
         },
       ],

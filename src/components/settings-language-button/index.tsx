@@ -30,16 +30,16 @@ function SettingLanguageButton({ service, onClick, onReload }: Iany) {
       },
     },
     {
-      text: service.language.langName_uk,
+      text: service.language.langName_fr,
       handler: () => {
-        localStorage.setItem('URLIST_LANG', 'ukrain');
+        localStorage.setItem('URLIST_LANG', 'france');
         onReload()
       },
     },
     {
-      text: service.language.langName_fr,
+      text: service.language.langName_uk,
       handler: () => {
-        localStorage.setItem('URLIST_LANG', 'france');
+        localStorage.setItem('URLIST_LANG', 'ukrain');
         onReload()
       },
     },

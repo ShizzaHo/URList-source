@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import ServiceModule from '../../service';
 import './styles.css';
 
@@ -11,7 +11,7 @@ import {
   IonItemOption,
   IonIcon,
 } from '@ionic/react';
-import { star, trash, pencil } from 'ionicons/icons';
+import { star, trash, pencil, shareSocialSharp, copy } from 'ionicons/icons';
 import { pickTextColor } from '../../utils/pickTextColor/index';
 import { Iany, Iservice } from '../../interfaces/index';
 
@@ -32,15 +32,24 @@ function LinkItem({
   const Service: Iservice = new ServiceModule();
   const ionItemSliding = useRef<any>();
 
+  const callbacks = {
+    favorite: () => {
+      onFavorite();
+      ionItemSliding.current.closeOpened();
+    },
+    share: () => {
+      
+    },
+    copy: () => {
+      
+    },
+  };
+
   return (
     <IonItemSliding ref={ionItemSliding}>
       <IonItemOptions side='start'>
         <IonItemOption color='tertiary' onClick={onEdit}>
-          {swipeIcons ? (
-            <IonIcon slot='icon-only' icon={pencil} />
-          ) : (
-            Service.language.categoryItem_edit
-          )}
+          <IonIcon slot='icon-only' icon={pencil} />
         </IonItemOption>
         {showDeleteButton ? (
           <IonItemOption color='danger' onClick={onDelete}>
@@ -95,15 +104,14 @@ function LinkItem({
       </IonItem>
 
       <IonItemOptions side='end'>
-        <IonItemOption color='favorite' onClick={()=>{
-          onFavorite();
-          ionItemSliding.current.closeOpened();
-        }}>
-          {swipeIcons ? (
-            <IonIcon slot='icon-only' icon={star} />
-          ) : (
-            Service.language.categoryItem_favoriteAdd
-          )}
+        <IonItemOption color='tertiary' onClick={callbacks.copy}>
+          <IonIcon slot='icon-only' icon={copy} />
+        </IonItemOption>
+        <IonItemOption color='tertiary' onClick={callbacks.share}>
+          <IonIcon slot='icon-only' icon={shareSocialSharp} />
+        </IonItemOption>
+        <IonItemOption color='favorite' onClick={callbacks.favorite}>
+          <IonIcon slot='icon-only' icon={star} />
         </IonItemOption>
       </IonItemOptions>
     </IonItemSliding>

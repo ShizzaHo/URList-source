@@ -92,7 +92,7 @@ const Settings = () => {
                   checked={Service.settings.getSettings().showDeleteButton}
                 ></IonCheckbox>
               </IonItem>
-              <IonItem button onClick={callbacks.swipeIcons}>
+              {/* <IonItem button onClick={callbacks.swipeIcons}>
                 <IonLabel>
                   <h2>{Service.language.settings_swipeIcons}</h2>
                 </IonLabel>
@@ -100,7 +100,7 @@ const Settings = () => {
                   slot='end'
                   checked={Service.settings.getSettings().swipeIcons}
                 ></IonCheckbox>
-              </IonItem>
+              </IonItem> */}
               <IonItem button onClick={callbacks.showIcons}>
                 <IonLabel>
                   <h2>{Service.language.settings_showIcons}</h2>

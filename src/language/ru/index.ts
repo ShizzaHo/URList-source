@@ -22,6 +22,8 @@ const words = {
     settings_informationBlock: 'Информация',
 
     importExport: "Импорт и экспорт данных",
+    importExport_import: "Импорт",
+    importExport_export: "Экспорт",
     importExport_exportJSON: "Экспортировать данные в .JSON файл",
     importExport_exportJSON_2: "Экспортировать данные в строку",
     importExport_importJSON: "Импортировать данные из .JSON файла",
@@ -30,12 +32,14 @@ const words = {
     importExport_manual: "Инструкция",
 
     about: "О приложении",
-    about_subtitle: "Твой помощник в сохранении ссылок",
+    about_subtitle: "Больше ваши ссылки никогда не потеряются, ведь теперь вы можете хранить их в удобном кроссплатформенном приложении URList! Создавайте категории, и храните в них тематические ссылки, удобно открывая их в один клик!",
     about_developer: "Разработчик:",
     about_version: "Версия приложения:",
     about_4pda: "Тема приложения на 4PDA",
     about_site: "Официальный сайт проекта",
     about_donat: "Поддержать проект",
+    about_telegram: "Канал разработчика в Telegram",
+    about_github: "Исходный код на GitHub",
 
     universalPage_inputPlaceholder: "Введите/скопируйте необходимые данные",
     universalPage_info1: "После взаимодейтсвия с этим окном, обязательно перезапустите приложение для применения изменений",

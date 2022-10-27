@@ -1,0 +1,21 @@
+.up-textarea {
+    position: relative;
+
+    width: 100%;
+    height: calc(100vh - 200px);
+    resize: none;
+
+    background-color: transparent;
+    border: 2px solid #4F4F4F;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 8px;
+}
+
+.up-textarea:hover {
+    border: 2px solid #666666;
+}
+
+.up-textarea:focus {
+    outline: none;
+}

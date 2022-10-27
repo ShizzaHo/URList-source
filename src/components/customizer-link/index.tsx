@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import ServiceModule from '../../service';
 import './styles.css';
 
-import {
-  IonSelect,
-  IonSelectOption,
-  IonIcon,
-} from '@ionic/react';
+import { IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
 
 import IconColorPicker from '../icon-color-picker/index';
 import { Icustomize } from '../../interfaces/index';
@@ -20,7 +16,7 @@ function CustomizeLink({
   initType,
   linkName,
   service,
-  url
+  url,
 }: Icustomize) {
   const [preview, setPreview] = useState({
     color: initColor,
@@ -64,7 +60,7 @@ function CustomizeLink({
                 url +
                 '&size=128'
               }
-              style={{height: "50%"}}
+              style={{ height: '50%' }}
             ></img>
           ) : (
             <></>

@@ -30,12 +30,14 @@ const words = {
   importExport_manual: '说明（仅限俄语）',
 
   about: '关于应用程序',
-  about_subtitle: '您的助手在保存链接',
+  about_subtitle: '您的链接将永远不会丢失，因为现在您可以将它们存储在一个方便的跨平台URList应用程序中！ 创建类别和存储主题链接在他们,方便打开他们在一个点击!',
   about_developer: '开发人员:',
   about_version: '应用程序版本:',
   about_4pda: '在4pda应用程序的主题',
   about_site: '项目官方网站',
   about_donate: '支持项目',
+  about_telegram: "电报中的开发者频道",
+  about_github: "GitHub上的源代码",
 
   universalPage_inputPlaceholder: '输入/复制所需数据',
   universalPage_info1: '与此窗口交互后，请务必重新启动应用程序以应用更改',

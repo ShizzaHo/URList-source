@@ -41,7 +41,20 @@ const NewLink = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div className='p-10'>
-          <textarea className='up-textarea' value={state.data} id="inputData" placeholder={Service.language.universalPage_inputPlaceholder}></textarea>
+          <IonItem color='no'>
+            <IonLabel position='floating'>{Service.language.universalPage_inputPlaceholder}</IonLabel>
+            <IonTextarea
+              value={state.data}
+              onIonChange={(e) => {
+                setState({ ...state, data: e.detail.value });
+              }}
+              rows={20}
+            ></IonTextarea>
+          </IonItem>
+          <br/>
+          {/* <IonLabel position='floating'>{language.universalPage_info1}</IonLabel>
+          <br/>
+          <br/> */}
           <IonLabel position='floating'>{Service.language.universalPage_info2}</IonLabel>
         </div>
         <IonFab vertical='bottom' horizontal='center' slot='fixed'>

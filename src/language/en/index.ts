@@ -30,12 +30,14 @@ const words = {
   importExport_manual: 'Instruction (russian only)',
 
   about: 'About the app',
-  about_subtitle: 'Your assistant in saving links',
+  about_subtitle: 'Your links will never be lost anymore, because now you can store them in a convenient cross-platform URList application! Create categories and store thematic links in them, conveniently opening them in one click!',
   about_developer: 'Developer:',
   about_version: 'Application version:',
   about_4pda: '4PDA application theme',
   about_site: 'Official project website',
   about_donate: 'Support the project',
+  about_telegram: "Developer channel in Telegram",
+  about_github: "Source code on GitHub",
 
   universalPage_inputPlaceholder: 'Enter/copy the required data',
   universalPage_info1:
