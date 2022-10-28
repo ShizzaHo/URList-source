@@ -10,6 +10,7 @@ import {
   IonItemOptions,
   IonItemOption,
   IonIcon,
+  isPlatform,
 } from '@ionic/react';
 import {
   star,
@@ -24,6 +25,7 @@ import { pickTextColor } from '../../utils/pickTextColor/index';
 import { Iany, Iservice } from '../../interfaces/index';
 
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Clipboard } from '@ionic-native/clipboard';
 
 function LinkItem({
   title,
@@ -51,14 +53,18 @@ function LinkItem({
       SocialSharing.share('', title, null, desc);
     },
     copy: () => {
-      navigator.clipboard
-        .writeText(desc)
-        .then(() => {
-          
-        })
-        .catch((err) => {
-          console.log('Ошибка копирования в буфер: ', err);
-        });
+      if (isPlatform('android')) {
+        Clipboard.copy(desc);
+      } else {
+        navigator.clipboard
+            .writeText(desc)
+            .then(() => {
+              //okay!
+            })
+            .catch((err) => {
+              alert('Ошибка копирования в буфер: ' + err)
+            });
+      }
     },
   };
 
