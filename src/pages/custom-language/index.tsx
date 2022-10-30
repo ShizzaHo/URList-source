@@ -58,7 +58,7 @@ const CustomLanguage = () => {
     if (data === false) {
       alert(Service.language.customLanguage_error);
       localStorage.setItem('URLIST_LANG', 'english');
-      localStorage.setItem('URLIST_CUSTOMLANG', undefined);
+      localStorage.removeItem('URLIST_CUSTOMLANG');
       win.location = '/';
     } else {
       localStorage.setItem('URLIST_CUSTOMLANG', data.toString());

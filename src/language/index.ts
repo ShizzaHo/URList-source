@@ -13,7 +13,7 @@ const langs = {
 }
 
 const customLang = () => {
-    if (localStorage.getItem('URLIST_CUSTOMLANG') != undefined) {  
+    if (localStorage.getItem('URLIST_CUSTOMLANG') !== undefined && localStorage.getItem('URLIST_CUSTOMLANG') != 'undefined') {  
         return JSON.parse(localStorage.getItem('URLIST_CUSTOMLANG'));
     } else {
         return "{}";
