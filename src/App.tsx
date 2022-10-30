@@ -36,6 +36,7 @@ import './theme/variables.css';
 import DataStore from './store/data';
 import SettingsState from './store/settings';
 import Guide from './pages/guide';
+import CustomLanguage from './pages/custom-language';
 
 DataStore.loadDataFromLocalStorage();
 SettingsState.loadSettingsFromLocalStorage();
@@ -107,6 +108,9 @@ const App = () => {
           </Route>
           <Route path='/universalInput/:mode' exact={true}>
             <UniversalInputPage />
+          </Route>
+          <Route path='/customLanguage' exact={true}>
+            <CustomLanguage />
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>

@@ -35,7 +35,7 @@ function CategoryItem({
     <IonItemSliding ref={ionItemSliding}>
       <IonItemOptions side='start'>
         <IonItemOption color='tertiary' onClick={onEdit}>
-          {swipeIcons ? <IonIcon slot='icon-only' icon={pencil} /> : Service.language.categoryItem_edit}
+        <IonIcon slot='icon-only' icon={pencil} />
         </IonItemOption>
         {showDeleteButton ? (
           <IonItemOption color='danger' onClick={onDelete}>
@@ -83,7 +83,7 @@ function CategoryItem({
           onFavorite();
           ionItemSliding.current.closeOpened();
         }}>
-          {swipeIcons ? <IonIcon slot='icon-only' icon={star} /> : Service.language.categoryItem_favoriteAdd}
+          <IonIcon slot='icon-only' icon={star} />
         </IonItemOption>
       </IonItemOptions>
     </IonItemSliding>

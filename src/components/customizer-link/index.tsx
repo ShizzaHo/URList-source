@@ -2,72 +2,115 @@ import React, { useState } from 'react';
 import ServiceModule from '../../service';
 import './styles.css';
 
-import {
-  IonLabel,
-  IonListHeader,
-  IonList,
-  IonItem,
-  IonSelect,
-  IonSelectOption,
-} from '@ionic/react';
+import { IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
 
 import IconColorPicker from '../icon-color-picker/index';
 import { Icustomize } from '../../interfaces/index';
+import { pickTextColor } from '../../utils/pickTextColor/index';
+import { chevronDownOutline } from 'ionicons/icons';
 
-function CustomizeCategory({ onChangeColor, onChangeType, initColor, initType }: Icustomize) {
-  const Service = new ServiceModule();
+function CustomizeLink({
+  onChangeColor,
+  onChangeType,
+  initColor,
+  initType,
+  linkName,
+  service,
+  url,
+}: Icustomize) {
+  const [preview, setPreview] = useState({
+    color: initColor,
+    type: initType,
+  });
+
+  const callbacks = {
+    setColor: (e: string) => {
+      setPreview({
+        ...preview,
+        color: e,
+      });
+      onChangeColor(e);
+    },
+    setType: (e: any) => {
+      onChangeType(e.detail.value);
+    },
+  };
 
   return (
-    <>
-      <IonListHeader>
-        <IonLabel>{Service.language.universal_iconColor}</IonLabel>
-      </IonListHeader>
+    <div className='customiconcategory'>
+      <div className='customiconcategory-iconbox'>
+        <div
+          style={{ backgroundColor: preview.color }}
+          className='customiconcategory-preview'
+        >
+          {initType == 'nothing' ? <></> : <></>}
+          {initType == 'firstWord' ? (
+            <h1
+              style={{ color: pickTextColor(preview.color, 'white', 'black') }}
+            >
+              {linkName[0]}
+            </h1>
+          ) : (
+            <></>
+          )}
+          {initType == 'favicon' ? (
+            <img
+              src={
+                'https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=' +
+                url +
+                '&size=128'
+              }
+              style={{ height: '50%' }}
+            ></img>
+          ) : (
+            <></>
+          )}
+        </div>
+      </div>
+      <IconColorPicker
+        initColor={initColor}
+        onChangeColor={callbacks.setColor}
+        service={service}
+        categoryName={linkName}
+      />
+      <div
+        className='customiconcategory-type'
+        onClick={() => {
+          document.getElementById('dialogList')?.click();
+        }}
+      >
+        <span>{service.language['universal_' + initType]}</span>
+        <span>
+          <IonIcon slot='end' icon={chevronDownOutline} />
+        </span>
+      </div>
 
-      <IonListHeader>
-        <IconColorPicker
-          initColor={initColor}
-          onChangeColor={(e: string) => {
-            onChangeColor(e);
-          }}
-        />
-        <span>   </span>
-        <IonLabel>{Service.language.universal_clickToColorSelect}</IonLabel>
-      </IonListHeader>
-
-      <br></br>
-
-      <IonListHeader>
-        <IonLabel>{Service.language.universal_iconType}</IonLabel>
-      </IonListHeader>
-      <IonList>
-        <IonItem>
-          <IonSelect
-            value={initType}
-            onIonChange={(e) => {
-              onChangeType(e.detail.value);
-            }}
-          >
-            <IonSelectOption value='nothing'>
-              {Service.language.universal_nothing}
-            </IonSelectOption>
-            <IonSelectOption value='firstWord'>
-              {Service.language.universal_firstWord}
-            </IonSelectOption>
-            <IonSelectOption value='favicon'>
-              {Service.language.universal_favicon}
-            </IonSelectOption>
-          </IonSelect>
-        </IonItem>
-      </IonList>
-    </>
+      <IonSelect
+        value={initType}
+        onIonChange={callbacks.setType}
+        style={{ display: 'none', TouchEvent: 'none' }}
+        id='dialogList'
+      >
+        <IonSelectOption value='nothing'>
+          {service.language.universal_nothing}
+        </IonSelectOption>
+        <IonSelectOption value='firstWord'>
+          {service.language.universal_firstWord}
+        </IonSelectOption>
+        <IonSelectOption value='favicon'>
+          {service.language.universal_favicon}
+        </IonSelectOption>
+      </IonSelect>
+    </div>
   );
 }
 
-CustomizeCategory.defaultProps = {
+CustomizeLink.defaultProps = {
   onChangeColor: () => {},
   onChangeType: () => {},
   initColor: '#808080',
   initType: 'nothing',
+  linkName: '',
 };
 
-export default CustomizeCategory;
+export default CustomizeLink;

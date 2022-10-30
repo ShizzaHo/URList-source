@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import ServiceModule from '../../service';
 import './styles.css';
 
@@ -10,10 +10,22 @@ import {
   IonItemOptions,
   IonItemOption,
   IonIcon,
+  isPlatform,
 } from '@ionic/react';
-import { star, trash, pencil } from 'ionicons/icons';
+import {
+  star,
+  trash,
+  pencil,
+  shareSocialSharp,
+  copy,
+  share,
+  shareSocial,
+} from 'ionicons/icons';
 import { pickTextColor } from '../../utils/pickTextColor/index';
 import { Iany, Iservice } from '../../interfaces/index';
+
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { Clipboard } from '@ionic-native/clipboard';
 
 function LinkItem({
   title,
@@ -32,15 +44,35 @@ function LinkItem({
   const Service: Iservice = new ServiceModule();
   const ionItemSliding = useRef<any>();
 
+  const callbacks = {
+    favorite: () => {
+      onFavorite();
+      ionItemSliding.current.closeOpened();
+    },
+    share: () => {
+      SocialSharing.share('', title, null, desc);
+    },
+    copy: () => {
+      if (isPlatform('android')) {
+        Clipboard.copy(desc);
+      } else {
+        navigator.clipboard
+            .writeText(desc)
+            .then(() => {
+              //okay!
+            })
+            .catch((err) => {
+              alert('Ошибка копирования в буфер: ' + err)
+            });
+      }
+    },
+  };
+
   return (
     <IonItemSliding ref={ionItemSliding}>
       <IonItemOptions side='start'>
         <IonItemOption color='tertiary' onClick={onEdit}>
-          {swipeIcons ? (
-            <IonIcon slot='icon-only' icon={pencil} />
-          ) : (
-            Service.language.categoryItem_edit
-          )}
+          <IonIcon slot='icon-only' icon={pencil} />
         </IonItemOption>
         {showDeleteButton ? (
           <IonItemOption color='danger' onClick={onDelete}>
@@ -95,15 +127,14 @@ function LinkItem({
       </IonItem>
 
       <IonItemOptions side='end'>
-        <IonItemOption color='favorite' onClick={()=>{
-          onFavorite();
-          ionItemSliding.current.closeOpened();
-        }}>
-          {swipeIcons ? (
-            <IonIcon slot='icon-only' icon={star} />
-          ) : (
-            Service.language.categoryItem_favoriteAdd
-          )}
+        <IonItemOption color='tertiary' onClick={callbacks.copy}>
+          <IonIcon slot='icon-only' icon={copy} />
+        </IonItemOption>
+        <IonItemOption color='tertiary' onClick={callbacks.share}>
+          <IonIcon slot='icon-only' icon={shareSocialSharp} />
+        </IonItemOption>
+        <IonItemOption color='favorite' onClick={callbacks.favorite}>
+          <IonIcon slot='icon-only' icon={star} />
         </IonItemOption>
       </IonItemOptions>
     </IonItemSliding>

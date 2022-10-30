@@ -1,12 +1,5 @@
 const words = {
-    langName_ru: "Русский",
-    langName_en: "English",
-    langName_cz: "中文",
-    langName_uk: "Українська (не повний переклад)",
-    langName_fr: "Français",
-
     category: "Категории",
-
     settings: "Настройки",
     settings_importExport: "Импорт и экспорт данных",
     settings_selectLanguage: "Выбрать язык интерфейса",
@@ -17,8 +10,13 @@ const words = {
     settings_about: "О приложении",
     settings_showDeleteButton: "Показать кнопку удаления при свайпе",
     settings_swipeIcons: "Иконки вместо текста при свайпе",
+    settings_dateBlock: 'Данные',
+    settings_interfaceBlock: 'Интерфейс',
+    settings_informationBlock: 'Информация',
 
     importExport: "Импорт и экспорт данных",
+    importExport_import: "Импорт",
+    importExport_export: "Экспорт",
     importExport_exportJSON: "Экспортировать данные в .JSON файл",
     importExport_exportJSON_2: "Экспортировать данные в строку",
     importExport_importJSON: "Импортировать данные из .JSON файла",
@@ -27,12 +25,14 @@ const words = {
     importExport_manual: "Инструкция",
 
     about: "О приложении",
-    about_subtitle: "Твой помощник в сохранении ссылок",
+    about_subtitle: "Больше ваши ссылки никогда не потеряются, ведь теперь вы можете хранить их в удобном кроссплатформенном приложении URList! Создавайте категории, и храните в них тематические ссылки, удобно открывая их в один клик!",
     about_developer: "Разработчик:",
     about_version: "Версия приложения:",
     about_4pda: "Тема приложения на 4PDA",
     about_site: "Официальный сайт проекта",
     about_donat: "Поддержать проект",
+    about_telegram: "Канал разработчика в Telegram",
+    about_github: "Исходный код на GitHub",
 
     universalPage_inputPlaceholder: "Введите/скопируйте необходимые данные",
     universalPage_info1: "После взаимодейтсвия с этим окном, обязательно перезапустите приложение для применения изменений",
@@ -107,6 +107,16 @@ const words = {
     import_linkBox_converting: "Идет процесс конвертирования данных из Linkbox в конфиг URList, пожалуйста подождите...",
 
     search: "Поиск",
+
+    tabbar_basicInformation: "Базовая информация",
+    tabbar_customization: "Внешний вид",
+
+    langName_custom: "Выбрать другой язык из .JSON файла",
+
+    customLanguage_wait: "Ожидание выбора файла",
+    customLanguage_cheсking: "Проверка...",
+    customLanguage_prompt: "Введите данные из .json файла в строку ниже",
+    customLanguage_error: "Ошибка выбора файла",
 }
 
 export default words;

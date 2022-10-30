@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import ServiceContext from '../../context/service-context';
 import { useHistory } from 'react-router-dom';
 import { Iservice } from '../../interfaces';
@@ -29,6 +29,9 @@ import { App } from '@capacitor/app';
 import { useIonRouter } from '@ionic/react';
 import { Icategory } from '../../interfaces/index';
 import { sortFavoriteAndSplit } from '../../utils/sort/index';
+import { generateReactKey } from '../../utils/generator/index';
+import Spacer from '../../components/spacer';
+
 const Category = () => {
   const Service: Iservice = useContext(ServiceContext);
 
@@ -47,9 +50,17 @@ const Category = () => {
     });
   });
 
-  if (Service.settings.getSettings().guideStart === false) {
-    guideDialog();
-  }
+  useEffect(()=>{
+    if (Service.settings.getSettings().guideStart === false) {
+      guideDialog();
+    }
+
+    if (localStorage.getItem('URLIST_LANG') == "custom") {
+      if (localStorage.getItem('URLIST_CUSTOMLANG') == undefined) {
+        history.push("/customLanguage")
+      }
+    }
+  }, [])
 
   return (
     <IonPage id='category-page'>
@@ -84,7 +95,7 @@ const Category = () => {
               (item: Icategory, index: number) => {
                 return (
                   <CategoryItem
-                    key={item.title}
+                    key={generateReactKey()}
                     title={item.title}
                     desc={item.desc}
                     onOpen={() => {
@@ -123,6 +134,7 @@ const Category = () => {
             <IonIcon icon={add} />
           </IonFabButton>
         </IonFab>
+        <Spacer />
       </IonContent>
     </IonPage>
   );
@@ -165,7 +177,6 @@ const Category = () => {
           role: 'confirm',
           handler: () => {
             Service.data.deleteCategory(id);
-            history.goBack();
           },
         },
       ],

@@ -13,50 +13,87 @@ import {
 
 import IconColorPicker from '../icon-color-picker/index';
 import { Icustomize } from '../../interfaces/index';
+import { pickTextColor } from '../../utils/pickTextColor/index';
+import { IonIcon } from '@ionic/react';
+import { chevronDownOutline } from 'ionicons/icons';
 
-function CustomizeCategory({ onChangeColor, onChangeType, initColor, initType }: Icustomize) {
+function CustomizeCategory({
+  onChangeColor,
+  onChangeType,
+  initColor,
+  initType,
+  categoryName,
+}: Icustomize) {
   const Service = new ServiceModule();
 
+  const [preview, setPreview] = useState({
+    color: initColor,
+    type: initType,
+  });
+
+  const callbacks = {
+    setColor: (e: string) => {
+      setPreview({
+        ...preview,
+        color: e,
+      });
+      onChangeColor(e);
+    },
+    setType: (e: any) => {
+      onChangeType(e.detail.value);
+    },
+  };
+
   return (
-    <>
-      <IonListHeader>
-        <IonLabel>{Service.language.universal_iconColor}</IonLabel>
-      </IonListHeader>
+    <div className='customiconcategory'>
+      <div className='customiconcategory-iconbox'>
+        <div
+          style={{ backgroundColor: preview.color }}
+          className='customiconcategory-preview'
+        >
+          {initType == 'nothing' ? <></> : <></>}
+          {initType == 'firstWord' ? (
+            <h1
+              style={{ color: pickTextColor(preview.color, 'white', 'black') }}
+            >
+              {categoryName[0]}
+            </h1>
+          ) : (
+            <></>
+          )}
+        </div>
+      </div>
+      <IconColorPicker
+        initColor={initColor}
+        onChangeColor={callbacks.setColor}
+        service={Service}
+      />
+      <div
+        className='customiconcategory-type'
+        onClick={() => {
+          document.getElementById('dialogList')?.click();
+        }}
+      >
+        <span>{Service.language['universal_' + initType]}</span>
+        <span>
+          <IonIcon slot='end' icon={chevronDownOutline} />
+        </span>
+      </div>
 
-      <IonListHeader>
-        <IconColorPicker
-          initColor={initColor}
-          onChangeColor={(e: string) => {
-            onChangeColor(e);
-          }}
-        />
-        <span>   </span>
-        <IonLabel>{Service.language.universal_clickToColorSelect}</IonLabel>
-      </IonListHeader>
-
-      <br></br>
-
-      <IonListHeader>
-        <IonLabel>{Service.language.universal_iconType}</IonLabel>
-      </IonListHeader>
-      <IonList>
-        <IonItem>
-          <IonSelect
-            value={initType}
-            onIonChange={(e) => {
-              onChangeType(e.detail.value);
-            }}
-          >
-            <IonSelectOption value='nothing'>
-              {Service.language.universal_nothing}
-            </IonSelectOption>
-            <IonSelectOption value='firstWord'>
-              {Service.language.universal_firstWord}
-            </IonSelectOption>
-          </IonSelect>
-        </IonItem>
-      </IonList>
-    </>
+      <IonSelect
+        value={initType}
+        onIonChange={callbacks.setType}
+        style={{ display: 'none', TouchEvent: 'none' }}
+        id='dialogList'
+      >
+        <IonSelectOption value='nothing'>
+          {Service.language.universal_nothing}
+        </IonSelectOption>
+        <IonSelectOption value='firstWord'>
+          {Service.language.universal_firstWord}
+        </IonSelectOption>
+      </IonSelect>
+    </div>
   );
 }
 

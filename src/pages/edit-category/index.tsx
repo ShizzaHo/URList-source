@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 import ServiceContext from '../../context/service-context';
 import { useHistory, useParams } from 'react-router-dom';
 import {
@@ -19,17 +19,23 @@ import {
   IonTextarea,
   useIonAlert,
   IonListHeader,
+  IonSlides,
+  IonSlide,
+  IonTabBar,
+  IonTabButton,
 } from '@ionic/react';
-import { saveSharp, trashSharp } from 'ionicons/icons';
+import { saveSharp, trashSharp, informationCircle, colorPalette } from 'ionicons/icons';
 import './styles.css';
 
 import { observer } from 'mobx-react';
 import CustomizeCategory from '../../components/customizer-category';
 import { Iservice } from '../../interfaces/index';
+import SzhInput from '../../components/szh-input/index';
 
 const EditCategory = () => {
   const Service: Iservice = useContext(ServiceContext);
   const [presentAlert] = useIonAlert();
+  const slider: any = useRef();
 
   const history = useHistory();
   const params = useParams<{ id?: string }>();
@@ -52,6 +58,53 @@ const EditCategory = () => {
       : '',
   });
 
+  const handlers = {
+    name: (e: any) => {
+      setState({
+        ...state,
+        name: e.target.value,
+      });
+    },
+    desc: (e: any) => {
+      setState({
+        ...state,
+        desc: e.target.value,
+      });
+    },
+  };
+
+  const callbacks = {
+    changeColor: (e: string) => {
+      setState({
+        ...state,
+        iconColor: e,
+      });
+    },
+    changeType: (e: string) => {
+      setState({
+        ...state,
+        iconType: e,
+      });
+    },
+    openSlideOne: () => {
+      console.log(slider.current.slideTo(0));
+    },
+    openSlideTwo: () => {
+      console.log(slider.current.slideTo(1));
+    },
+    editCategory: () => {
+      Service.data.editCategory(params.id, {
+        title: state.name,
+        desc: state.desc,
+        id: params.id,
+        iconColor: state.iconColor,
+        iconType: state.iconType,
+        isFavorite: state.isFavorite
+      });
+      history.goBack();
+    }
+  };
+
   return (
     <IonPage id='category-page'>
       <IonHeader>
@@ -73,70 +126,64 @@ const EditCategory = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <div className='p-10'>
-          <IonListHeader>
-            <IonLabel style={{ color: 'gray' }}>
-              {Service.language.universal_basicInformation}
-            </IonLabel>
-          </IonListHeader>
-          <IonItem color='no'>
-            <IonLabel position='floating'>
-              {Service.language.editCategory_name}
-            </IonLabel>
-            <IonInput
-              value={state.name}
-              onIonChange={(e) => {
-                setState({ ...state, name: e.detail.value });
-              }}
-            ></IonInput>
-          </IonItem>
-          <IonItem color='no'>
-            <IonLabel position='floating'>
-              {Service.language.editCategory_desc}
-            </IonLabel>
-            <IonTextarea
-              value={state.desc}
-              rows={6}
-              onIonChange={(e) => {
-                setState({ ...state, desc: e.detail.value });
-              }}
-            ></IonTextarea>
-          </IonItem>
-        </div>
-        <br></br>
-        <div>
-          <IonListHeader>
-            <IonLabel style={{ color: 'gray' }}>
-              {Service.language.universal_customization}
-            </IonLabel>
-          </IonListHeader>
-
-          <CustomizeCategory
-            initColor={state.iconColor}
-            initType={state.iconType}
-            onChangeColor={changeColor}
-            onChangeType={changeType}
-          />
-        </div>
-        <IonFab vertical='bottom' horizontal='center' slot='fixed'>
-          <IonFabButton
-            className='fab'
-            onClick={() => {
-              Service.data.editCategory(params.id, {
-                title: state.name,
-                desc: state.desc,
-                id: params.id,
-                iconColor: state.iconColor,
-                iconType: state.iconType,
-                isFavorite: state.isFavorite
-              });
-              history.goBack();
-            }}
-          >
-            <IonIcon icon={saveSharp} />
-          </IonFabButton>
-        </IonFab>
+        <IonSlides className='newcategory-slider' ref={slider}>
+          <IonSlide>
+            <div className='p-10 newcategory-page'>
+              <SzhInput
+                id='name'
+                value={state.name}
+                placeholder={Service.language.newCategory_name}
+                onChange={handlers.name}
+              />
+              <SzhInput
+                id='desc'
+                value={state.desc}
+                placeholder={Service.language.newCategory_desc}
+                onChange={handlers.desc}
+              />
+            </div>
+          </IonSlide>
+          <IonSlide>
+            <div className='p-10 newcategory-page'>
+              <CustomizeCategory
+                initColor={state.iconColor}
+                initType={state.iconType}
+                onChangeColor={callbacks.changeColor}
+                onChangeType={callbacks.changeType}
+                categoryName={state.name}
+              />
+            </div>
+          </IonSlide>
+        </IonSlides>
       </IonContent>
+      <IonFab
+        vertical='bottom'
+        horizontal='center'
+        slot='fixed'
+        className='newcategory-fab'
+      >
+        <IonFabButton
+          className='fab'
+          onClick={callbacks.editCategory}
+        >
+          <IonIcon icon={saveSharp} />
+        </IonFabButton>
+      </IonFab>
+      <IonTabBar
+        slot='bottom'
+        color='urlDarkToolbar'
+        className='newcategory-tabbar'
+      >
+        <IonTabButton tab='schedule' onClick={callbacks.openSlideOne}>
+          <IonIcon icon={informationCircle} />
+          <IonLabel>{Service.language.tabbar_basicInformation}</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton tab='speakers' onClick={callbacks.openSlideTwo}>
+          <IonIcon icon={colorPalette} />
+          <IonLabel>{Service.language.tabbar_customization}</IonLabel>
+        </IonTabButton>
+      </IonTabBar>
     </IonPage>
   );
 

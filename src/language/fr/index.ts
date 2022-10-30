@@ -1,10 +1,4 @@
 const words = {
-    langName_ru: "Русский",
-    langName_en: "English",
-    langName_cz: "中文",
-    langName_uk: "Українська (не повний переклад)",
-    langName_fr: "Français",
-
     category: "Catégories",
 
     settings: "Réglages",
@@ -17,8 +11,13 @@ const words = {
     settings_about: "À propos de l'application",
     settings_showDeleteButton: "Afficher le bouton de suppression lors du balayage",
     settings_swipeIcons: "Icônes au lieu de texte lorsque vous glissez",
+    settings_dateBlock: 'Données',
+    settings_interfaceBlock: 'Interface',
+    settings_informationBlock: 'Information',
 
     importExport: "Importer et exporter des données",
+    importExport_import: "Importation",
+    importExport_export: "Exportation",
     importExport_exportJSON: "Exporter les données vers .Fichier JSON",
     importExport_exportJSON_2:"Exporter les données vers une chaîne",
     importExport_importJSON: "Importer des données à partir de .Fichier JSON",
@@ -27,12 +26,14 @@ const words = {
     importExport_manual: "instruction",
 
     about: "À propos de l'application",
-    about_subtitle: "Votre Assistant pour conserver les liens",
+    about_subtitle: "Plus vos liens ne seront jamais perdus, car maintenant vous pouvez les stocker dans une application multiplateforme pratique URList! Créez des Catégories et stockez des liens thématiques en les ouvrant facilement en un seul clic!",
     about_developer: "Développeur:",
     about_version: "version de l'application:",
     about_4pda:"Thème de l'application sur 4PDA",
     about_site: "site Officiel du projet",
     about_donat: "Soutenir le projet",
+    about_telegram: "Canal développeur dans Telegram",
+    about_github: "Code source sur GitHub",
 
     universalPage_inputPlaceholder: "Entrez/copiez les données requises",
     universalPage_info1: "après avoir interagi avec cette fenêtre, assurez-vous de redémarrer l'application pour appliquer les modifications",
@@ -107,6 +108,16 @@ const words = {
     import_linkBox_converting: "le processus de conversion de Listbox en config Url list est En cours, veuillez patienter...",
 
     search: "Recherche",
+
+    tabbar_basicInformation: "Informations de base",
+    tabbar_customization: "Apparition",
+
+    langName_custom: "Choisir une autre langue de .Fichier JSON",
+
+    customLanguage_wait: "En attente de la sélection du fichier",
+    customLanguage_cheсking: "Vérification...",
+    customLanguage_prompt: "Entrez les données de .fichier json dans la ligne ci-dessous",
+    customLanguage_error: "Erreur de sélection de fichier",
 }
 
 export default words;

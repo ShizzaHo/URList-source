@@ -1,9 +1,4 @@
 const words = {
-  langName_ru: 'Русский',
-  langName_en: 'English',
-  langName_cz: '中文',
-  langName_uk: 'Українська (не повний переклад)',
-
   category: 'категорії',
 
   settings: 'Налаштування',

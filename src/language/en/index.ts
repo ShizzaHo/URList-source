@@ -1,10 +1,4 @@
 const words = {
-  langName_ru: 'Русский',
-  langName_en: 'English',
-  langName_cz: '中文',
-  langName_uk: 'Українська (не повний переклад)',
-  langName_fr: "Français",
-
   category: 'Categories',
 
   settings: 'Settings',
@@ -17,8 +11,13 @@ const words = {
   settings_about: 'About the app',
   settings_showDeleteButton: "Show delete button on swipe",
   settings_swipeIcons: "Icons instead of text on swipe",
+  settings_dateBlock: 'Data',
+  settings_interfaceBlock: 'Interface',
+  settings_informationBlock: 'Information',
 
   ImportExport: 'Data import and export',
+  importExport_import: "Import",
+  importExport_export: "Export",
   importExport_exportJSON: "Export data to a .JSON file",
   importExport_exportJSON_2: "Export data to a string",
   importExport_importJSON: "Import data from a .JSON file",
@@ -27,12 +26,14 @@ const words = {
   importExport_manual: 'Instruction (russian only)',
 
   about: 'About the app',
-  about_subtitle: 'Your assistant in saving links',
+  about_subtitle: 'Your links will never be lost anymore, because now you can store them in a convenient cross-platform URList application! Create categories and store thematic links in them, conveniently opening them in one click!',
   about_developer: 'Developer:',
   about_version: 'Application version:',
   about_4pda: '4PDA application theme',
   about_site: 'Official project website',
   about_donate: 'Support the project',
+  about_telegram: "Developer channel in Telegram",
+  about_github: "Source code on GitHub",
 
   universalPage_inputPlaceholder: 'Enter/copy the required data',
   universalPage_info1:
@@ -109,6 +110,16 @@ const words = {
   import_linkBox_converting: "There is a process of converting data from Linkbox to URList config, please wait...",
 
   search: "Search",
+
+  tabbar_basicInformation: "Basic information",
+  tabbar_customization: "Appearance",
+
+  langName_custom: "Choose a different language from .JSON file",
+
+  customLanguage_wait: "Waiting for file selection",
+  customLanguage_cheсking: "Checking...",
+  customLanguage_prompt: "Enter the data from .json file in the line below",
+  customLanguage_error: "File selection error",
 };
 
 export default words;

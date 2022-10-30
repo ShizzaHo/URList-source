@@ -1,10 +1,4 @@
 const words = {
-  langName_ru: 'Русский',
-  langName_en: 'English',
-  langName_cz: '中文',
-  langName_uk: 'Українська (не повний переклад)',
-  langName_fr: "Français",
-
   category: '类别',
 
   settings: '设置',
@@ -17,8 +11,13 @@ const words = {
   settings_about: '关于应用程序',
   settings_showDeleteButton: "刷卡时显示删除按钮",
   settings_swipeIcons: "刷卡时用图标代替文字",
+  settings_dateBlock: '日期',
+  settings_interfaceBlock: '介面',
+  settings_informationBlock: '信息',
 
   importExport: '数据导入和导出',
+  importExport_import: "进口",
+  importExport_export: "出口",
   importExport_exportJSON: "将数据导出到一个.JSON文件",
   importExport_exportJSON_2: "将数据导出为一个字符串",
   importExport_importJSON: "从一个.JSON文件导入数据",
@@ -27,12 +26,14 @@ const words = {
   importExport_manual: '说明（仅限俄语）',
 
   about: '关于应用程序',
-  about_subtitle: '您的助手在保存链接',
+  about_subtitle: '您的链接将永远不会丢失，因为现在您可以将它们存储在一个方便的跨平台URList应用程序中！ 创建类别和存储主题链接在他们,方便打开他们在一个点击!',
   about_developer: '开发人员:',
   about_version: '应用程序版本:',
   about_4pda: '在4pda应用程序的主题',
   about_site: '项目官方网站',
   about_donate: '支持项目',
+  about_telegram: "电报中的开发者频道",
+  about_github: "GitHub上的源代码",
 
   universalPage_inputPlaceholder: '输入/复制所需数据',
   universalPage_info1: '与此窗口交互后，请务必重新启动应用程序以应用更改',
@@ -107,6 +108,16 @@ const words = {
   import_linkBox_converting: "有一个将数据从Linkbox转换为URList配置的过程，请稍候。..",
 
   search: "搜索",
+
+  tabbar_basicInformation: "基本信息",
+  tabbar_customization: "外观",
+
+  langName_custom: "选择不同的语言。JSON文件",
+
+  customLanguage_wait: "等待文件选择",
+  customLanguage_cheсking: "检查一下。..",
+  customLanguage_prompt: "输入数据。json文件在下面的行",
+  customLanguage_error: "文件选择错误",
 };
 
 export default words;

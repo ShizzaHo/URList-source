@@ -2,6 +2,7 @@
     width: 1px;
     height: 1px;
     opacity: 0;
+    float: right;
 }
 
 .iconcolorpicker-picker{
