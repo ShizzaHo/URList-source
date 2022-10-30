@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import ServiceContext from '../../context/service-context';
 import { useHistory } from 'react-router-dom';
 import { Iservice } from '../../interfaces';
@@ -31,6 +31,7 @@ import { Icategory } from '../../interfaces/index';
 import { sortFavoriteAndSplit } from '../../utils/sort/index';
 import { generateReactKey } from '../../utils/generator/index';
 import Spacer from '../../components/spacer';
+
 const Category = () => {
   const Service: Iservice = useContext(ServiceContext);
 
@@ -49,9 +50,17 @@ const Category = () => {
     });
   });
 
-  if (Service.settings.getSettings().guideStart === false) {
-    guideDialog();
-  }
+  useEffect(()=>{
+    if (Service.settings.getSettings().guideStart === false) {
+      guideDialog();
+    }
+
+    if (localStorage.getItem('URLIST_LANG') == "custom") {
+      if (localStorage.getItem('URLIST_CUSTOMLANG') == undefined) {
+        history.push("/customLanguage")
+      }
+    }
+  }, [])
 
   return (
     <IonPage id='category-page'>

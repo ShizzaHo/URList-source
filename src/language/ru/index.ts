@@ -1,12 +1,5 @@
 const words = {
-    langName_ru: "Русский",
-    langName_en: "English",
-    langName_cz: "中文",
-    langName_uk: "Українська (не повний переклад)",
-    langName_fr: "Français",
-
     category: "Категории",
-
     settings: "Настройки",
     settings_importExport: "Импорт и экспорт данных",
     settings_selectLanguage: "Выбрать язык интерфейса",
@@ -117,6 +110,13 @@ const words = {
 
     tabbar_basicInformation: "Базовая информация",
     tabbar_customization: "Внешний вид",
+
+    langName_custom: "Выбрать другой язык из .JSON файла",
+
+    customLanguage_wait: "Ожидание выбора файла",
+    customLanguage_cheсking: "Проверка...",
+    customLanguage_prompt: "Введите данные из .json файла в строку ниже",
+    customLanguage_error: "Ошибка выбора файла",
 }
 
 export default words;

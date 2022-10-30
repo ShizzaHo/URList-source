@@ -1,10 +1,4 @@
 const words = {
-  langName_ru: 'Русский',
-  langName_en: 'English',
-  langName_cz: '中文',
-  langName_uk: 'Українська (не повний переклад)',
-  langName_fr: "Français",
-
   category: '类别',
 
   settings: '设置',
@@ -22,6 +16,8 @@ const words = {
   settings_informationBlock: '信息',
 
   importExport: '数据导入和导出',
+  importExport_import: "进口",
+  importExport_export: "出口",
   importExport_exportJSON: "将数据导出到一个.JSON文件",
   importExport_exportJSON_2: "将数据导出为一个字符串",
   importExport_importJSON: "从一个.JSON文件导入数据",
@@ -115,6 +111,13 @@ const words = {
 
   tabbar_basicInformation: "基本信息",
   tabbar_customization: "外观",
+
+  langName_custom: "选择不同的语言。JSON文件",
+
+  customLanguage_wait: "等待文件选择",
+  customLanguage_cheсking: "检查一下。..",
+  customLanguage_prompt: "输入数据。json文件在下面的行",
+  customLanguage_error: "文件选择错误",
 };
 
 export default words;
