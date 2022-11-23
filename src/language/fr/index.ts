@@ -7,7 +7,7 @@ const words = {
     settings_selectLanguage_title: "Sélectionnez la langue:",
     settings_showIcons: "Afficher les icônes des Catégories et des liens",
     settings_guide: "Suivre une formation",
-    settings_userAgreement: "Conditions d'utilisation (uniquement en en russe)",
+    settings_userAgreement: "Accord d'utilisation et clause de non-responsabilité (en russe uniquement)Conditions d'utilisation (uniquement en en russe)",
     settings_about: "À propos de l'application",
     settings_showDeleteButton: "Afficher le bouton de suppression lors du balayage",
     settings_swipeIcons: "Icônes au lieu de texte lorsque vous glissez",
