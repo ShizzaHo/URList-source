@@ -7,7 +7,7 @@ const words = {
   settings_selectLanguage_title: 'Select a language:',
   settings_showIcons: 'Show icons in categories and links',
   settings_guide: "Go through the training",
-  settings_userAgreement: 'User Agreement (russian only)',
+  settings_userAgreement: 'User Agreement and Disclaimer (Russian only)',
   settings_about: 'About the app',
   settings_showDeleteButton: "Show delete button on swipe",
   settings_swipeIcons: "Icons instead of text on swipe",

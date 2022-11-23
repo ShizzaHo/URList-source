@@ -33,7 +33,6 @@ function selectLanguage(lang: (string | null)){
         case "france":
             return {...langs, ...english, ...france};
         case "custom":
-            
             return {...langs, ...english, ...customLang()};
         default:
             return english;

@@ -7,7 +7,7 @@ const words = {
   settings_selectLanguage_title: '选择一种语言:',
   settings_showIcons: '在类别和链接中显示图标',
   settings_guide: "参加培训课程",
-  settings_userAgreement: '用户协议（仅限俄语）',
+  settings_userAgreement: '用户协议和免责声明（仅限俄语）',
   settings_about: '关于应用程序',
   settings_showDeleteButton: "刷卡时显示删除按钮",
   settings_swipeIcons: "刷卡时用图标代替文字",

@@ -7,7 +7,7 @@ const words = {
   settings_selectLanguage_title: 'Виберіть мову:',
   settings_showIcons: 'Показувати іконки у категорій і посилань',
   settings_guide: "Пройти навчання",
-  settings_userAgreement: 'Угода користувача',
+  settings_userAgreement: 'Угода користувача та відмова від відповідальності (Тільки російською мовою)',
   settings_about: 'про програму',
 
   importExport: 'імпорт та експорт даних',

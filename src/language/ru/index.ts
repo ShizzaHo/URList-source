@@ -6,7 +6,7 @@ const words = {
     settings_selectLanguage_title: "Выберите язык:",
     settings_showIcons: "Показывать иконки у категорий и ссылок",
     settings_guide: "Пройти обучение",
-    settings_userAgreement: "Пользовательское соглашение",
+    settings_userAgreement: "Пользовательское соглашение и отказ от ответственности",
     settings_about: "О приложении",
     settings_showDeleteButton: "Показать кнопку удаления при свайпе",
     settings_swipeIcons: "Иконки вместо текста при свайпе",
