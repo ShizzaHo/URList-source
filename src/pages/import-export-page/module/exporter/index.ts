@@ -16,7 +16,7 @@ export async function exportDataFile(data: string) {
 }
 
 async function checkDir() {
-  return await File.checkDir(File.externalDataDirectory, 'exportData')
+  return await File.checkDir(File.externalRootDirectory, '/Download/URLIST/exportData')
     .then((res) => {
       return true;
     })
@@ -26,7 +26,7 @@ async function checkDir() {
 }
 
 async function createDir() {
-  return await File.createDir(File.externalDataDirectory, 'exportData', true)
+  return await File.createDir(File.externalRootDirectory, '/Download/URLIST/exportData', true)
     .then(() => {
       return true;
     })
@@ -37,7 +37,7 @@ async function createDir() {
 
 async function writeFile(data: string) {
     const id = generateExportFileID();
-    return await File.writeFile(File.externalDataDirectory + 'exportData', 'exportData_'+id+".json", data)
+    return await File.writeFile(File.externalRootDirectory + '/Download/URLIST/exportData', 'exportData_'+id+".json", data)
       .then(() => {
         return id;
       })

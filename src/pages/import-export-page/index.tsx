@@ -92,11 +92,15 @@ const NewCategory = () => {
         <div className=''>
           <SettingsBlock title={Service.language.importExport_export}>
             <IonList lines='none'>
-              <IonItem button onClick={callbacks.exportJson}>
-                <IonLabel>
-                  <h2>{Service.language.importExport_exportJSON}</h2>
-                </IonLabel>
-              </IonItem>
+              {isPlatform('android') ? (
+                <IonItem button onClick={callbacks.exportJson}>
+                  <IonLabel>
+                    <h2>{Service.language.importExport_exportJSON}</h2>
+                  </IonLabel>
+                </IonItem>
+              ) : (
+                <></>
+              )}
               <IonItem button onClick={callbacks.exportJson2}>
                 <IonLabel>
                   <h2>{Service.language.importExport_exportJSON_2}</h2>
@@ -106,21 +110,29 @@ const NewCategory = () => {
           </SettingsBlock>
           <SettingsBlock title={Service.language.importExport_import}>
             <IonList lines='none'>
-              <IonItem button onClick={callbacks.importJson}>
-                <IonLabel>
-                  <h2>{Service.language.importExport_importJSON}</h2>
-                </IonLabel>
-              </IonItem>
+              {isPlatform('android') ? (
+                <IonItem button onClick={callbacks.importJson}>
+                  <IonLabel>
+                    <h2>{Service.language.importExport_importJSON}</h2>
+                  </IonLabel>
+                </IonItem>
+              ) : (
+                <></>
+              )}
               <IonItem button onClick={callbacks.importJson2}>
                 <IonLabel>
                   <h2>{Service.language.importExport_importJSON_2}</h2>
                 </IonLabel>
               </IonItem>
-              <IonItem button onClick={callbacks.importJson3}>
-                <IonLabel>
-                  <h2>{Service.language.importExport_importJSON_3}</h2>
-                </IonLabel>
-              </IonItem>
+              {isPlatform('android') ? (
+                <IonItem button onClick={callbacks.importJson3}>
+                  <IonLabel>
+                    <h2>{Service.language.importExport_importJSON_3}</h2>
+                  </IonLabel>
+                </IonItem>
+              ) : (
+                <></>
+              )}
             </IonList>
           </SettingsBlock>
         </div>
