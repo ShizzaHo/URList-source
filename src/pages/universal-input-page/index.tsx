@@ -10,10 +10,8 @@ import {
   IonIcon,
   IonFab,
   IonFabButton,
-  IonItem,
   IonLabel,
   IonBackButton,
-  IonTextarea,
 } from '@ionic/react';
 import { send } from 'ionicons/icons';
 import './styles.css';
